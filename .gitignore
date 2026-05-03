@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.env
+.claude/
+config/.env
+config/credentials.enc
+config/.encryption_key
+config/client_secret.json
+config/token_cache.json
+lives/
+node_modules/
+*.log
+dashboard/scheduler_status.json
+imports/*/videos/
+imports/*/*.mp4
+imports/**/*.mp4

@@ -1,0 +1,221 @@
+#!/usr/bin/env python3
+"""
+setup-db — Cria e inicializa o banco SQLite local.
+
+Uso:
+  setup-db              # Cria DB vazio com schema
+  setup-db --import     # Cria DB e importa dados do Google Sheets
+"""
+
+import json
+import os
+import sys
+import base64
+import urllib.parse
+import urllib.request
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.join(SCRIPT_DIR, '..')
+sys.path.insert(0, PROJECT_ROOT)
+
+import db
+
+CONFIG_DIR = os.environ.get('GWS_CONFIG_DIR', os.path.join(PROJECT_ROOT, 'config'))
+
+
+def load_env():
+    """Load .env file."""
+    env_file = os.path.join(CONFIG_DIR, '.env')
+    if os.path.exists(env_file):
+        with open(env_file) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ[key] = val
+
+
+def get_access_token():
+    """Get OAuth access token (same as scheduler/server)."""
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+
+    key_path = os.path.join(CONFIG_DIR, '.encryption_key')
+    creds_path = os.path.join(CONFIG_DIR, 'credentials.enc')
+
+    if not os.path.exists(key_path) or not os.path.exists(creds_path):
+        return None
+
+    with open(key_path, 'r') as f:
+        key = base64.b64decode(f.read().strip())
+
+    with open(creds_path, 'rb') as f:
+        data = f.read()
+
+    aesgcm = AESGCM(key)
+    creds = json.loads(aesgcm.decrypt(data[:12], data[12:], None))
+
+    token_data = urllib.parse.urlencode({
+        'client_id': os.environ.get('CLIENT_ID', ''),
+        'client_secret': os.environ.get('CLIENT_SECRET', ''),
+        'refresh_token': creds['refresh_token'],
+        'grant_type': 'refresh_token'
+    }).encode()
+
+    req = urllib.request.Request('https://oauth2.googleapis.com/token', data=token_data)
+    resp = json.loads(urllib.request.urlopen(req).read())
+    return resp['access_token']
+
+
+def sheets_get(token, spreadsheet_id, range_str):
+    """Read from Google Sheets."""
+    encoded = urllib.parse.quote(range_str)
+    url = f'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{encoded}'
+    req = urllib.request.Request(url)
+    req.add_header('Authorization', f'Bearer {token}')
+    try:
+        resp = urllib.request.urlopen(req)
+        return json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        print(f'  Erro ao ler {range_str}: {e.code} {e.read().decode()[:100]}')
+        return {'values': []}
+
+
+def import_from_sheets():
+    """Import data from Google Sheets into SQLite."""
+    load_env()
+    spreadsheet_id = os.environ.get('SPREADSHEET_ID', '')
+    if not spreadsheet_id:
+        print('ERRO: SPREADSHEET_ID nao definido no .env')
+        return False
+
+    print(f'==> Obtendo token OAuth...')
+    try:
+        token = get_access_token()
+        if not token:
+            print('ERRO: Nao foi possivel obter token (credentials.enc ausente?)')
+            return False
+        print('    Token OK')
+    except Exception as e:
+        print(f'ERRO: {e}')
+        return False
+
+    # Import CONFIG
+    print(f'==> Importando CONFIG...')
+    result = sheets_get(token, spreadsheet_id, 'CONFIG!A1:B200')
+    rows = result.get('values', [])
+    if len(rows) > 1:
+        config_data = {}
+        for row in rows[1:]:
+            if len(row) >= 2 and row[0]:
+                config_data[row[0]] = row[1]
+        db.update_config(config_data)
+        print(f'    {len(config_data)} chaves importadas')
+    else:
+        print('    Nenhum dado')
+
+    # Import LIVES
+    print(f'==> Importando LIVES...')
+    result = sheets_get(token, spreadsheet_id, 'LIVES!A1:M1000')
+    rows = result.get('values', [])
+    if len(rows) > 1:
+        headers = rows[0]
+        lives_list = []
+        for row in rows[1:]:
+            live = {}
+            for i, h in enumerate(headers):
+                live[h] = row[i] if i < len(row) else ''
+            if live.get('video_id'):
+                lives_list.append(live)
+        db.add_lives(lives_list)
+        print(f'    {len(lives_list)} lives importadas')
+    else:
+        print('    Nenhum dado')
+
+    # Import PUBLICADOS
+    print(f'==> Importando PUBLICADOS...')
+    result = sheets_get(token, spreadsheet_id, 'PUBLICADOS!A1:K1000')
+    rows = result.get('values', [])
+    if len(rows) > 1:
+        headers = rows[0]
+        count = 0
+        for row in rows[1:]:
+            pub = {}
+            for i, h in enumerate(headers):
+                pub[h] = row[i] if i < len(row) else ''
+            # Skip completely empty rows
+            if not pub.get('clip_video_id') and not pub.get('clip_titulo'):
+                continue
+            db.add_publicado(pub)
+            count += 1
+        print(f'    {count} publicados importados')
+    else:
+        print('    Nenhum dado')
+
+    return True
+
+
+def main():
+    do_import = '--import' in sys.argv
+
+    print(f'==> setup-db')
+    print(f'    Projeto: {PROJECT_ROOT}')
+    print(f'    Config: {CONFIG_DIR}')
+    print(f'    DB: {db.DB_PATH}')
+    print()
+
+    # Auto-create DB and tables
+    print('==> Criando banco de dados...')
+    conn = db.get_db()
+    print(f'    DB criado em {db.DB_PATH}')
+
+    # Ensure prompt files exist (copy from lives2 as default if missing)
+    print('==> Verificando prompts...')
+    source_config = '/home/nmaldaner/projetos/yt-pub-lives2/config'
+    for prompt_name in ('prompt_cortes.txt', 'prompt_pub.txt', 'prompt_thumb.txt'):
+        dest = os.path.join(CONFIG_DIR, prompt_name)
+        if not os.path.exists(dest):
+            src = os.path.join(source_config, prompt_name)
+            if os.path.exists(src):
+                import shutil
+                shutil.copy2(src, dest)
+                print(f'    {prompt_name} copiado de lives2')
+            else:
+                print(f'    {prompt_name} nao encontrado (configure pelo dashboard)')
+        else:
+            print(f'    {prompt_name} OK')
+
+    # Check if DB already has data
+    config = db.load_config()
+    lives = db.get_lives()
+    pubs = db.get_publicados()
+    print(f'    Estado atual: {len(config)} configs, {len(lives)} lives, {len(pubs)} publicados')
+
+    if do_import:
+        if lives or pubs:
+            print()
+            print('AVISO: DB ja contem dados. A importacao vai ADICIONAR dados (nao substituir).')
+            resp = input('Continuar? (s/N) ')
+            if resp.lower() != 's':
+                print('Cancelado.')
+                return
+        print()
+        ok = import_from_sheets()
+        if ok:
+            # Show final counts
+            config = db.load_config()
+            lives = db.get_lives()
+            pubs = db.get_publicados()
+            print()
+            print(f'==> Importacao concluida!')
+            print(f'    {len(config)} configs, {len(lives)} lives, {len(pubs)} publicados')
+        else:
+            print()
+            print('ERRO na importacao. O DB foi criado mas pode estar vazio.')
+    else:
+        print()
+        print('==> DB pronto (vazio).')
+        print('    Para importar dados do Google Sheets: setup-db --import')
+
+
+if __name__ == '__main__':
+    main()

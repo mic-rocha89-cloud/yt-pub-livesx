@@ -1,0 +1,10 @@
+.git
+lives/
+config/
+__pycache__/
+*.pyc
+*.log
+docs/
+*.md
+!README.md
+.env

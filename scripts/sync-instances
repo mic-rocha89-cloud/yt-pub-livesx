@@ -1,0 +1,45 @@
+#!/bin/bash
+# Sync common code from lives2 to all other instances
+# Only copies CODE files, never config/data/credentials
+
+SOURCE="/home/nmaldaner/projetos/yt-pub-lives2"
+TARGETS=(
+    "/home/nmaldaner/projetos/yt-pub-lives1"
+    "/home/nmaldaner/projetos/yt-pub-lives3"
+    "/home/nmaldaner/projetos/yt-pub-lives4"
+    "/home/nmaldaner/projetos/yt-pub-lives5"
+    "/home/nmaldaner/projetos/yt-pub-lives6"
+    "/home/nmaldaner/projetos/yt-pub-lives7"
+    "/home/nmaldaner/projetos/yt-pub-lives8"
+    "/home/nmaldaner/projetos/yt-pub-lives9"
+    "/home/nmaldaner/projetos/yt-pub-lives10"
+    "/home/nmaldaner/projetos/yt-pub-lives11"
+    "/home/nmaldaner/projetos/yt-pub-lives12"
+)
+
+FILES=(
+    "scheduler.py"
+    "db.py"
+    "import_worker.py"
+    "dashboard/server.py"
+    "dashboard/index.html"
+    "scripts/yt-thumbnail"
+    "scripts/yt-clip"
+    "scripts/yt-publish"
+    "scripts/setup-db"
+    "tiktok_scanner.py"
+)
+
+for target in "${TARGETS[@]}"; do
+    name=$(basename "$target")
+    echo "==> Syncing to $name"
+    for file in "${FILES[@]}"; do
+        if [ -f "$SOURCE/$file" ]; then
+            cp "$SOURCE/$file" "$target/$file"
+            echo "  $file"
+        fi
+    done
+done
+
+echo ""
+echo "Done. Restart services to apply."

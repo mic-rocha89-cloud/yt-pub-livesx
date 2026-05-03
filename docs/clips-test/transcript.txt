@@ -1,0 +1,1777 @@
+[01:00] Alô, alô.
+[01:04] Muito bem.
+[01:07] E vamos tomar um
+[01:10] energético,
+[01:13] hum real, né?
+[01:20] Ah,
+[01:24] bom.
+[01:26] Tem uma bastante notícia aqui
+[01:30] e
+[01:36] vamos voltar aqui. Deixa eu pegar.
+[01:42] Olha
+[01:46] só, hoje começando cedo ou
+[01:52] tô empolgado aqui para mostrar para
+[01:53] vocês algumas coisas que eu consegui
+[01:55] fazer
+[01:58] e
+[02:00] também por um outro lado desesperado
+[02:02] porque meus créditos estão sendo comidos
+[02:04] assim que nem água.
+[02:12] Então, olha aqui, ó, só para vocês verem
+[02:13] aqui, ó, meus créditos aqui, ó. Mal
+[02:17] entrei aqui, ele já tá gastando a sessão
+[02:19] toda.
+[02:22] E
+[02:23] ele vai recetar só a
+[02:28] a 1 hora da madrugada. Então eu tô
+[02:32] controlando para poder demonstrar as
+[02:34] coisas para vocês aqui.
+[02:39] Bom, olha só,
+[02:42] continuando a colocar conteúdos, né, na
+[02:45] comunidade também aqui no no Inema Club.
+[02:50] Então, temos aqui eh os seis pilares
+[02:54] do cloud Code completo,
+[02:57] certo? Eh, tem o agentic aqui e tem um
+[03:01] conteúdo de vibe que eu vou fazer uma
+[03:04] imersão,
+[03:05] certo? Uma empresa me contratou e eu
+[03:07] abri umas vagas,
+[03:11] mas sempre eu faço pequeno, né?
+[03:13] E daí com isso, eh, eu vou mostrar para
+[03:17] vocês aqui. Então, olha só, a ideia da
+[03:21] imersão aqui, pessoal, é o seguinte, é
+[03:24] trabalhar seis
+[03:26] eh capítulos aqui onde eu tenho seis
+[03:31] turnos, vão ser três dias, eu organizo
+[03:34] sempre assim para dar tempo de botar a
+[03:37] mão na massa, para dar tempo de
+[03:39] conversar, né? dá tempo de alguém ir
+[03:42] mais na frente, alguém mais atrás e
+[03:44] assim por diante. Então, a trilha aqui
+[03:46] foi, né, o foco primeiro da mentalidade
+[03:50] e o método do que que é, né, a o
+[03:53] fundamento disso.
+[03:56] Depois a arquitetura, né, da das
+[03:58] plataformas que nós vamos estar usando.
+[04:01] Eh, a construção, por exemplo, de uma
+[04:04] aplicação. Então eu coloco como se fosse
+[04:06] um SAS, né? Porque tu pode transformar
+[04:09] isso em objeto de venda. Depois os
+[04:14] agentes, os MCP, os skills, como isso
+[04:17] realmente transforma, tá? E aqui eu
+[04:20] posso colocar o CLI junto, né? Que é
+[04:24] comandos de linha. Ã, trabalhar aqui com
+[04:28] o assistente multibolts, que é o que que
+[04:30] tá agora, a febre, né? e focar em termos
+[04:34] de segurança, a parte de cobrança e tudo
+[04:37] mais e levantar essas questões aí, tá?
+[04:41] Porque muita gente eh
+[04:44] eh se embanda aqui no grande problema é
+[04:48] aqui,
+[04:50] certo? Então a ideia aqui é mais ou
+[04:54] menos isso. Deixa eu abrir aqui para
+[04:56] mostrar para vocês, então, cada um
+[04:58] deles. Então aqui o que que é, né? O que
+[05:01] que é o Vibe Code? Nesse ano de 2026, eu
+[05:05] já tô trabalhando com Vibecode desde o
+[05:07] início do ano passado, que quando foi se
+[05:09] falou bastante disso. Oi, boa noite,
+[05:12] Lia. Ah, então, ah, também da ideia, né,
+[05:18] que tu deve ter a criar solução. No
+[05:22] caso, a gente tá falando de software,
+[05:24] mas podia ser o que tu quiser, né? O, e
+[05:28] isso é muito importante. Como é que você
+[05:30] trabalha com isso? Depois a parte do
+[05:33] escopo, né, que tu vai fazer e a
+[05:36] definição do produto. Então, qual as
+[05:38] ferramentas que você vai usar aqui, né?
+[05:41] Como é que tu organiza para que ele
+[05:43] tenha um método para entregar?
+[05:46] E aqui eu devo falar um exemplo, é o
+[05:48] BMAT. E a gente pode pesquisar outros
+[05:52] elementos aqui.
+[06:00] Depois, né, a promoção,
+[06:03] ã, a promoção, os prompts estruturados.
+[06:06] Então, como é que você usaria as
+[06:08] prompts? Então, isso é transformação do
+[06:11] contexto, a instrução, as restrições,
+[06:14] né? Como é que você trabalha dentro do
+[06:16] Vibe Cobes?
+[06:20] E o que que as pessoas mais erram nos
+[06:23] projetos, né? Principalmente no início,
+[06:26] tava hoje de novo conversando com a
+[06:28] Tisa, né? E ela disse: "Ah, já comecei o
+[06:31] projeto de novo de digo: "É que tu fez
+[06:33] isso, isso, isso, isso". Daí se você
+[06:36] quiser no meio do projeto fazer todas
+[06:38] essas mudanças, às vezes é melhor
+[06:41] começar um projeto novo,
+[06:43] né?
+[06:45] H, e uns exercícios aqui para já fazer.
+[06:48] Então, no primeiro turno a gente já é
+[06:51] mão na massa, certo? Ã, daí depois disso
+[06:56] vamos paraa arquitetura, que é o segundo
+[06:59] turno, né? Eh, isso aqui é da imersão,
+[07:02] tá? Eu vou fazer uma imersão agora essa
+[07:05] essa semana e daí eu tô querendo mostrar
+[07:09] um pouco para vocês o que que é. E se
+[07:11] alguém, né, quiser depois acompanhar ou
+[07:15] fazer uma outra imersão, a gente
+[07:16] combina.
+[07:18] Então aqui a ideia é arquitetura, né?
+[07:22] Então como é que vai ser a arquitetura
+[07:24] dos agentes, certo? Como é que se
+[07:27] trabalha, né? O que que ele usa, onde
+[07:29] que tá o a estrutura da localização das
+[07:35] informações.
+[07:36] Depois disso, né? H, basear criar tuas
+[07:40] pastas junto com o ambiente. Por
+[07:43] exemplo, onde que estão o skill no caso
+[07:45] da
+[07:47] do cloud? Onde estão o skill no caso do
+[07:50] do
+[07:53] Codex? e assim por diante.
+[07:57] Eh, focar também, né, nas APIs e
+[08:00] variáveis, como é que tu configura na
+[08:02] tua máquina, né, aquele arquivo ponenv,
+[08:05] o arquivo ENV local, né, se não tiver
+[08:08] nesse arquivo, onde que pode estar nos
+[08:10] arquivos de configuração, como é que é
+[08:13] no Verscelo em outros lugares para
+[08:15] configurar isso, né? Versel, o trigger,
+[08:19] todos esses também tu tem que colocar
+[08:21] lá, né? Não vai isso para o GitHub.
+[08:24] Então, como é que você faz backup disso
+[08:27] se tu perdeu, né, o teu computador
+[08:29] local, né, onde que você vai salvar
+[08:31] isso? Ã, o trabalho do contexto global
+[08:36] ou contexto dentro da tua do teu
+[08:39] ambiente ou dentro do agente. Então, tu
+[08:42] pode estar definindo isso, certo?
+[08:46] E a questão, né, dos fluxos,
+[08:49] como é que você executa ele?
+[08:52] Tá? Então, como é que tu executa, como é
+[08:54] que ele processa e tudo mais assim, cada
+[08:58] vez mais isso é importante porque senão
+[09:00] nós ficamos no escuro, que é o que que
+[09:02] eu tô aqui preocupado, né? Eu
+[09:05] simplesmente comecei agora 5 minutos
+[09:08] atrás e mandei rodar uma coisa e olha,
+[09:10] já te consumiu 66% do meu consumo aqui.
+[09:15] Vamos ver o usagem,
+[09:19] ó. Parou pelo menos. Ufa.
+[09:22] né? Então, o que que tá rodando? Aonde
+[09:25] que tá rodando? Então, para vocês terem
+[09:27] uma ideia, eu tenho aqui um terminal,
+[09:29] né, de um agente meu que ele fica aqui
+[09:32] exibindo. Depois vou falar sobre ele.
+[09:35] Ele me mostra o que tá acontecendo lá,
+[09:37] porque, né, eu tô no escuro com os
+[09:42] agentes, então a gente tem que est
+[09:43] preparado e criar mecanismos para
+[09:46] aprender isso aí.
+[09:49] Oi, tudo bem, Mônica?
+[09:51] Então, eh,
+[09:54] né,
+[09:56] e os fluxos e é isso aí. Então, um
+[09:59] exercício, né, da parte de tarde. Então,
+[10:04] primeiro de manhã, de tarde,
+[10:06] arquitetura, daí a construção, né? O
+[10:09] foco aqui é autenticação, né? Como é que
+[10:13] você vai fazer a autenticação? É
+[10:15] importante pensar desde o início, né?
+[10:17] Eh, muitas vezes tu pode pensar na
+[10:20] autenticação, mas tu bota ela só para
+[10:22] operar lá no final ou você queria uma
+[10:25] maneira fácil, senão você fica brigando,
+[10:28] né, com recursos de autenticação, de
+[10:32] questão do Google, questão de, né, eh,
+[10:35] de criptografia. Então, falar um pouco
+[10:39] como isso é importante, mas quando é que
+[10:42] você vai usar isso, né? o dashboard, né,
+[10:46] em qual é a interface que tu vai
+[10:48] entregar o layout e tudo para usuário,
+[10:51] né? E eu vejo que muita gente ainda tá
+[10:54] nos modelos antigos, quando na verdade o
+[10:57] que que eu quero? Eu quero ter uma
+[10:59] interface simplesmente talvez pelo
+[11:02] WhatsApp, pelo Telegram, por uma web,
+[11:06] né? Olha só, hoje eu fui marcar um exame
+[11:08] aí e
+[11:11] aí eu tinha que ir lá pra pessoa olhar
+[11:13] lá e lançar. Por que que eu não posso
+[11:16] lançar isso, né, online? Mandar aquela
+[11:19] imagem e com isso fazer o exame. Por que
+[11:21] que eu não posso, né, entrar num site ou
+[11:25] ou eu mesmo descobrir um horário para
+[11:29] mim fazer o exame? Então, essa
+[11:32] dashboard, o que que eu quero fornecer
+[11:34] pro meu usuário?
+[11:36] né? O sistema de de promptes, por
+[11:40] exemplo, quem é que define a regra do
+[11:42] meu do meu sistema? Por exemplo, quando
+[11:44] eu crio um sistema de imagem, né? Eu
+[11:47] quem é que é o system prompt que vai
+[11:50] trabalhar com o meu prompt e melhorar
+[11:52] ele? Então, tu define tudo dentro desse
+[11:55] ambiente, né? Ã, quando você trabalha
+[12:00] então multimodal, como é que funciona o,
+[12:03] né, o o PDF? o a imagem, o vídeo, um OCR
+[12:09] de um documento e tudo mais.
+[12:12] Depois também o que que é os logs, né?
+[12:16] Você trabalha com erros, trabalha com
+[12:19] histórico para quê? Para isso ser
+[12:22] segurança e também para log. Mas como tu
+[12:24] mantém criptografia em cima disso? E
+[12:27] vamos pro exercício,
+[12:30] tá legal? Oi, Alê, tudo bem?
+[12:38] Tô dando uma calibrada aí que eu tô com
+[12:40] muito sono hoje,
+[12:42] mas vou vir à noite, né? É óbvio. E
+[12:46] vamos para
+[12:48] ó
+[12:51] quarto aqui.
+[12:53] Então,
+[12:55] agentes MCP skill. Então, o que que são
+[12:58] eles, né? Primeiro conceito, né? como
+[13:01] você vai trabalhar com multiagente e
+[13:03] orquestração.
+[13:05] E aqui é um problema, né? O custo disso
+[13:09] é muito legal, né? Que nem eu agora vou
+[13:12] mostrar para vocês explodiu, né? Eu dei
+[13:14] um comando e foi lá 20 agentes
+[13:16] executando as coisas, mas daí meus
+[13:19] créditos você vão num num tapa. Então,
+[13:22] né? Quanto isso é bom ou não é? Vamos
+[13:25] falar sobre isso, os skills e as
+[13:28] ferramentas, que são as coisas básicas
+[13:31] hoje para um agente trabalhar.
+[13:34] O MCP, que é a comunicação com outros
+[13:37] ambientes e principalmente a memória,
+[13:42] né, e a troca de informações entre a
+[13:45] gente. Como é que tu pode fazer isso? Tu
+[13:47] vai botar isso num arquivo, num banco de
+[13:49] dados, como é que eles compartilham a
+[13:52] informação, né? e que se que hoje é os
+[13:56] exércitos de agente são fundamentais,
+[13:59] certo? Então, e por penúltimo aqui,
+[14:04] tá?
+[14:06] Os assistentes, criar os assistentes
+[14:08] aqui, né? Criando um assistente único ou
+[14:12] criando com múltiplos assistentes, né?
+[14:15] os botes especialistas,
+[14:18] a moda que é o Open Crow ou senão o
+[14:21] Cloud Cow, que são dois aí que estão
+[14:23] bombando aí eh na internet e todos os
+[14:27] derivados deles, né? A integração com
+[14:30] canais e isso transforma toda a questão
+[14:33] de segurança. Eu vou mostrar para vocês,
+[14:35] tá? E por último, o último momento é
+[14:40] focar em segurança, né? a segurança dos
+[14:43] promptes, segurança das APIs, é que aqui
+[14:46] o a questão grave é o acesso através das
+[14:50] APIs ou gasto de créditos e a segurança
+[14:54] dos prômes, que é onde que eles podem
+[14:57] burlar, fazer injeção e tudo mais, né? A
+[15:01] o foco das autorização e autenticação
+[15:04] também, né? O o olog que nós já tínhamos
+[15:08] falado antes sobre log, né? e
+[15:10] monitoramento, tu ter como é que tu
+[15:13] monitora teu sistema, né? E o que que
+[15:16] aqui é legal, porque a gente pode falar
+[15:18] sobre como tu quer que trata a exceção,
+[15:21] né?
+[15:23] Quando você falar em pagamentos, como é
+[15:26] que tu podia trabalhar, qual é as
+[15:27] empresas hoje que nós temos, né, que é
+[15:30] Stripe, eh, Mercado Pago e assim por
+[15:35] diante.
+[15:36] Eh, como é que você trabalha com análise
+[15:40] de do resultado que tu tá tendo e o
+[15:43] exercício?
+[15:45] Beleza? E aí, verdades?
+[15:49] Ufa, imagina isso aqui. São três dias.
+[15:54] né? Eh, quem quer dar uma olhada, tá
+[15:56] aqui, ó, novo imersão,
+[15:59] tá? Então, sexta, sábado e domingo eu
+[16:03] vou fazer imersão. Quem puder acompanhar
+[16:06] também isso, eu vou tá tentando
+[16:09] transmitir, como sempre eu digo, certo?
+[16:12] Outra coisa, nós temos dois cursos aqui
+[16:15] de pilares do cloud code. Esse aqui, os
+[16:20] dois são praticamente o mesmo conteúdo,
+[16:22] só que esse aqui é rápido para aprender
+[16:24] e esse é detalhado. Então, né, eu
+[16:27] apliquei isso aqui,
+[16:31] tá certo? Bom, que que mais eu tenho
+[16:34] para mostrar para vocês? É isso aqui, ó.
+[16:38] Essa maravilha que eu tenho aqui,
+[16:40] pessoal. Olha só que loucura.
+[16:47] Bom, olha só, hoje eu tava, eu fui no
+[16:49] médico, tinha que fazer exame, tá? E daí
+[16:54] o que que acontece? Eu cheguei, levei
+[16:56] meu celular só e eu sei que sempre a
+[17:00] gente fica lá esperando ser atendido, ba
+[17:03] passa horário, fica lá uma hora, etc,
+[17:06] né?
+[17:07] H, e daí eu fui hoje preparado, disse:
+[17:10] "Eu vou levar meu celular e vou
+[17:11] trabalhar tudo online", certo?
+[17:15] E aí, olha só o que que eu instalei,
+[17:19] pessoal. Eu mostrei para vocês que eu
+[17:21] instalei o cloud, né? Ã,
+[17:27] Cloud, tá? Então, vamos só ver onde que
+[17:30] tá isso. Inema
+[17:32] Vibe. Vamos ver se tá aqui no vibe. Isso
+[17:36] aqui, ó. Cloud Cloud. Eu instalei esse
+[17:39] cara aqui
+[17:41] e é muito simples. Você simplesmente vai
+[17:44] num computador teu ou num outro
+[17:46] computador que seria o melhor, dá clone
+[17:49] nisso aqui
+[17:52] e a partir dali e tu só coloca a
+[17:55] autenticação que tu quiser e cria a
+[17:58] conexão com o Telegram, tá? Não vou
+[18:02] explicar aqui agora isso, mas se vocês
+[18:04] quiserem eu faço outro dia uma live só
+[18:06] sobre isso. Só que eu peguei isso aqui e
+[18:08] alterei, né? Eu coloquei mais coisas,
+[18:11] mas para complicar, não para facilitar.
+[18:14] E e para economizar também. Então isso
+[18:18] aqui o que que acontece quando eu vou
+[18:21] aqui no cloud
+[18:24] e
+[18:26] cadê você? Esse aqui,
+[18:30] ó. Vamos lá para cima.
+[18:37] Olha só o que que eu produzi hoje.
+[18:43] Então eu tava aí, eu botei codex, botei
+[18:47] lembro, coloquei tudo junto, certo? E
+[18:51] tava aí testando, fazendo as coisas e
+[18:54] tudo mais. Mas deixa eu chegar hoje. Que
+[18:57] horas são? De madrugada. Não, eu quero
+[19:00] hoje de manhã,
+[19:02] 3 da madrugada, 4 da madrugada. Não,
+[19:06] ainda
+[19:09] aqui eu tava tudo testando ele ainda,
+[19:17] tá? 4 da manhã.
+[19:22] E aí eu eu mandei aí que tal
+[19:25] hoje de manhã, antes de antes de tentar
+[19:28] dormir um pouco, eu peguei e mandei um
+[19:31] arquivo de imersão do Vibe Code, certo?
+[19:36] E aí ele pegou, olhou o arquivo, certo?
+[19:41] E eu disse para ele assim aqui em cima,
+[19:45] tá?
+[19:47] em algum lugar. Eu mandei ele criar a
+[19:51] pasta, certo? E daí eu mandei isso aqui,
+[19:54] ele diz documento salvo em projetos
+[19:58] VB imersão doc, ou seja, eu não precisei
+[20:03] entrar lá. Eu joguei aqui e ele já
+[20:05] salvou lá e ele já me fez um resumo do
+[20:08] que que era aqui esse conteúdo, que era
+[20:11] o conteúdo programático que eu tenho
+[20:13] para esses três dias, certo?
+[20:18] E aí eu disse, quero que faça uma
+[20:19] pesquisa baseado nesse conteúdo e crie o
+[20:22] curso completo.
+[20:24] Daí ele me deu a dica, isso é porque eu
+[20:26] mudei, ele disse assim: "Para criar esse
+[20:28] curso com base no conteúdo, você
+[20:31] precisaria primeiro processar esse
+[20:33] documento. No entanto, como eu não tenho
+[20:35] acesso direto aos arquivos, use
+[20:37] barracloud. Por quê?
+[20:40] Porque eu implementei o
+[20:43] o olhama, que é o meu eh LLM local, que
+[20:48] eu tô usando Queen.
+[20:50] Então ele não tem acesso ao arquivo, aos
+[20:54] discos, eu preciso de um agente. Então
+[20:57] eu tenho o cloud e coloquei também o
+[21:02] Codex,
+[21:04] certo?
+[21:06] e fiz também conexão com o Open Router,
+[21:10] tá? Para pegar outra conexão lá. Então
+[21:12] eu tenho quatro quatro formas de da LLM
+[21:16] para ele. Só que o a a versão que eu tô
+[21:20] usando aqui, ele não permite fazer isso.
+[21:24] Quem é que permite acessar o disco lá é
+[21:27] o cloud. Então eu criei lá uma forma de
+[21:30] chamar o cloud, né? barracloud para que
+[21:34] não deixei direto? Porque se eu deixo
+[21:37] direto daqui a pouco ele tá gastando
+[21:39] créditos e eu não posso ficar gastando
+[21:42] crédito. Então eu quero quando eu falo
+[21:45] direto eu falo com um olhama, certo?
+[21:48] Quando eu não, quando eu quiser falar
+[21:50] com o Cloud ou com algum outro, eu dou
+[21:53] barra o nome, certo?
+[21:57] Daí eu peguei aqui, ó, né? O que que ele
+[21:59] mandou aqui e mandei aqui, ó.
+[22:03] No projeto VB Imersão, analise o
+[22:06] documento e gerequise por mais conteúdo
+[22:09] detalhado, use skill o formato curso e
+[22:13] faça o conteúdo e publique no Git.
+[22:17] Daí ele já me apresentou onde que tá o o
+[22:22] diretório. Se ele não encontra, ele vai
+[22:24] me dar mensagem e dizendo: "Ó, não
+[22:27] achei".
+[22:28] E aí ele criou a trilha um, criou, ou
+[22:31] seja, toda a trilha. Pessoal, isso eu
+[22:33] fiz às 4 da manhã, certo? Ó, de 35
+[22:39] ele foi fazer, ele levou 5 minutos
+[22:44] aqui, mais 5 minutos,
+[22:48] tá? Levou 10 minutos para fazer o curso
+[22:50] que eu apresentei para vocês, certo?
+[22:53] Aquele aqui, ó. Tá?
+[22:58] Então, tudo que vocês viram aqui, certo?
+[23:01] Que eu só mostrei, mas dentro disso aqui
+[23:03] tem todo um conteúdo,
+[23:06] certo?
+[23:08] Tudo isso aqui ele fez em 10 minutos e
+[23:12] apenas eu dei o quê? O meu conteúdo
+[23:15] programático do que que é o conteú curso
+[23:18] aqui. Então eu mandei ele aqui, eu criei
+[23:22] o GitHub,
+[23:24] tá?
+[23:25] E
+[23:27] e daí ele fez isso aqui todo todo o
+[23:30] curso,
+[23:32] tá?
+[23:34] Daí, tá? Daí eu comecei a conversar
+[23:36] aqui, né, fazendo de outras formas, mas
+[23:40] daí ele não funcionou porque eu tenho
+[23:42] que botar o cloud. Daí eu botei o cloud
+[23:44] aqui, certo? Daí eu perguntei como está
+[23:48] indo, né? Daí ele, eu tô conversando
+[23:51] aqui, mas não com o Cloud. sempre que eu
+[23:53] quiser falar com o Cláudio e o do Barra,
+[23:56] certo?
+[23:58] E daí depois disso eu mandei ele fazer
+[24:01] mais, tá? Eu disse, Cláudio, no projeto
+[24:04] eu quero que analise o plano, né?
+[24:07] Pesquise para um conteúdo detalhado e
+[24:09] mandei fazer de novo. Daí eu peguei lá,
+[24:11] tirei cópia, né? Se vocês verem, só para
+[24:14] vocês verem aqui, eu queria testar ele,
+[24:22] ó. Eu tirei cópia. Ah, não, não, não. Tá
+[24:27] aqui, ó. Tirei cópia dele e mandei ele
+[24:30] fazer de novo para ver se ele ia fazer
+[24:33] certinho como eu queria,
+[24:37] né? E ele fez,
+[24:40] fez todas as trilhas, todos os agentes,
+[24:44] né? Criou a página, atualizou, ó, tudo
+[24:48] comitado e puxa puxado, puxado,
+[24:54] né? Etc. O RL tá aqui do curso já
+[25:00] adicionado no portalema club.
+[25:04] Veja como ele já prendeu por conta isso.
+[25:07] Eu não pedi para ele colocar, né?
+[25:11] Não coloquei nada aqui.
+[25:14] Então, como eu já tinha feito outras
+[25:16] coisas, ele já tem isso de histórico.
+[25:19] Então, ele vai aprendendo cada vez mais
+[25:21] o que eu tenho que fazer.
+[25:23] Então, vejam só, tá? Eu tô conversando
+[25:27] com ele, eu disse o que que eu queria
+[25:29] fazer aqui. Ele fez tudo, me deu um
+[25:32] relatório, publicou no Git, né? Me
+[25:36] mandou o link de do site, como é que
+[25:39] estaria e ainda disse que ele já botou
+[25:41] no Inema Club, na trilha de Vibe Code.
+[25:45] Certo?
+[25:47] Daí ele me disse, só tem que avisar no
+[25:49] GitHub lá para ativar as páginas se tu
+[25:51] não fez isso porque eu não deixei ativo
+[25:55] o GB, tá? Que é aquele CLI do GitHub. Eu
+[26:00] só uso o SSH por segurança porque eu não
+[26:03] sei daqui a pouco o que que estaria
+[26:05] fazendo aí.
+[26:15] Beleza? Daí ele fala aqui que gastou
+[26:17] todos os créditos a que o contexto tá
+[26:20] cheio, que eu é para dar esse comando
+[26:22] aqui, que esse comando seria limpar a
+[26:27] memória, ou seja, comprimir ela, dar
+[26:29] aquele comando de contexto.
+[26:33] Daí depois eu fiz um outro, né? coloca,
+[26:36] né, esse projeto, né, isso aqui dos
+[26:39] pilares, ó,
+[26:42] que eu tinha feito. Eu disse no projeto
+[26:45] portal, coloque esse curso. Ele pegou
+[26:48] esse curso aqui e colocou no portal. Ele
+[26:51] disse aqui, ó,
+[26:53] tá 2 minutos levou feito curso pilar
+[26:57] seis pilar full adicionado ao portal.
+[27:00] Ele colocou no card, né?
+[27:03] Ele colocou nas últimas atualizações
+[27:07] e ele colocou em trilha desenvolvedor,
+[27:09] ou seja, ele decidiu
+[27:12] que aquilo tem a ver com a trilha
+[27:14] desenvolvedor, ou seja, ele olha lá o
+[27:17] conteúdo todo e decide em parte. Claro
+[27:21] que eu eu tô, né, aprimorando, mas ele
+[27:25] tem a inteligência de fazer isso. Isso é
+[27:27] do cloud.
+[27:30] Daí eu botei aqui, ó, do cloud de novo
+[27:35] que eu queria uma coisa mais avançada.
+[27:37] Deu erro, coloquei o codex, deu re. Daí
+[27:40] eu vim aqui e escrevi, eu quero que você
+[27:43] vá no projeto e verifique na trilha um
+[27:46] quantos arquivos tem. Daí de novo o meu
+[27:51] olhama disse: "Eu não posso fazer isso.
+[27:53] Você tem que dar esse comando pro
+[27:54] cloud".
+[27:56] Daí eu peguei, dei esse comando pro
+[27:58] Cloud e ele foi lá, olhou e disse: "Ó,
+[28:00] só tem dois arquivos". Então isso aqui,
+[28:03] ó, não tava acontecendo nada, ó. Eu
+[28:06] esperei 10 minutos e não aconteceu nada.
+[28:12] Certo?
+[28:17] Daí depois eu disse, "Pode ver se tem
+[28:19] algum processo rodando no coisa". Ele
+[28:21] olhou e disse: "Nada, tá rodando". E eu
+[28:23] digo, mas como se eu mandei isso aqui,
+[28:26] ó, eu tava preocupado com isso, tá?
+[28:31] E aí de novo eu coloquei aqui, certo?
+[28:36] Aliás, eu coloquei o comando, ele disse
+[28:38] que não tinha nada e até me falou, né,
+[28:41] das portas, do que que tinha rodando lá,
+[28:44] mas não, né, do processo dentro do vibe
+[28:46] code.
+[28:48] Daí eu mandei de novo nada.
+[28:51] E aí caiu a ficha, pessoal.
+[28:55] Ó, tá vendo? Por que que esse aqui não
+[28:57] rodou e esse deu? Por causa desse C
+[29:00] maiúsculo,
+[29:01] tá? O Cláudio quando eu escrevia ele já
+[29:04] colocava o C maiúsculo e daí não pode
+[29:08] porque tem que ser tudo minúsculo ou
+[29:10] teria que tá lá mexer nas coisas. Então
+[29:14] a partir disso,
+[29:16] tá? E isso aqui vocês já podem ver que
+[29:19] eu tô de tarde já.
+[29:22] Pessoal, isso aqui tudo eu tava lá
+[29:24] sentado esperando para ser atendido no
+[29:26] médico e disse: "Projeto vibe code
+[29:30] imersão, existe um módulo para cada uma
+[29:33] das seis trilhas. Eu quero que você pega
+[29:36] o conteúdo desse módulo e você cria um
+[29:40] módulo mais para cada um dos módulos
+[29:42] existe uma trilha cada babá baá".
+[29:46] Daí ele foi lá, né? E fez a proposta.
+[29:50] Daí eu disse: "Não, não quero isso, né?"
+[29:53] Daí a saiu maiúsculo de novo, daí fui
+[29:56] lá, botei minúsculo aqui. Não quero
+[29:59] isso, eu quero assim, assim. Daí ele
+[30:00] pegou, me apresentou o projeto. Agora
+[30:03] sim era como eu queria, validei tudo e
+[30:07] disse: "Você entendeu o que eu pedi
+[30:09] acima?" Sim, cada um má.
+[30:12] E daí eu digo, pode fazer a trilha um,
+[30:14] atualizar no Gitm e mantenha tudo no
+[30:17] todô e me dê a para saber o que que você
+[30:20] já fez do projeto, porque daí eu só iria
+[30:23] olhar no todô para ver o que que ele já
+[30:25] fez ou não.
+[30:27] E aí ele fez a criação, ó. Criou.
+[30:32] Daí eu digo, olhei, tava tudo OK. Ó, 15
+[30:36] lá. Faça cada uma e atualize no Git.
+[30:40] Então ele pegou e fez todos os módulos
+[30:43] aqui, ó.
+[30:45] Certo?
+[30:48] E daí depois disso, hoje de noite aqui,
+[30:52] eu fui lá e fui dizer: "Ó, como é que
+[30:54] ficou a situação do projeto?" Daí ele
+[30:56] disse: "Ó, faltou isso aqui". E foi
+[30:59] fazendo até terminar agora 5 minutos
+[31:02] antes de começar a live.
+[31:06] Beleza?
+[31:07] Pessoal, talvez vocês não estão dando
+[31:09] muita atenção, mas isso é maravilhoso,
+[31:11] porque eu tô gerenciando a minha máquina
+[31:15] com inteligência artificial total.
+[31:20] Então,
+[31:21] fiz várias coisinhas aqui para ajustar.
+[31:24] Por exemplo, eu tenho, ó, vou mostrar
+[31:27] para vocês, eu tenho 120 e poucos
+[31:30] projetos aqui.
+[31:33] Então, basta eu dizer que eu quero, né,
+[31:37] um uma projeto que nem aqui, eu vou
+[31:40] dizer que eu quero o FGMD,
+[31:43] certo?
+[31:45] Ó, eu vou dizer assim,
+[31:50] ã, primeiro falando normal,
+[31:55] quantas
+[31:56] páginas
+[31:59] tem o projeto
+[32:02] FGMD?
+[32:05] Ó, lembra que lá tá maiúsculo,
+[32:07] tá?
+[32:09] lá tá maiúsculo. E ele também não vai
+[32:11] ter acesso aqui, porque ele vai dizer
+[32:14] que eu tenho que pegar e usar um comando
+[32:16] de quem? Do cloud,
+[32:19] certo?
+[32:21] Então, provavelmente vai ser assim, né?
+[32:24] Eu daria o comando aqui, cloud e aí eu
+[32:27] diria, né? Ó, opa,
+[32:32] deixa eu apagar isso aqui, ó. Ele já
+[32:34] disse, para contar o número de página do
+[32:36] arquivo projeto FGMD, você precisa
+[32:39] especificar a pasta ou diretório onde
+[32:41] essas estão, certo? E daí ele disse para
+[32:43] usar isso aqui, ó, achar. Então eu tô
+[32:46] dando o comando find, certo? Substitui
+[32:51] pelo caminho da página, tá?
+[32:54] Cloud, projeto, etc. Um outro comando
+[32:57] que ele podia dar aqui
+[32:59] e eu vou pegar e fazer diferente aqui só
+[33:01] para complicar a vida dele. Vou dizer
+[33:04] Cloud projeto FMD.
+[33:08] Quantas
+[33:12] quantos
+[33:14] aí
+[33:16] arquivos
+[33:19] tem neste projeto? Veja,
+[33:24] ele vai provavelmente vai me dizer que
+[33:26] não tem esse cara e vai me dar sugestão,
+[33:29] pelo menos era o que eu espero,
+[33:33] tá? Então ele vai olhar todo aquele meu
+[33:36] meu ambiente. Por quê? Porque eu defini
+[33:40] que é o tudo que for de projeto tá
+[33:43] abaixo disso, porque ele tá rodando
+[33:45] dentro de um outro diretório.
+[33:49] Certo?
+[33:51] O, o que que é uma coisa ruim, né? A
+[33:54] coisa ruim é essa espera que a gente
+[33:56] fala. Ó, ele já achou, ó, ele foi
+[33:58] inteligente, ele disse o projeto FM, 156
+[34:02] arquivos excluindo o Git Pan, né, sem
+[34:06] demark, etc, etc.
+[34:10] Então, ele teve acesso físico ao disco,
+[34:14] né?
+[34:15] E se nós olharmos o gráfico que eu tenho
+[34:18] aqui no lado, que é um monitor,
+[34:22] ó. Então eu tenho um monitor aqui. Isso
+[34:25] aqui, ó, tá passando. O que que tá
+[34:27] acontecendo aqui?
+[34:31] Então, eu tive, né,
+[34:34] ó, o cláud aqui, ó, quanto eu tô tendo
+[34:38] cada vez que zera lá. Então ele tava em
+[34:41] 16
+[34:43] aqui antes. O valor que eu tinha gasto
+[34:46] era 34 hoje naquele projeto. Ele fica
+[34:51] calculando os token que eu gasto mesmo
+[34:53] que eu tô usando assinatura. Ó, eu tive
+[34:57] Oliama tentativa, nenhuma do Open
+[35:00] Router, nenhuma do Codex, né? Isso aqui
+[35:03] eu não implementei, mas seria
+[35:05] gerenciamento da minha das minhas
+[35:10] do meu e-mail da, né, da planilha e tudo
+[35:14] o calendário.
+[35:16] E eu posso também aqui é um sistema de
+[35:18] pesquisa, é só botar as APIs aqui de
+[35:22] acesso aos MCPs,
+[35:26] né? Então por aqui dá para ter uma ideia
+[35:28] um pouco do que que tá acontecendo lá
+[35:30] atrás, certo? E a gente pode melhorar
+[35:33] esse painel todo aqui, tá? Então eu
+[35:37] deixo numa tela aqui no meu lado
+[35:39] enquanto eu tô testando e coisa para mim
+[35:41] saber se tá OK ou não. Agora veja, todo
+[35:45] o meu contato tá sendo pelo Telegram.
+[35:49] Então por ser pelo Telegram eu tenho
+[35:51] segurança, né? Não tenho acesso àquela
+[35:54] máquina. Aquela máquina não tem, não tem
+[35:58] SSH, não tem nada. Ela roda local na
+[36:01] minha casa, certo? E isso podia ser da
+[36:05] empresa também, né? Você poderia ter um
+[36:08] servidor de uma empresa rodando dentro
+[36:11] da empresa, rodando uma VPS, tudo
+[36:13] fechado, mas apenas se comunicando via
+[36:17] Telegram, né? E se se o Telegram falha,
+[36:21] né? Imagina, todo o sistema hoje do
+[36:23] Telegrama estaria aberto. Então, a
+[36:26] segurança tá baseado nele, tá?
+[36:30] H, então eu posso agora fazer o que eu
+[36:32] quero aqui, só para mostrar também, né?
+[36:35] O help. Ó,
+[36:38] eu dei um help. Isso aqui eu pedi para
+[36:40] ele colocar para mim. Então, quando eu
+[36:43] quiser usar o lama mensagem, ó, ele é
+[36:47] local, tá? Deixa eu aumentar um
+[36:50] pouquinho aqui. Opa.
+[36:52] Ó, quando eu quiser é free, quando eu
+[36:55] quiser usar o cloud, né, ele joga pro
+[36:59] cloud. Então eu tenho todas as os
+[37:01] recursos, eu tenho controle total da
+[37:04] minha máquina. Era como se eu tivesse
+[37:06] abrindo um terminal, executando coisas
+[37:09] ali. A mesma coisa eu tenho o Codex,
+[37:13] certo? E a mesma coisa eu eu botei o
+[37:16] Open Router. Eu podia estar colocando
+[37:18] outras coisas que nem o Carlos ontem
+[37:20] falou para mim. tá usando o pirâmide. Eu
+[37:24] fui lá, estudei, achei interessante, né?
+[37:28] Eh, e vou focar na pirâmide e botar a
+[37:30] pirâmide ali, certo? Vou testar aí, não
+[37:33] sei se é 30 dias de graça, mas depois,
+[37:36] né, o valor até é interessante
+[37:40] se é baseado no que que eles afirmam lá.
+[37:44] Daí depois, né, o que que eu posso ter
+[37:47] os agentes dedicado através do Telegram?
+[37:50] Então aqui seria aqueles quatro que eu
+[37:52] não habilitei, né? Isso aqui seria toda
+[37:55] a parte de e-mails, né? Etc, etc. A
+[38:00] parte de eh publicar de conteúdo, buscar
+[38:04] ou publicar, eu posso usar o content,
+[38:06] né? São, é um agente para cada um,
+[38:10] certo? Ou eu também posso discutir já
+[38:13] com ele. Em vez de fazer agente, eu
+[38:15] posso também criar um uma persona,
+[38:18] certo? para poder fazer isso, tá? E cada
+[38:21] um deles vai ter um um telegram, um
+[38:25] bote. Por quê? Para não virar ã muito
+[38:28] lixo, né? A gente tem muita coisa.
+[38:31] Então, cada um dos agentes que tu vai
+[38:34] criando, tu pode ter um bote separado,
+[38:37] senão tu daqui a pouco imagina a minha
+[38:40] agenda misturado com as orientações,
+[38:43] misturado com tudo, fica complicado, né?
+[38:46] H. Daí outra coisa que eu posso tá
+[38:49] mudando é o modelo, né? No caso aqui, ó,
+[38:53] do cloud, eu posso botar modelo e dizer
+[38:56] que eu quero o sonet ou isso, né, para
+[38:59] cada um deles.
+[39:01] Olha só, no Olhama
+[39:04] eu posso estar usando, eu tô usando dois
+[39:06] modelos, eu tô usando o modelo ã de
+[39:09] conversa direto, o Queen 2.5, que é mais
+[39:13] rápido, né? E e quando eu quero chamar o
+[39:18] lhama e daí ele eu já defini que é esse
+[39:21] 3.5.
+[39:23] Se vocês olhar naqueles gráficos que a
+[39:25] gente falou de confiança, ele tá melhor
+[39:28] do que o GPT e ele tá melhor do que o
+[39:33] Gini, então ele só perde para o cloud,
+[39:37] tá? Aqui eu tenho Open router também. Eu
+[39:40] posso dizer qual o, né, o o modelo que
+[39:43] eu quero usar e isso seria um backup.
+[39:47] Por exemplo, se olhama, meu servidor tá
+[39:49] com problema, eu poderia estar usando
+[39:51] ele como fallback, né? Se o cloud gastou
+[39:56] todos os créditos ou, né? O Codex
+[40:00] também,
+[40:01] né? Se eu botar models, ele me mostra
+[40:03] aqui. Ã, aqui é o orquestrador. Se eu
+[40:07] botar barra ou RQ, eu posso ativar ou
+[40:10] desativar esse orquestrador. Então,
+[40:13] quando eu vou ativar ele, se eu falasse,
+[40:17] eu não precisaria botar barra ã cloud,
+[40:21] eu simplesmente deixaria ele ativo e ele
+[40:24] decide, ó, isso o Cloud tem que fazer,
+[40:28] isso, né, Talk tem que fazer. Então eu
+[40:30] tenho lá, né, um conteúdo para ele de
+[40:34] instrução, para ele saber para quem ele
+[40:36] mandar e também ele pode ir aprendendo
+[40:39] com as orientações que eu vou dando, tá?
+[40:42] Opa, tudo bem, Olavo? E tá, ã, depois eu
+[40:48] tenho nova sessão, né? O que que eu
+[40:50] faço? Eu é como se eu tivesse abrindo
+[40:53] outro terminal, né? Esse aqui é para mim
+[40:57] pegar e buscar um contexto, né? Eh, se
+[41:02] eu quiser, por exemplo, eh, abrir um
+[41:04] novo chat, mas eu quero que ele busque
+[41:06] dados lá, seria a mesma coisa da unit,
+[41:09] né? Ã, o lama clear o open router crea é
+[41:14] limpar o o histórico, né, de contexto.
+[41:18] Ã,
+[41:20] monitor,
+[41:21] deixa eu ver aqui. Dashboard é aquilo
+[41:23] lá, né? Os modelos, eu posso ver os
+[41:26] modelos para saber. E aqui eu teria
+[41:29] outros recursos. Por exemplo, eu posso
+[41:31] ativar ou não o sistema de voz e ele
+[41:34] falar comigo. Eu só eu tenho que
+[41:36] habilitar uma API de voz, que nem seria
+[41:39] o Eleven Labs, né, o Minimax audio ou
+[41:44] Fish, né, eu coloco lá ou algum local
+[41:48] mesmo que nem um whisper, né? Eh,
+[41:52] e daí ele podia me eh falar para mim, em
+[41:56] vez de eu tá lendo, podia tá usando. Eu
+[41:59] não uso isso, então não habilitei, né?
+[42:03] Vê como é que tá a memória. Ou seja, a
+[42:04] memória, no caso aqui, sempre que falar
+[42:07] em memória é ã
+[42:10] o conhecimento, né? Não é a memória
+[42:13] física da máquina.
+[42:15] H, ele pode para dizer que Forgete é
+[42:18] para limpar a sessão, né? Se tu quiser
+[42:22] ativar o WhatsApp, tu pode botar barra a
+[42:25] e daí todos os comandos que tu quer pro
+[42:28] WhatsApp, né? Como é que tu direciona,
+[42:31] né? Se tu tem vários canais, então a
+[42:34] ideia de usar esses barra alguma coisa é
+[42:37] tu tá direcionando, né? E e era isso aí,
+[42:42] pessoal.
+[42:45] Alguma pergunta sobre isso aí? Me
+[42:47] aproveita.
+[43:07] Bom, enquanto isso, ó, outra coisa,
+[43:10] vocês viram que eu falei esses dias
+[43:11] sobre o trigger.
+[43:14] Inema Trigger é um outro bote que eu
+[43:17] tenho.
+[43:19] O que que ele me faz? Todo dia 7 da
+[43:21] manhã ele me traz, né, um relatório das
+[43:25] notícias,
+[43:26] um relatório do, digamos, dos
+[43:29] influenciadores que eu sigo, porque eu
+[43:32] não vou mais nos sites deles, eles têm
+[43:34] que chegar para mim. E como as
+[43:36] plataformas não fazem isso, eu tô
+[43:38] fazendo,
+[43:40] né? Então, esse cara aqui é muito
+[43:42] voltado para cinema e essas coisas. Tô
+[43:45] sempre publicando conteúdo dele.
+[43:47] Conteúdo
+[43:49] do Mark aqui, ó. Isso aqui é do meu
+[43:52] filho. Que que ele fica publicando, né?
+[43:55] Olha só, meu filho fica publicando.
+[43:57] Então é legal porque a gente tá
+[43:59] monitorando.
+[44:01] Eu libero, né? faço liberdade com eles.
+[44:04] Tanto que o cara tá muito avançado.
+[44:07] Ontem, por exemplo, era domingo e eu dei
+[44:10] emissão para minhas três crianças,
+[44:13] tá? Ã, o que que acontece?
+[44:17] O, eu dei para eles usar o Minimxudio,
+[44:22] tá? Eu tava testando e tudo e eu daí
+[44:25] disse: "Ó, missão para vocês, vamos
+[44:26] fazer música". Meu guri de 7, 8 anos lá,
+[44:30] o que que ele fez? E a menina também de
+[44:32] nove foi no chat e disse do a música que
+[44:36] queria. Ele pediu sobre nem me lembro
+[44:39] agora. Ela foi de sobrecavalo.
+[44:43] Fizeram a letra, fizeram a instrução,
+[44:46] foram lá no Minimarx, construíram isso,
+[44:50] me mandaram feliz da vida e depois ainda
+[44:52] foram lá e criaram um clipe.
+[44:56] Então vocês imaginam, eh, não é o fato
+[45:00] deles estar usando a IA, mas é o fato
+[45:04] deles construindo alguma coisa que eles,
+[45:06] né, gostam. Daí hoje de manhã, né, eles
+[45:10] tinham lá uma, eles vão lá numa ONG lá e
+[45:15] contando para todo mundo, falando da
+[45:17] música, falando do clipe, né, na escola,
+[45:20] a mesma coisa. Então, essa oportunidade
+[45:25] de fazer as coisas, isso é importante,
+[45:28] tá bom? Ã, outra coisa, ó, eu coloquei
+[45:31] também monitor da Latan, certo? Eu
+[45:34] defini algumas coisas e eles estão
+[45:37] monitorando para mim, né?
+[45:41] Ó, coisa nova do Jack,
+[45:44] mais coisa do Andy, né? Outro, ó, vai
+[45:50] chegando aqui.
+[45:56] Uhum.
+[45:59] Aqui eu não liberei, não botei em
+[46:00] produção que eu tava testando. Então,
+[46:03] vejam só, eu quero viajar e eu tô deixei
+[46:07] monitorar na Latã e na no Amadeus. Eu
+[46:11] não sei se vocês conhecem o Amadeus.
+[46:14] Madeus é uma uma ferramenta de de viagem
+[46:18] que as agências usam e você pode botar
+[46:21] uma API gratuita lá e você usa 2.000
+[46:25] consultas por mês gratuito. Se passar
+[46:28] disso, acho que é 3 centavos por cada
+[46:31] consulta. Então para nós é muito bom,
+[46:35] tá? Eu quero fazer planejamento durante
+[46:38] o ano, tá? Isso aí. Certo? Então eu
+[46:41] tenho o trigger que tá sempre me
+[46:43] informando, trocando ideia. Eu posso dar
+[46:46] o comando aqui na hora e ver aqui agora
+[46:49] qual é o preço do voo. Então eu posso
+[46:51] criar esses comandos para orientar
+[46:55] alguma coisa que eu queira, tá? Ã, que
+[46:58] mais que eu posso? Eu tenho também lá
+[47:01] numa VPS o Inema Nano,
+[47:06] certo? Inema Nano.
+[47:10] O que que é o Inema? Opa, deixa eu achar
+[47:13] ele de novo aqui,
+[47:16] ó. A mesma coisa aqui. Ele também, ó,
+[47:19] ele tá monitorando de uma outra forma a
+[47:22] questão de viagem. Eu tô fazendo uma
+[47:24] raspagem
+[47:25] em cima do
+[47:28] Aonde que tá?
+[47:34] Não, aqui ele tá só me dizendo, ele é o
+[47:36] ele é meu agente de lembrar dos
+[47:39] compromissos, né, etc, tudo mais. E
+[47:42] também eu coloquei aqui, ele me avisou
+[47:45] que eu tinha consulta médica, né? Ele me
+[47:48] avisou já dois, três dias antes umas
+[47:50] tarefas que eu tenho aqui que eu tenho
+[47:52] que terminar, né?
+[47:56] E ele me traduz quando eu preciso alguma
+[47:58] coisa que não que eu quero. Eu só jogo
+[48:00] para para cá e digo traduz isso,
+[48:04] né?
+[48:09] Bom, e era isso aí. Então, vamos lá.
+[48:12] Agora deixa eu responder as perguntas de
+[48:14] vocês.
+[48:17] Fale um pouco sobre o Nema Academia.
+[48:21] Certo? Eu já vou falar isso. Esse Cloud
+[48:23] B gerencia todas API que antes era feito
+[48:26] manualmente. Isso é, olha só, a ideia
+[48:31] inicial é que o Cloud Bot faria apenas
+[48:36] gerenciamento do cloud, só que como a
+[48:40] gente usa muito, ele gasta muito
+[48:42] créditos. Então o que que eu decidi
+[48:45] fazer? Eu tô criando então agora o PC
+[48:47] bo, vamos chamar assim, Lia, tá? Chamar
+[48:52] PC Bote, que é ele não é só o cloud, ele
+[48:57] pode ser qualquer coisa que tu tenha
+[48:59] dentro do cloud.
+[49:02] Então tu poderia ter uma LLM barata,
+[49:06] grátis ou não, para ser o o com quem
+[49:10] você vai falar.
+[49:13] E ela vai chamar qualquer um de forma,
+[49:17] né, eh, orquestrada por ela mesmo ou
+[49:22] pelando que tu dá.
+[49:25] Como a gente tem restrição de custo por
+[49:27] enquanto, né, eu fico tentado a botar o
+[49:31] cloud e pagar mais, porque ele é muito
+[49:33] poderoso.
+[49:35] Mas o que que eu decidi fazer? Eu decidi
+[49:37] colocar uma LLM gratuita.
+[49:41] No caso, como eu tenho um servidor que
+[49:43] pode colocar isso, né, botar ela ali e
+[49:47] deixar ela, né, gerenciar os outros
+[49:50] quando eu quiser ou eu gerenciar os
+[49:52] outros através do
+[49:55] Telegram.
+[49:57] Então isso faz com que eu de qualquer
+[49:59] lugar com o Telegram eu fico mandando
+[50:01] mensagem com para eles,
+[50:04] certo? E é muito mais fácil do que eu
+[50:07] ter a tela completamente do meu terminal
+[50:10] aqui.
+[50:12] Então isso para mim tá sendo uma coisa
+[50:14] muito doida, muito louco. Imagina se eu
+[50:17] penso assim, eu vou viajar com meus
+[50:18] filhos. Eu não fiz férias esse verão por
+[50:21] causa das mudanças, né? as crianças
+[50:23] queriam pra praia, queriam isso,
+[50:25] queriam. Eu digo, não, esse ano vão
+[50:27] ficar aqui, mas eu quero fazer viagens
+[50:30] com eles. Então, eu preciso ter uma
+[50:33] maneira que eu posso estar interagindo
+[50:35] de uma forma muito fácil, instruindo as
+[50:38] coisas, certo? E um Telegram ou um
+[50:42] WhatsApp seria tudo de bom, né? Porque
+[50:46] qualquer coisa ele me manda o link, que
+[50:48] nem o link do terminal aí do dashboard,
+[50:51] né? ou qualquer link que ele me deu ali,
+[50:54] ele fez o serviço, me manda o link, eu
+[50:56] vou lá e valido.
+[50:59] Eu tava hoje fazendo uma mentoria aí,
+[51:02] né? E eu disse pr a pessoa vinha, veio
+[51:05] com uma ideia toda de um portal. Daí eu
+[51:08] digo: "Não, legal o portal, mas será que
+[51:10] não tem coisas que tu pode fornecer
+[51:12] paraas pessoas através de outros canais
+[51:16] de comunicações que nem WhatsApp,
+[51:18] Telegram, né, ou um chat bote que seja,
+[51:24] né?
+[51:26] Não que a gente descarta o terminal. né?
+[51:29] Mas eu posso fazer a a coisa ser muito
+[51:32] mais ágil, né? Se eu sou um contador,
+[51:36] por que que eu quero que o cara entra no
+[51:39] terminal lá no no na e cadastre as
+[51:41] coisas? Talvez ele só me manda as notas
+[51:44] fiscal por WhatsApp
+[51:46] e o sistema já vai receber, processar e
+[51:49] o que ele não conseguir, põe numa fila
+[51:51] para que alguém humano vai classificar,
+[51:56] né?
+[51:59] Beleza, eu vou falar do trigger então e
+[52:01] já para para vocês, tá? Eh, eu achei que
+[52:05] era a Lia que tinha aprontado, então é a
+[52:08] arquitetura aresta. Tudo bem?
+[52:12] Ã, deixa eu dizer o que que é o inema
+[52:15] academia, tá?
+[52:18] Aqui é o seguinte, tá? Hã,
+[52:24] deixa eu ver se tá aqui.
+[52:30] Vamos lá direto aqui para ver.
+[52:34] Tã.
+[52:41] Ó,
+[52:43] o que que acontece, pessoal?
+[52:47] Um dos grandes problemas que nós temos
+[52:49] no Brasil
+[52:52] não é
+[52:53] eh a falta da tecnologia.
+[52:56] O grande problema que nós temos no
+[52:58] Brasil é que os professores e as
+[53:01] organizações e os pais não querem, né,
+[53:06] ensinar os alunos na forma nova. Eles
+[53:10] querem ainda do modelo que eles
+[53:12] acreditam que é dar. Quanta gente que tá
+[53:14] buscando, né, um MBA, uma certificação,
+[53:17] etc., para se empoderar, né, quando na
+[53:21] verdade ele teria que pensar na minha
+[53:23] visão, que ele tem que buscar um
+[53:26] resultado. Se ele é um dono de uma
+[53:28] empresa, qual é o melhor?
+[53:31] Ele ter um título ou ele conseguir
+[53:33] alavancar os negócios dele paraa frente,
+[53:37] né? E eu vi muita gente que fez títulos
+[53:40] e títulos, né, fez cursos MBA, pós, etc.
+[53:45] E continua com a cabeça pequena.
+[53:49] Então, a ideia, por exemplo, de
+[53:52] academia, eu peguei seguindo a mesma
+[53:54] lógica que nós temos lá do pessoal
+[53:59] dos Estados Unidos, do CAN Academia, que
+[54:01] eles têm 68 milhões de de pessoas sendo
+[54:06] treinadas.
+[54:07] num ambiente desse tipo. E eles têm
+[54:10] coisa em português, mas podemos olhar e
+[54:14] pensar como nós podemos melhorar isso.
+[54:17] Então, a ideia do da academia aqui é
+[54:22] justamente criar um conteúdo onde que tu
+[54:24] pode, como pai, como professor ou como
+[54:29] aluno, tá, participar desse ecossistema
+[54:33] e usar. Então eu criei
+[54:37] aqui no GitHub
+[54:39] esse projeto,
+[54:41] certo? Então uma escola podia pegar e
+[54:44] usar isso aqui porque ele tem o conteúdo
+[54:47] todo, certo? Baseado no currículo do
+[54:51] BNCC.
+[54:53] Veja, se nós entrarmos aqui no BNCC, tu
+[54:56] tem o conteúdo todo que deveria ser dado
+[54:58] para os alunos.
+[55:01] Então, qualquer escola hoje, certo?
+[55:07] Qualquer escola hoje podia chegar e
+[55:10] dizer assim: "Vamos deixar os alunos
+[55:12] aprender por conta, nós vamos criar
+[55:15] estímulo para ele, vamos monitorar".
+[55:18] Então, a ideia é que nem, por exemplo,
+[55:20] assim, eh, o cara entra aqui dentro,
+[55:24] certo?
+[55:26] E quando ele entrar,
+[55:29] eu nem me lembro agora qual é, qual é
+[55:31] que é o
+[55:35] Vamos ver se é se é isso aqui.
+[55:44] Não,
+[55:46] não me lembro agora aqui a,
+[55:50] mas eu acho que era isso aqui,
+[55:56] tá?
+[56:05] Eu não tenho que olhar depois aonde que
+[56:07] tá a senha, tá? Em válido, e-mail ou
+[56:10] senha?
+[56:16] Deixa eu tentar só mais uma vez,
+[56:27] ó. Vamos criar um outro então. Criar
+[56:29] conta.
+[56:31] Ó, quando você tá criando uma conta,
+[56:37] deixa eu botar um outro,
+[56:43] ó. Você pode dizer que você é aluno ou
+[56:46] professor, certo? E ainda tu pode estar
+[56:49] colocando, tem uma opção que eu
+[56:51] desativei, eu acho, que é como pai. E
+[56:55] aqui tu diz, ó, qual é que é teu ano de
+[56:57] preferência, mas tu pode mudar lá. Então
+[57:00] eu vou dizer que é nove fundamental e
+[57:02] daí eu crio a conta.
+[57:06] Mas já tá cadastrado. Será que era esse?
+[57:08] Então,
+[57:11] deixa eu tentar então aqui.
+[57:16] Talvez era esse aqui.
+[57:25] Ah, era isso.
+[57:27] Eu tenho tanto e-mail de teste que
+[57:31] Olha só. Então, o que que acontece? Tu
+[57:34] vai ter as tuas matérias que tu escolhe.
+[57:38] Certo?
+[57:39] Veja, tudo isso aqui que nós estamos
+[57:41] falando pertence ao a a ao currículo
+[57:46] escolar nacional, tá? Que é esse BNCC.
+[57:51] Então o que que acontece? Se tu pegar
+[57:53] aqui, entrou em matemática, né? Baseado
+[57:57] naquele naquele aquele ano que tu tem,
+[58:01] tu escolheria aquilo que tu quer
+[58:02] aprender, certo? Ó, e a partir disso tu
+[58:07] pode vir aqui, clicar e já partir paraa
+[58:10] área o aprendizado, né, o que que é uma
+[58:12] função, etc e tudo. E tu vai fazendo,
+[58:15] né, todo, né, um aprendizado e tu vai
+[58:19] indo pra próxima, certo?
+[58:22] E essa interface, ela pode ser mais
+[58:25] colorida, isso, aquilo, como você
+[58:27] quiser. E sempre aqui embaixo tem a ver
+[58:30] com o Enem, ou seja, ele tá já cruzado
+[58:33] com o Enem, certo? Mas quando você
+[58:37] também pega aqui, né, no nas matérias,
+[58:40] você tem o currículo natural das escolas
+[58:43] e tu tem o extracurricular,
+[58:46] então eu poderia vir aqui em tecnologia
+[58:49] e dizer: "Eu quero inteligência
+[58:50] artificial, eu quero robótica, né?" E a
+[58:54] partir dali também vim pôr aqui para
+[58:58] fazer. No caso aqui não tá carregado o
+[59:02] conceito da inteligência artificial e tu
+[59:05] tem o painel aqui teu, onde que tu
+[59:10] gerencia como é que tá os pontos, teus
+[59:12] níveis, sequência, né, os cursos que tu
+[59:15] tá fazendo, né, o que que tá em
+[59:17] andamento, os recomendados que tu devi
+[59:20] aprender, né, ou as conquistas e tudo.
+[59:24] Ou seja, eu segui o mesmo padrão do quem
+[59:27] lá fora e construímos uma solução. Isso
+[59:31] tá em open source. Daí tu pode ver o
+[59:34] progresso, as conquistas e tudo mais,
+[59:36] mexer na configuração do perfil aqui,
+[59:40] né? Dizer que qual é que é a série que
+[59:42] tu quer focar, né?
+[59:45] Mudar senha, etc, etc. Ou seja, um
+[59:49] ambiente de academia profissional.
+[59:54] Veja,
+[59:56] se fosse uma uma empresa, uma ONG, tudo,
+[59:58] ela podia pegar isso ou até o Ministério
+[60:01] da Educação ou a Secretaria de Educação
+[60:04] e implementar isso em todas as escolas.
+[60:07] Tá legal?
+[60:14] Agora, fora isso,
+[60:16] eu tenho mais outra coisa, ó.
+[60:19] O e aí é outro projeto nosso da
+[60:22] comunidade.
+[60:25] Veja
+[60:27] com meu filho, ele não quer ir pra
+[60:29] escola hoje. Ele tava contando pra mãe
+[60:32] dele, ele disse: "Mãe, a escola tá tão
+[60:35] chata, tão isso, tão aquilo e eu vou ter
+[60:37] que ficar 1 2 3 4 5 anos ainda na
+[60:41] escola".
+[60:44] Certo? Ou seja, a escola não tá sendo
+[60:48] uma coisa para agregar paraa vida dele,
+[60:51] né? E é o que que nós nós como pais
+[60:53] temos que fazer? Temos que dizer: "Não,
+[60:54] pois é, filho, né? Mas mãe, eles eles
+[60:57] mandam a gente ficar copiando o tempo
+[60:59] todo do quadro para quê, mãe?", né? Daí
+[61:03] a gente tem que com, né, tentar
+[61:06] ajudar a escola, né? Porque senão o cara
+[61:10] não não vai querer mais ir pra escola.
+[61:14] Então, eh, eu poderia tá usando outras
+[61:17] formas. Por exemplo, aqui eu tenho jogos
+[61:21] arcaide e educacional. Arcade é todos
+[61:24] jogos que não são educativos.
+[61:26] Educacional, tudo que é educativo. Então
+[61:29] aqui é a mesma lógica. Se tu pegar
+[61:31] qualquer ano aqui, ó, primeiro, segundo,
+[61:35] dizer, eu quero para o sexto ano,
+[61:40] né? Ou eu quero puridade, ou eu quero
+[61:43] matemática e tudo. Vai, eu quero
+[61:46] história, né, pô? Não tem nada aqui para
+[61:48] história disso aqui. Geografia. Opa, tem
+[61:53] certo. E aqui é jogar,
+[61:56] certo?
+[61:59] Então eu poderia estar jogando qualquer
+[62:01] um desses aí,
+[62:04] tá? Não, não tá no ar esses jogos aqui,
+[62:08] mas tudo bem.
+[62:10] E aí ele poderia aplicar isso no
+[62:13] conhecimento dele.
+[62:16] Só que além de tu ter todo esse ambiente
+[62:18] aqui, tá? Eu posso vir aqui, ó, em ter
+[62:23] plano de aula. Então eu posso baseado no
+[62:27] BNCC de novo, definir o que que é os
+[62:31] cursos, ou seja, os jogos que t a ver
+[62:34] com aquela, né, aquele ano, certo? Então
+[62:39] eu tenho aqui matemática, português,
+[62:42] ciências, etc. E aqui eu fiz só uma
+[62:45] simulação, mas tu pode ampliar. E esse
+[62:49] conhecimento é público, então basta você
+[62:52] puxar e dizer que estilo que tu quer,
+[62:55] né, fazer ele aprender geografia,
+[62:58] tá?
+[63:00] Assim como tu pode, por exemplo, eh, vir
+[63:03] aqui em aulas e o aluno se logar,
+[63:07] no caso, eu nem eu nem sei se tem, eu
+[63:09] habilitei jogo, o login aqui, eu acho
+[63:11] que não, mas ele poderia ser logar e ele
+[63:15] ficar fazendo, né, baseado no seu ano,
+[63:19] baseado no que ele
+[63:21] faria, tá? Então isso aqui um tempo
+[63:24] atrás eu fiz, podia pensar até em
+[63:27] atualizar aí, mas eu já vi que é difícil
+[63:30] as escolas aí quererem entender isso,
+[63:33] né? Como motivar as pessoas a aprender
+[63:36] aquele conhecimento que tem aí.
+[63:39] E mais uma, ã,
+[63:43] é, me dá um toque que eu faço validar
+[63:46] esse esses sistemas de jogo aí, tá?
+[63:49] H, outra coisa que eu tenho também eh,
+[63:54] ó, anima
+[63:56] book,
+[64:02] ó,
+[64:04] para tu ver, ó, esse aqui tá indo bem,
+[64:06] ó. 320 pessoas aqui, 127 únicas, que 13
+[64:11] que estão aí logadas.
+[64:15] Então, a mesma coisa, ó. Eu tenho o
+[64:17] livro,
+[64:19] eu tava falando isso agora tem uma, né,
+[64:22] a professora de espanhol, o que que ela
+[64:25] podia fazer? Ela podia fazer com que as
+[64:27] crianças pegassem, criassem umas
+[64:30] imagens, né, de uma história e
+[64:33] colocassem aqui. E daí depois disso, né,
+[64:37] tem as histórias aqui. Vamos pegar um
+[64:39] exemplo aqui dessa história. Daí cada um
+[64:42] deles, se pegar Elias aqui, ó, né?
+[64:46] Ó, ela pegou e deu, ela fez a
+[64:49] historinha. Então, ela podia de inglês,
+[64:52] espanhol e tudo fazer isso, né? Motivar
+[64:55] a criança a criar a história, a criar a
+[64:59] imagem e botar as as legendas simples.
+[65:03] Mas imagina como isso ajuda a
+[65:06] desenvolver muito mais do que querer
+[65:08] decorar,
+[65:11] certo?
+[65:13] Outra coisa também, eh,
+[65:16] por exemplo, aqui, voltando aí pros
+[65:19] livros,
+[65:20] ó, eu fiz um outro da Grécia aqui,
+[65:25] tá? Então, o seguinte, ó, elas têm que
+[65:27] aprender sobre a Grécia.
+[65:31] Olha só, se nós pegar aqui, ó, então foi
+[65:34] criado, né, 10 imagens, por exemplo, em
+[65:38] cada imagem com os personagens, o que
+[65:40] que ela tem que fazer? Colocar os
+[65:43] elementos aqui, eu tava mostrando para
+[65:45] tiesa isso, colocar os elementos aqui,
+[65:48] cadastrar para botar as legenda.
+[65:51] Então, pras crianças, eu vejo minha
+[65:53] minhas filhas como elas ficam gastando
+[65:56] tempo nessas coisas. Então, associar com
+[66:00] educação isso, né?
+[66:04] Né, Pitágoras e assim por diante,
+[66:08] né?
+[66:10] Então, podemos fazer várias coisas desse
+[66:13] sentido para ensinar história para as
+[66:16] crianças, né, através de games, através
+[66:19] de outras formas, tá? Outra coisa
+[66:23] também, ã,
+[66:26] e aí eu tô desenvolvendo um outro que a
+[66:28] minha filha é apaixonada,
+[66:33] tá? Esse aqui ainda tá tá cheio de
+[66:36] bugzinho,
+[66:41] ó. Animabook também, só que eu posso vir
+[66:45] criar uma história, por exemplo, criar
+[66:47] aqui, ó, uma história com decoração, com
+[66:50] construção. Então, eu quero construir
+[66:53] casa, lembra do Roblox e tudo mais, né?
+[66:56] ou decoração ou de cidades ou moda ou
+[67:00] campo. Então, se eu fosse pegar em
+[67:02] decoração,
+[67:04] eu posso pegar um fundo, coisa simples,
+[67:07] tudo e dizer que eu quero o fundo
+[67:10] dessa casa. E aí eu tenho os personagens
+[67:14] que eu posso trazer, os personagens que
+[67:16] eu quero aqui. Daí eu posso estar
+[67:18] aumentando o tamanho deles proporcional,
+[67:21] né? Vou trazer o outro personagem
+[67:24] também, né? e coloco. Eu vejo que minha
+[67:27] filha de 10 anos adora pegar e fazer
+[67:29] isso de coração. Ah, mas daí tem o
+[67:32] personagem, agora tem os móveis. Nós
+[67:34] temos que trazer os móveis para cá, né?
+[67:37] E vai trazendo os móveis, vai colocando,
+[67:40] né?
+[67:42] Daí tu aumenta,
+[67:45] né? Ou podia puxar por aqui, mas eu
+[67:47] preferi botar aqui para para ser mais
+[67:49] simples, né? E daí tu move as coisas, tu
+[67:54] tem de natureza, tu tem de tudo, é só
+[67:58] mandar criar esses esses, né, esses
+[68:02] elementos aqui, né, dentro de tudo e vai
+[68:05] colocando. E aí junto com tudo isso,
+[68:10] você pode fazer, deixa eu voltar lá
+[68:13] pro início para mostrar
+[68:18] aqui,
+[68:20] ó.
+[68:21] por exemplo, tu pode fazer com que
+[68:25] coloca depois, né, os comentários, né,
+[68:29] as legendas, a história. Então, tu
+[68:33] incrementa tudo isso. E eu disse assim:
+[68:37] "Tisa, tu imagina se tu for agora as as
+[68:39] crianças, tu podia dizer: "Eu quero que
+[68:41] vocês criam uma história depois vocês lá
+[68:44] no chat GPT, depois vocês criam a
+[68:46] imagem, daí vocês vão jogar aqui e eu
+[68:49] quero que coloque a legenda. Veja, tu tá
+[68:53] fazendo eles criar todo o processo
+[68:57] de igual tu vai educar, só que tu tá
+[68:59] fazendo ele se empolgar com isso,
+[69:04] certo?
+[69:06] Tá? Então pessoal,
+[69:08] quem quiser dessas coisas me pede lá, a
+[69:11] gente avança nisso, vai lá na
+[69:13] comunidade, me manda para mim ou para
+[69:16] tia lá pro apoioema e eu ajusto o que
+[69:19] que é disso aqui. Mas a ideia sempre é
+[69:22] criar algumas coisas só para mostrar
+[69:24] como dá para, né, crescer na questão de
+[69:28] educação dentro das empresas ou dentro
+[69:31] da do dos colégios, tá bom?
+[69:41] E é isso aí. Alia, tu me perguntou uma
+[69:43] coisa. Deixa eu ver o que que tu me
+[69:45] perguntou ali em cima.
+[69:48] Ah, você queria que falasse do trigger,
+[69:50] como criar? Sim, o trigger é o seguinte.
+[69:54] Primeiro lugar,
+[69:57] inema, ah, não.
+[70:00] Trigger pdev. Tá. Você vem, cria uma
+[70:05] conta aqui,
+[70:09] depois de tu criar conta aqui, certo?
+[70:13] Ã, ó, tu tem as task que tu vai criando,
+[70:17] tá? Tu pode criar aqui manualmente ou
+[70:20] via API. E aqui em aqui tá as APIs,
+[70:23] certo?
+[70:25] Outra coisa, aqui tá as variáveis de
+[70:27] ambiente, tá? Então, as duas coisas é
+[70:30] importante aqui, a as APIs e a
+[70:34] ambientes,
+[70:36] tá legal?
+[70:37] Então, se a gente pegar e ir lá pro dos
+[70:42] melhor, deixa eu abrir abrir aqui.
+[70:46] Ã,
+[70:50] dentro aqui
+[70:52] eu até quero migrar isso lá para nós
+[70:55] temos o
+[70:58] trigger, trigger trigger.
+[71:00] Eu criei uma pasta chamado trigger aqui.
+[71:05] Olha só.
+[71:08] O que que eu tenho aqui? Um um ambiente
+[71:11] qualquer que tu pode usar o cloud code
+[71:14] ou usar. Então vamos lá. Eu vou pro dos
+[71:18] aqui.
+[71:20] CMD
+[71:23] CD projetos
+[71:26] CD trigger.
+[71:29] E aqui, ó, tá? Eu vou simplesmente dar
+[71:33] ponto ponto, né? o bat meu aqui que é o
+[71:36] cc.bat,
+[71:41] certo? Aqui eu chamei o cloud aqui,
+[71:44] tá? Beleza? Olha só, se eu chegar aqui
+[71:49] simplesmente diser eu quero que crie um
+[71:52] projeto pá pá pá p pá, ele vai gerar uma
+[71:54] task lá,
+[71:57] certo? Só isso. Por exemplo, eu tenho,
+[72:05] hum, deixa eu ver aqui. Vai proc.
+[72:11] Tá bom. É isso mesmo. Eu vou pegar e
+[72:14] copiar aqui.
+[72:17] Venho aqui no meu no coiso e vou botar
+[72:19] aqui
+[72:21] colar.
+[72:27] tá copiando ou não?
+[72:40] Não copiou.
+[72:52] Por que que ele me deu uma mensagem
+[72:54] aqui? Eu não sei o que que é.
+[73:00] Vamos ver de novo.
+[73:14] É, não sei onde que deu essa mensagem.
+[73:17] Deixa eu tentar fazer o seguinte. Eu vou
+[73:18] comprimir isso aqui
+[73:25] para ver se eu consigo copiar.
+[73:43] Tá aqui.
+[73:46] Copy.
+[73:48] Vamos de novo.
+[73:53] Colar.
+[73:56] Agora tá vindo.
+[73:58] Tá. O que que eu vou fazer? Vou abrir
+[74:01] esse cara aqui. Isso aí é um projeto que
+[74:03] eu tenho lá, certo?
+[74:05] extrair tudo aqui para baixo.
+[74:23] Tá.
+[74:25] Deixa eu só queimar esse zí aqui para
+[74:27] ele não ficar aqui me atrapalhando.
+[74:34] Então, vou lá pro meu ambiente de dose e
+[74:37] vou dizer assim: "Quero que analise o
+[74:43] @
+[74:46] v
+[74:51] e
+[74:54] que quero criar ele aqui dentro do
+[75:00] trigger,
+[75:02] porque quando Você implementou trigger
+[75:05] aqui, ó, você copiou uma estrutura, tá?
+[75:10] Você copiou uma estrutura dele para cá,
+[75:14] que é essas informações aqui.
+[75:17] Então, a partir disso, ele já tem, né,
+[75:20] ele já tem uma informação. Deixa eu ver
+[75:22] se tá aqui dentro do source. É aqui, ó.
+[75:26] Então, quando você instala lá, ele vai
+[75:29] te dar orientação. Tu vai no teu
+[75:31] computador e instala uma vez.
+[75:33] né? Ou seja, copiar isso aqui para
+[75:35] dentro dele. Então, quando nós estamos
+[75:37] trabalhando aqui, ele já sabe
+[75:41] como é que deve processar para isso.
+[75:45] Então,
+[75:48] né, que que ele tá fazendo? Ele tá
+[75:50] pegando aquele outro projeto e eu quero
+[75:52] transformar ele em,
+[75:55] né, um projeto para
+[76:00] ele monitorar os voo.
+[76:03] Certo? E se nós vamos ver o o
+[76:08] que que eu tenho aqui, ó?
+[76:13] Ã, o dev provavelmente tá aqui, ó.
+[76:19] Ó o trigger orquestrador aqui, ó.
+[76:24] Então, instalação, ó.
+[76:28] Tá, ó. É uma ferramenta. Explica o que
+[76:31] que é.
+[76:33] Certo? Tudo que ele pode fazer,
+[76:37] né?
+[76:40] Aqui tá, né? No GitHub, tu vai fazer
+[76:44] pegar esse GitHub e puxar para dentro do
+[76:48] diretório que tu quer, certo?
+[76:52] Então, com isso, tu já vai ter todos os
+[76:55] arquivos que ele precisa para fazer, né,
+[76:58] a compilação e jogar para lá.
+[77:01] E aqui eu coloquei o MCP, o arquivo de
+[77:05] referência e o cloud, se tu usar com as
+[77:08] informações aqui, se tu tá usando com o
+[77:10] cloud, certo? Dá uma olhada aqui, mas é
+[77:13] só copiar esses três arquivos para
+[77:15] dentro da pasta, né? eh, trazer, fazer
+[77:20] um clone disso aqui e tá pronto. E
+[77:23] depois renomeia para ser um nome que tu
+[77:26] quer jogar lá para pro teu repositório e
+[77:30] aí tu faz a comunicação,
+[77:33] certo? Deixa eu só ver aqui se tem
+[77:36] mensagem.
+[77:40] Bom, e daí o que que acontece, né,
+[77:46] ó?
+[77:47] O que existe no voo projeto separado já
+[77:50] tá funcionando o scar pá pá no projeto
+[77:52] trigger já existe um monitorador da
+[77:55] latão que usa só monitora uma rota Porto
+[77:59] Alegre e tal
+[78:01] padrão isso já tem o padrão de salvar
+[78:05] isso nã
+[78:09] abordagem prefere substituir
+[78:11] completamente o meu diretor atual manter
+[78:14] os dois tá Tá. Ã, sim.
+[78:21] Daí eu diria o seguinte,
+[78:24] quero
+[78:25] quero manter
+[78:28] os dois.
+[78:37] Quero poder chamar cada um deles
+[78:42] separados.
+[79:01] Frequência. Daí a frequência tá legal.
+[79:17] a frequência,
+[79:21] o local
+[79:25] do
+[79:26] ama,
+[79:28] qual é que é o nome deles? Amadeus.
+[79:31] Madeus
+[79:33] ficacionando
+[79:38] normal.
+[79:39] ou outro.
+[79:43] Quero
+[79:46] manter os dados e
+[79:51] a frequência
+[79:53] se
+[79:57] que ele foi definido
+[80:05] umas vezes dia
+[80:09] e madrugada.
+[80:11] E quando eu quiser chamar,
+[80:17] certo? Ol, então, ó, tô fazendo isso e a
+[80:22] única coisa que ele vai jogar para lá e
+[80:24] se ele precisar alguma PI, ele vai pedir
+[80:27] para mim colocar uma PI, né? Aqui, ó.
+[80:34] Ó, aliás, eu vou pegar a PI e levar para
+[80:38] ele. Eu já levei. Então, ele vai só eu
+[80:41] colocar mais uma variável aqui de
+[80:44] ambiente, algum token, por exemplo, se
+[80:46] eu tivesse agora tem o token do YouTube,
+[80:49] ó, né? O token da de raspar o, né,
+[80:56] os voos lá, tem alguma API? Sim. Então
+[80:59] tu coloca aqui,
+[81:06] mas é tranquilo isso.
+[81:11] Eu tô usando direto, ele é maravilhoso.
+[81:15] Não tenho VPS. Até tirei várias VPSs que
+[81:18] eu testava e tudo do ar porque eu deixei
+[81:22] lá no trigger, fiz vários triggers aí.
+[81:25] Esse aqui é mais o de teste.
+[81:30] Ó, vou entrar apresentar o plano antes
+[81:32] de qualquer código,
+[81:35] tá?
+[81:37] Uhum.
+[81:40] Histórico. Importa o preço do para o
+[81:42] GitHub. Tá legal. Assim como os recordes
+[81:46] de são preservados.
+[81:50] Sim, ele aí eu podia não querer o o os
+[81:54] históricos lá, mas não tem. Isso aqui é
+[81:56] teste mesmo, não tem problema. Ã,
+[82:01] sim.
+[82:03] Só como eu chamo
+[82:07] eles
+[82:11] do T.
+[82:17] É isso aí, pessoal. Mais alguma pergunta
+[82:20] aí?
+[82:34] Olha só, eu fiz, na verdade aqui, ó, eu
+[82:38] fiz quatro rotas de seis combos, ou
+[82:42] seja, eu tô criando todas as
+[82:43] alternativas possíveis.
+[82:45] em alguns umas coisas de voo.
+[82:50] Ah, tá. Vos
+[82:53] e vos Google. Tá bom.
+[83:10] Quando eu pedir help. Você
+[83:18] explica as opções.
+[83:21] Veja, ó. Senão não vou lembrar os
+[83:23] comandos que tem. Então a gente vai
+[83:25] dizendo para ele e e agregando no help
+[83:29] todas as informações que tu precisa.
+[83:41] Pode começar sim.
+[83:53] Ó, então eu tirei de uma VPS que eu ia
+[83:55] rodar lá,
+[83:57] tirei do Versel, tô colocando dentro do
+[84:00] trigger.
+[84:22] Ó, quando eu chamar aqui, ó, o voo
+[84:24] Google,
+[84:25] ele dispara o scrapper do Google Flights
+[84:29] e vai levar 10 minutos e ele avisa
+[84:33] quando terminar.
+[84:37] Certo?
+[84:41] Por quê? Porque ele vai fazer a pesquisa
+[84:44] e ele não pode fazer toda todo o tempo,
+[84:46] senão o Google ban ele. Então ele faz,
+[84:50] dá um tempo, faz outra parte,
+[84:53] porque eu tô dando assim, eu eu dei 10
+[84:56] dias de viagem e flexibilidade de
+[85:00] horários, etc. Entre um ponto e o outro.
+[85:05] E daí eu quero que monitorar, por
+[85:07] exemplo, eu já vi que eu consegui, tinha
+[85:11] uma viagem lá que custaria R$ 20.000 e
+[85:15] tô chutando o valor.
+[85:17] E e daí por causa de alguns horários
+[85:20] diferentes, ele virou R$ 15.000.
+[85:24] Certo?
+[85:26] Outra coisa, tinha uma viagem que eu
+[85:28] tava botando ali para pesquisar para ir
+[85:31] pro Mati Pito.
+[85:33] É. em torno de R$ 2.000 o trecho.
+[85:37] De madrugada tava uma promoção por R$
+[85:40] 600,
+[85:44] né?
+[85:47] Não, eu não vou criar um novo bote, eu
+[85:49] já tenho o bote dele, porque eu já
+[85:53] defini, eu já tenho um bote que é o
+[85:56] trigger aqui, ó, aquele que eu mostrei
+[85:58] para vocês.
+[86:00] Então, eu vou colocando aqui, ó, no
+[86:02] trigger.
+[86:03] Esse aqui é o trigger, aliás, desculpe,
+[86:07] deixa eu abrir. Eu tenho um bote que eu
+[86:10] criei como trigger,
+[86:15] ó. Mas eu podia estar colocando tudo, ó.
+[86:18] Todo esse aqui é do trigger.
+[86:21] Então ele me manda notícias, né? Ele me
+[86:24] manda os os influenciadores.
+[86:28] Se eu botar aqui, ó, help.
+[86:40] Ó aqui, ó. Ele tava aqui já, ó.
+[86:43] Eu tenho banana, ó. Quando eu dou
+[86:45] banana, ele vai gerar imagem com banana,
+[86:49] né?
+[86:50] Quando eu quiser os influenciadores, eu
+[86:53] posso botar lista, eu posso botar
+[86:56] adicionar um novo canal, remover um
+[86:58] canal, definir o horário que eu quero
+[87:01] que receber as coisas. Tá aqui, ó.
+[87:06] Certo?
+[87:09] Então, eu posso colocar tudo que eu
+[87:11] quiser, né? E eu tô jogando tudo para os
+[87:15] bot.
+[87:17] Eu consigo ter por pessoa, né, por login
+[87:19] 20 bote funcionando, mas eu posso juntar
+[87:23] no mesmo bote e botar várias coisas,
+[87:27] né? Só que eu defini que aquele o o
+[87:32] inema nano é um bote pessoal, então eu
+[87:36] não misturo com esses alerta para não
+[87:38] ficar poluído,
+[87:42] tá?
+[87:46] Ó,
+[87:54] ó, ele descobriu que tinha um erro, daí
+[87:56] ele tá
+[87:59] corrigindo.
+[88:01] Pá, isso é maravilhoso.
+[88:04] Meu irmão veio aqui, passou o fim de
+[88:06] semana, ficou enlouquecido, né?
+[88:10] O cara é de tecnologia, ele é de
+[88:12] infraestrutura, mas eles não conseguiram
+[88:15] ainda assimilar o que que a IA tá tá
+[88:18] trazendo aí. O cara diz: "Não acredito".
+[88:21] Ó, tá aqui,
+[88:24] ó, os arquivos realizados, arquivos que
+[88:28] ele criou. Barra help lista.
+[88:31] Próximos passos rodar localmente.
+[88:34] Configurar seu scrap voz ou via
+[88:37] dashboard. Aprovar o deploy. Tá,
+[88:43] tá. Como eu tô aqui no meio da live,
+[88:45] então vamos aprovado lá. Não vou ficar
+[88:47] testando aqui
+[88:49] porque daí botaria ele no ar, faria os
+[88:51] testes aqui.
+[88:53] Se nós vamos agora ver lá no no trigger,
+[88:58] ó, task
+[89:04] daqui a pouco aparece aqui,
+[89:07] né?
+[89:09] Ó, vamos ver o deployment.
+[89:15] Dia 21 de fevereiro foi o último que eu
+[89:17] fiz, ó.
+[89:24] E se nós vamos ver as task aqui, ó.
+[89:28] Ó, tá tudo atividade, não tem erro.
+[89:31] Não fiz nada de imagem aqui, ó.
+[89:37] Editar imagem onando banana usando aqui,
+[89:40] ó.
+[89:45] Ó, tudo rodando, ó. De tantos em tempos.
+[89:48] Eu acho que em 15 em 15 minutos tá
+[89:51] rodando para para ver se eu não quero
+[89:54] mandar alguma coisa para eles. Eu podia
+[89:57] desativar isso, tá?
+[90:00] E daí com isso seria só ele me mandar
+[90:03] mensagem.
+[90:04] No caso, ele tá esperando porque aqui no
+[90:08] caso da das imagens ele tá esperando se
+[90:11] eu quero interagir com ele. E também eu
+[90:15] posso agora com esse comando dos voos
+[90:18] aqui,
+[90:20] ó. Tá aqui, ó. Tá dando building.
+[90:24] Então, aquela aplicação lá tá vindo para
+[90:27] cá.
+[90:29] Não,
+[90:32] ó, ele tá mandando para lá, ó.
+[90:54] Oi. O boot do Telegram desconta token
+[90:59] a API dele não, porque o Telegram não
+[91:02] tem token, né?
+[91:04] Então, nesse caso, ó, não tô gastando
+[91:06] nada aqui. O Telegram é de graça. Única
+[91:10] coisa que eu gastei foi para criar a
+[91:13] aplicação no cloud code.
+[91:20] Então, para muita aplicação a gente só
+[91:23] gasta no desenvolvimento,
+[91:26] né? E eu poderia estar usando soluções
+[91:29] de graça também, né? Mas não é tão
+[91:31] eficiente quanto o cloud code.
+[91:46] Ó, deu falha.
+[91:54] Agora tem que descobrir porquê.
+[91:57] Vamos ver se ele verifica aqui.
+[92:02] Ó, ele já disse, ó, deu problema.
+[92:11] Muitas vezes é versão incompatível, etc.
+[92:16] Mas a a vantagem é essa, ó. Eu espero
+[92:18] ele resolver.
+[92:41] Aqui ele tá usando, ó, esse essa
+[92:43] ferramenta de scrapper. Pode ser que ele
+[92:46] seja o problema.
+[92:54] Pode ser que ele não possa rodar lá.
+[93:04] Ó, ele tá dizendo que o mudou de
+[93:06] formato.
+[93:11] Vou usar uma versão compatível.
+[93:31] É isso aí, ó. É o tempo que tu tem que
+[93:33] deixar ele trabalhar. Por isso que é bom
+[93:36] tu ter muitas telas. Então, tu tá tu tá
+[93:39] deixando as coisas acontecer em cada uma
+[93:41] tela.
+[93:46] Então aí se gasta muito tokens, né? Mas
+[93:49] tu é muito produtivo, tem que pensar
+[93:51] nisso também, né?
+[94:07] Então para criar qualquer sistema é
+[94:09] algumas horas. Daí tu tem mais um, 2, 3,
+[94:11] 4, 5 dias que é ajustar ele. Sempre é
+[94:15] esse, né?
+[94:29] Beleza, mas é isso aí. Daí a única coisa
+[94:32] seria, estaria no ar aqui, ó. Ele tá
+[94:35] tentando de novo. Já teve dois erros
+[94:37] aqui.
+[94:46] Ó, aqui ele mandou, ó.
+[94:50] Deploy.
+[94:53] Deploy feito.
+[94:56] Ó, são sete tarefas. Agora ela vai
+[94:59] atualizar o RIDM, tá? Isso aí tá tudo lá
+[95:02] no GitHub, ó.
+[95:07] Ó, pronto, ó. Deploy. Pronto, ó, deu
+[95:10] certo.
+[95:11] Isso é uma maravilha. Ó, se vocês vão
+[95:14] ver aqui, ó, monitor de influentes,
+[95:18] scrapper de viagem do Google,
+[95:22] tá? Monitor da viagem de Latan. Eu gosto
+[95:27] muito da de viajar pela América Latina,
+[95:30] então eu fico monitorando quando tiver
+[95:34] promoção,
+[95:36] certo? Então agora eu migrei aqui pro eh
+[95:41] pelo trigger
+[95:43] e aqui a gente pode pegar e fazer o
+[95:46] seguinte. Agora vamos ver se funciona.
+[95:49] Ã,
+[95:51] vou
+[95:56] Google,
+[96:01] ó. Vamos ver se ele vai chamar lá ou vo
+[96:03] Google.
+[96:09] О.
+[96:22] tá na fila aqui.
+[96:40] Ó, ele já mandou mensagem para mim aqui,
+[96:44] ó.
+[96:48] Ele já disse, ó, vos consultar preço
+[96:50] latã. Daí ele aqui estutou um exemplo,
+[96:53] né? Daí eu só tenho que dizer vo e daí
+[96:56] eu digo o que que eu quero, né? Eu posso
+[96:59] dar os parâmetros que eu quero.
+[97:17] Deixa eu botar aqui também voos.
+[97:25] Eu tenho aqui os outros que estão
+[97:27] rodando lá.
+[97:48] Deixa forçar aqui.
+[97:51] Vou dar um teste aqui.
+[98:10] Daí é testar, né? testar se vai
+[98:12] funcionar ou não
+[98:18] e monitorar aqui se vai dar um erro ou
+[98:21] não como teste.
+[98:41] os escules
+[98:49] esses dois aqui para
+[98:55] ó, tá aqui executando, ó, viagem Google.
+[99:08] É, daqui 10 minutos vai vir a mensagem
+[99:11] para mim do resultado que que ele
+[99:13] colheu.
+[99:15] Tá bom,
+[99:17] pessoal? Querem pegar isso aqui? Tá tudo
+[99:19] sempre no GitHub,
+[99:22] tá? Porque dá para deixar aberto, né,
+[99:25] vocês copiarem e tudo, porque apenas eh
+[99:28] as as APIs não vão pro GitHub. Por isso
+[99:31] que eu tenho que vir aqui e preencher as
+[99:34] variáveis de ambiente aqui, ó, que é
+[99:37] colocar os tokens todos aqui.
+[99:43] Valeu, pessoal,
+[99:45] até amanhã então.
+[99:49] E eu fiz uma uma aprontei uma hoje aqui.
+[99:53] Deixa eu ver se tem aqui Instagram. Não
+[99:55] tem.
+[100:09] deixa eu botar Instagram se ele abre
+[100:12] aqui.
+[100:19] Isso daqui é velha.
+[100:29] Olha só.
+[100:35] >> Por inteligência artificial.
+[100:38] >> Oi. Como é que você abre?
+[100:39] >> Nossa comunidade
+[100:41] >> não. Olha só o que eu fiz aqui hoje. Não
+[100:43] me aguentei.
+[100:44] >> Nossa comunidade não é.
+[100:47] >> Ah, que coisa. Já começou pela metade.
+[100:51] >> Nossa comunidade não é sabor
+[100:53] inteligência artificial. Nossa
+[100:55] comunidade é real. Tu aprende muito.
+[100:58] Pessoal, tá cheio de pessoal vendendo aí
+[101:00] sabor inteligência artificial. Não é
+[101:02] isso. Os nossos cursos, né, da
+[101:04] comunidade VIP não é sabor artificial,
+[101:10] >> tá? Só para surfar um pouquinho dessa
+[101:12] onda aí.
+[101:12] >> Nossa comunidade não é sabor
+[101:14] inteligência artificial. Nossa
+[101:15] comunidade é real.
+[101:18] Tá legal, pessoal. Então, tá, até
+[101:20] amanhã.
+[101:22] Valeu, valeu. Oh.

@@ -1,0 +1,1150 @@
+{
+  "requests": [
+    {
+      "updatePageProperties": {
+        "objectId": "p",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": {
+              "color": {
+                "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 }
+              }
+            }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "deleteObject": {
+        "objectId": "i0"
+      }
+    },
+    {
+      "deleteObject": {
+        "objectId": "i1"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "title_text",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "p",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 1800000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 1200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": {
+        "objectId": "title_text",
+        "text": "Loja E-Commerce com IA\na Custo Zero"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "title_text",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 40, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "title_text",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 23, "endIndex": 35 },
+        "style": {
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.26, "green": 0.52, "blue": 0.96 } } }
+        },
+        "fields": "foregroundColor"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "title_sub",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "p",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 900000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 3100000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": {
+        "objectId": "title_sub",
+        "text": "Como construir uma loja online profissional usando apenas ferramentas gratuitas do Google, sem escrever codigo\n\nBaseado no video de Andy Lo (Andy NoCode)"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "title_sub",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 14, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "title_tags",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "p",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 800000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": {
+        "objectId": "title_tags",
+        "text": "VIBECODING  |  E-COMMERCE  |  IA  |  $0"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "title_tags",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 12, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.26, "green": 0.52, "blue": 0.96 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide2",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide2",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s2_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide2",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 300000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s2_title", "text": "O que e Vibe Coding?" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s2_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s2_quote",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide2",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 900000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 1100000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s2_quote", "text": "\"Voce descreve o que quer em linguagem natural e a IA escreve o codigo por voce. Voce nao programa - voce direciona.\"\n\n- Andrej Karpathy, cofundador da OpenAI (fev/2025)" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s2_quote",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 117 },
+        "style": {
+          "fontSize": { "magnitude": 18, "unit": "PT" },
+          "italic": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,italic,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s2_quote",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 119, "endIndex": 169 },
+        "style": {
+          "fontSize": { "magnitude": 14, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.26, "green": 0.52, "blue": 0.96 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s2_body",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide2",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 2000000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 2400000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s2_body", "text": "1. Descreva - Explique o que quer construir em linguagem natural\n2. A IA constroi - O modelo gera o codigo completo (frontend, backend, banco)\n3. Voce publica - Revise, ajuste via prompts e faca deploy sem tocar em codigo" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s2_body",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 16, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide3",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide3",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s3_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide3",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 300000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s3_title", "text": "O Problema: Custo das Plataformas" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s3_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s3_left",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide3",
+          "size": { "width": { "magnitude": 3400000, "unit": "EMU" }, "height": { "magnitude": 2800000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 400000, "translateY": 1200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s3_left", "text": "Metodo Tradicional\n\n$29 - $497/mes\n\nShopify $29+\nWebflow $29+\nWhite Label $497+\n\nPlataformas fechadas, taxas mensais, limitacoes de customizacao" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s3_left",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 19 },
+        "style": {
+          "fontSize": { "magnitude": 20, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.92, "green": 0.26, "blue": 0.21 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s3_left",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 20, "endIndex": 144 },
+        "style": {
+          "fontSize": { "magnitude": 14, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s3_right",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide3",
+          "size": { "width": { "magnitude": 3400000, "unit": "EMU" }, "height": { "magnitude": 2800000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 5000000, "translateY": 1200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s3_right", "text": "Novo Stack de IA\n\n$0\n\nGoogle Antigravity\nGemini\nStripe\n\n100% gratuito, codigo proprio, customizacao total" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s3_right",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 16 },
+        "style": {
+          "fontSize": { "magnitude": 20, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.2, "green": 0.66, "blue": 0.33 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s3_right",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 17, "endIndex": 105 },
+        "style": {
+          "fontSize": { "magnitude": 14, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s3_vs",
+        "shapeType": "ELLIPSE",
+        "elementProperties": {
+          "pageObjectId": "slide3",
+          "size": { "width": { "magnitude": 600000, "unit": "EMU" }, "height": { "magnitude": 600000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 4100000, "translateY": 2200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "updateShapeProperties": {
+        "objectId": "s3_vs",
+        "shapeProperties": {
+          "shapeBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.15, "green": 0.15, "blue": 0.2 } } }
+          },
+          "outline": { "propertyState": "NOT_RENDERED" }
+        },
+        "fields": "shapeBackgroundFill,outline"
+      }
+    },
+    {
+      "insertText": { "objectId": "s3_vs", "text": "VS" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s3_vs",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 18, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateParagraphStyle": {
+        "objectId": "s3_vs",
+        "textRange": { "type": "ALL" },
+        "style": { "alignment": "CENTER" },
+        "fields": "alignment"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide4",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide4",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s4_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide4",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 300000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s4_title", "text": "O que e o Google Antigravity?" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s4_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s4_sub",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide4",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 900000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s4_sub", "text": "IDE agentico lancado pelo Google em novembro de 2025 junto com o Gemini 3" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s4_sub",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 16, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s4_body",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide4",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 2600000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 1500000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s4_body", "text": "Editor View - IDE classico com autocomplete de IA e comandos inline\n\nManager Surface - Orquestre multiplos agentes de IA trabalhando em paralelo\n\nFirebase Integrado - Backend completo via MCP Server (banco, auth, hosting)\n\nGratuito - Public preview gratis. Suporta Gemini 3.1 Pro, Claude Sonnet 4.5, GPT-OSS" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s4_body",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 15, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide5",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide5",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s5_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide5",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s5_title", "text": "O Stack Completo (Tudo Gratis)" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s5_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s5_body",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide5",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 3400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 1000000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s5_body", "text": "NotebookLM       Pesquisa de mercado e analise de nicho              $0\nGoogle Gemini     Planejamento arquitetural e outline da loja         $0\nGoogle Stitch     Design de UI, mockups de interface                  $0\nGoogle Antigravity   Construcao da loja via vibe coding               $0\nGoogle Whisk      Geracao de imagens de produto                      $0\nStripe            Processamento de pagamentos                        $0*\nNetlify           Deploy e hospedagem da loja                        $0\n\n* Stripe cobra apenas taxa por transacao - sem mensalidade" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s5_body",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 14, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Roboto Mono"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide6",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide6",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s6_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide6",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s6_title", "text": "Passo a Passo: 6 Etapas" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s6_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s6_body",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide6",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 3400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 1000000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s6_body", "text": "1. Pesquisa com NotebookLM\n   Analise referencias, fontes e inspiracoes para o nicho\n\n2. Planejamento com Gemini\n   Defina secoes, features, layout e estrutura tecnica\n\n3. Design com Stitch + Whisk\n   Mockups de UI e geracao de imagens de produto\n\n4. Build com Antigravity\n   Insira outline + referencias e deixe o agente construir\n\n5. Backend + Pagamentos\n   Catalogo, inventario e checkout com Stripe\n\n6. Deploy no Netlify\n   Polimento final e publicacao gratuita" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s6_body",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 14, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide7",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide7",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s7_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide7",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s7_title", "text": "Timeline do Video (13:47)" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s7_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s7_left",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide7",
+          "size": { "width": { "magnitude": 3600000, "unit": "EMU" }, "height": { "magnitude": 3200000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 400000, "translateY": 1000000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s7_left", "text": "00:00 - 02:17  Introducao\nApresenta o conceito e o novo stack de AI Commerce\n\n02:17 - 04:31  Pesquisa (NotebookLM)\nAnalisa nicho e referencias\n\n04:31 - 05:30  Planejamento (Gemini)\nOutline da loja, secoes e features\n\n05:30 - 06:29  Design (Stitch)\nMockups de UI com inspiracao do Pinterest" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s7_left",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 12, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s7_right",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide7",
+          "size": { "width": { "magnitude": 3600000, "unit": "EMU" }, "height": { "magnitude": 3200000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 4800000, "translateY": 1000000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s7_right", "text": "06:29 - 07:38  Build (Antigravity)\nConstrucao da landing page via vibe coding\n\n07:38 - 09:59  Imagens (Whisk)\nGeracao de fotos e mockups de produto\n\n09:59 - 11:24  Backend + Stripe\nBanco de dados, catalogo e checkout\n\n11:24 - 13:47  Deploy + Conclusao\nPolimento, Netlify e resultado final" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s7_right",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 12, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide8",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide8",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s8_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide8",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 300000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s8_title", "text": "Impacto do Google Antigravity" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s8_stat1",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide8",
+          "size": { "width": { "magnitude": 2400000, "unit": "EMU" }, "height": { "magnitude": 1400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 400000, "translateY": 1400000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s8_stat1", "text": "-41%\nReducao no tempo de desenvolvimento" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_stat1",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 4 },
+        "style": {
+          "fontSize": { "magnitude": 48, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.2, "green": 0.66, "blue": 0.33 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_stat1",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 5, "endIndex": 40 },
+        "style": {
+          "fontSize": { "magnitude": 12, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateParagraphStyle": {
+        "objectId": "s8_stat1",
+        "textRange": { "type": "ALL" },
+        "style": { "alignment": "CENTER" },
+        "fields": "alignment"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s8_stat2",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide8",
+          "size": { "width": { "magnitude": 2400000, "unit": "EMU" }, "height": { "magnitude": 1400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 3200000, "translateY": 1400000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s8_stat2", "text": "2-3 dias\nPara lancar (antes: 4-6 semanas)" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_stat2",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 8 },
+        "style": {
+          "fontSize": { "magnitude": 48, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.26, "green": 0.52, "blue": 0.96 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_stat2",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 9, "endIndex": 41 },
+        "style": {
+          "fontSize": { "magnitude": 12, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateParagraphStyle": {
+        "objectId": "s8_stat2",
+        "textRange": { "type": "ALL" },
+        "style": { "alignment": "CENTER" },
+        "fields": "alignment"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s8_stat3",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide8",
+          "size": { "width": { "magnitude": 2400000, "unit": "EMU" }, "height": { "magnitude": 1400000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 6000000, "translateY": 1400000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s8_stat3", "text": "$0\nCusto total das ferramentas" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_stat3",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 2 },
+        "style": {
+          "fontSize": { "magnitude": 48, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.98, "green": 0.74, "blue": 0.02 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s8_stat3",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 3, "endIndex": 30 },
+        "style": {
+          "fontSize": { "magnitude": 12, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateParagraphStyle": {
+        "objectId": "s8_stat3",
+        "textRange": { "type": "ALL" },
+        "style": { "alignment": "CENTER" },
+        "fields": "alignment"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide9",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide9",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s9_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide9",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 700000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 300000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s9_title", "text": "Dica Critica: Atomic Commits" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s9_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 36, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.98, "green": 0.74, "blue": 0.02 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s9_left",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide9",
+          "size": { "width": { "magnitude": 3600000, "unit": "EMU" }, "height": { "magnitude": 2800000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 400000, "translateY": 1200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s9_left", "text": "NAO faca isso\n\n\"Construa uma loja e-commerce completa com catalogo, checkout, login, pagina about, blog, dashboard admin e sistema de reviews\"\n\nPrompt gigante = agente se perde, bugs, resultados inconsistentes" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s9_left",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 14 },
+        "style": {
+          "fontSize": { "magnitude": 20, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.92, "green": 0.26, "blue": 0.21 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s9_left",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 15, "endIndex": 209 },
+        "style": {
+          "fontSize": { "magnitude": 13, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s9_right",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide9",
+          "size": { "width": { "magnitude": 3600000, "unit": "EMU" }, "height": { "magnitude": 2800000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 4800000, "translateY": 1200000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s9_right", "text": "FACA isso\n\n\"Crie a landing page com hero section, 3 produtos em destaque e um CTA de newsletter\"\n\nUm ou dois prompts por vez, com maximo de detalhe. Revise antes do proximo." }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s9_right",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 0, "endIndex": 10 },
+        "style": {
+          "fontSize": { "magnitude": 20, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.2, "green": 0.66, "blue": 0.33 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s9_right",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 11, "endIndex": 173 },
+        "style": {
+          "fontSize": { "magnitude": 13, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+
+    {
+      "createSlide": {
+        "objectId": "slide10",
+        "slideLayoutReference": { "predefinedLayout": "BLANK" }
+      }
+    },
+    {
+      "updatePageProperties": {
+        "objectId": "slide10",
+        "pageProperties": {
+          "pageBackgroundFill": {
+            "solidFill": { "color": { "rgbColor": { "red": 0.04, "green": 0.04, "blue": 0.06 } } }
+          }
+        },
+        "fields": "pageBackgroundFill"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s10_title",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide10",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 1800000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 1000000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s10_title", "text": "O futuro do e-commerce e\ndescrever o que voce quer" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s10_title",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 40, "unit": "PT" },
+          "bold": true,
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.91, "green": 0.92, "blue": 0.93 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,bold,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s10_title",
+        "textRange": { "type": "FIXED_RANGE", "startIndex": 25, "endIndex": 50 },
+        "style": {
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.26, "green": 0.52, "blue": 0.96 } } }
+        },
+        "fields": "foregroundColor"
+      }
+    },
+    {
+      "updateParagraphStyle": {
+        "objectId": "s10_title",
+        "textRange": { "type": "ALL" },
+        "style": { "alignment": "CENTER" },
+        "fields": "alignment"
+      }
+    },
+    {
+      "createShape": {
+        "objectId": "s10_sub",
+        "shapeType": "TEXT_BOX",
+        "elementProperties": {
+          "pageObjectId": "slide10",
+          "size": { "width": { "magnitude": 7200000, "unit": "EMU" }, "height": { "magnitude": 1200000, "unit": "EMU" } },
+          "transform": { "scaleX": 1, "scaleY": 1, "translateX": 720000, "translateY": 2900000, "unit": "EMU" }
+        }
+      }
+    },
+    {
+      "insertText": { "objectId": "s10_sub", "text": "Nao precisa saber programar. Nao precisa pagar plataformas.\nBasta ter uma ideia e saber descreve-la.\n\nVideo original: Andy Lo - youtube.com/@andylokcl" }
+    },
+    {
+      "updateTextStyle": {
+        "objectId": "s10_sub",
+        "textRange": { "type": "ALL" },
+        "style": {
+          "fontSize": { "magnitude": 16, "unit": "PT" },
+          "foregroundColor": { "opaqueColor": { "rgbColor": { "red": 0.6, "green": 0.63, "blue": 0.65 } } },
+          "fontFamily": "Google Sans"
+        },
+        "fields": "fontSize,foregroundColor,fontFamily"
+      }
+    },
+    {
+      "updateParagraphStyle": {
+        "objectId": "s10_sub",
+        "textRange": { "type": "ALL" },
+        "style": { "alignment": "CENTER" },
+        "fields": "alignment"
+      }
+    }
+  ]
+}

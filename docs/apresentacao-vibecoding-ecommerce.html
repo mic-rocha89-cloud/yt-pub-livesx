@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibecoding: Loja E-Commerce com IA a Custo Zero</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-dark: #0a0a0f;
+    --bg-slide: #101018;
+    --accent: #4285f4;
+    --accent2: #34a853;
+    --accent3: #ea4335;
+    --accent4: #fbbc04;
+    --text: #e8eaed;
+    --text-muted: #9aa0a6;
+    --card-bg: rgba(255,255,255,0.05);
+  }
+
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; overflow-y: scroll; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text); }
+
+  .slide {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(66,133,244,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(52,168,83,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 30px; right: 40px;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.6;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .red-text { color: var(--accent3); }
+  .green-text { color: var(--accent2); }
+  .blue-text { color: var(--accent); }
+  .yellow-text { color: var(--accent4); }
+
+  .content { max-width: 1100px; width: 100%; position: relative; z-index: 1; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 30px; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(66,133,244,0.3);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+  .tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 4px;
+  }
+  .tag-blue { background: rgba(66,133,244,0.15); color: var(--accent); }
+  .tag-green { background: rgba(52,168,83,0.15); color: var(--accent2); }
+  .tag-red { background: rgba(234,67,53,0.15); color: var(--accent3); }
+  .tag-yellow { background: rgba(251,188,4,0.15); color: var(--accent4); }
+
+  .step-list { list-style: none; margin-top: 24px; }
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .step-list li:last-child { border-bottom: none; }
+
+  .step-num {
+    min-width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .step-content h3 { margin-bottom: 6px; }
+  .step-content p { color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .vs-badge {
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 1.2rem;
+    color: var(--text-muted);
+  }
+
+  .price-old {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent3);
+    text-decoration: line-through;
+    text-align: center;
+  }
+
+  .price-new {
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .timeline {
+    position: relative;
+    margin-top: 30px;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), var(--accent4));
+  }
+  .timeline-item {
+    position: relative;
+    padding: 16px 0 16px 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px; top: 22px;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid var(--bg-dark);
+  }
+  .timeline-item .time {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .timeline-item h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .timeline-item p { color: var(--text-muted); font-size: 0.9rem; }
+
+  .tool-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .tool-row .tool-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .tool-row .tool-name { font-weight: 600; min-width: 180px; }
+  .tool-row .tool-desc { color: var(--text-muted); font-size: 0.9rem; flex: 1; }
+  .tool-row .tool-price { font-weight: 700; color: var(--accent2); }
+
+  .big-stat {
+    text-align: center;
+    padding: 20px;
+  }
+  .big-stat .number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .big-stat .label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .quote {
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 300;
+    text-align: center;
+    max-width: 800px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 30px 0;
+  }
+  .quote-author {
+    font-size: 1rem;
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+
+  .nav-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    z-index: 100;
+    background: rgba(0,0,0,0.6);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .source {
+    position: absolute;
+    bottom: 20px; left: 40px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .slide { padding: 40px 24px; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.6rem; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .comparison { grid-template-columns: 1fr; }
+    .vs-badge { margin: 0 auto; }
+    .tool-row { flex-wrap: wrap; }
+    .tool-row .tool-name { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-hint">Scroll para navegar</div>
+
+<!-- SLIDE 1: CAPA -->
+<section class="slide">
+  <div class="content" style="text-align:center;">
+    <div style="margin-bottom:20px;">
+      <span class="tag tag-blue">VIBECODING</span>
+      <span class="tag tag-green">E-COMMERCE</span>
+      <span class="tag tag-yellow">IA</span>
+      <span class="tag tag-red">$0</span>
+    </div>
+    <h1>Loja E-Commerce com IA<br><span class="gradient-text">a Custo Zero</span></h1>
+    <p class="subtitle">Como construir uma loja online profissional usando apenas ferramentas gratuitas do Google + Stripe, sem escrever uma linha de codigo</p>
+    <div style="margin-top:40px; color:var(--text-muted); font-size:0.9rem;">
+      Baseado no video de <strong style="color:var(--text);">Andy Lo</strong> (Andy NoCode)<br>
+      <span style="font-size:0.8rem;">youtube.com/watch?v=eXZcaUfpC7k</span>
+    </div>
+  </div>
+  <span class="slide-number">01 / 10</span>
+</section>
+
+<!-- SLIDE 2: O QUE E VIBECODING -->
+<section class="slide">
+  <div class="content">
+    <h2>O que e <span class="gradient-text">Vibe Coding</span>?</h2>
+    <div class="quote">
+      "Voce descreve o que quer em linguagem natural e a IA escreve o codigo por voce. Voce nao programa — voce direciona."
+      <div class="quote-author">Andrej Karpathy, cofundador da OpenAI (fev/2025)</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <span class="card-icon">💬</span>
+        <h3>Descreva</h3>
+        <p>Explique o que quer construir em linguagem natural, como se conversasse com um dev</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <h3>A IA constroi</h3>
+        <p>O modelo gera o codigo completo — frontend, backend, banco de dados</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚀</span>
+        <h3>Voce publica</h3>
+        <p>Revise, ajuste via prompts e faca deploy. Sem tocar em codigo</p>
+      </div>
+    </div>
+  </div>
+  <span class="slide-number">02 / 10</span>
+</section>
+
+<!-- SLIDE 3: PROBLEMA -->
+<section class="slide">
+  <div class="content">
+    <h2>O Problema: <span class="red-text">Custo das Plataformas</span></h2>
+    <div class="comparison">
+      <div class="card" style="text-align:center;">
+        <h3 class="red-text">Metodo Tradicional</h3>
+        <div class="price-old">$29-497/mes</div>
+        <div style="margin-top:16px;">
+          <span class="tag tag-red">Shopify $29+</span>
+          <span class="tag tag-red">Webflow $29+</span>
+          <span class="tag tag-red">White Label $497+</span>
+        </div>
+        <p style="margin-top:16px; color:var(--text-muted);">Plataformas fechadas, taxas mensais, limitacoes de customizacao</p>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="card" style="text-align:center; border-color: rgba(52,168,83,0.3);">
+        <h3 class="green-text">Novo Stack de IA</h3>
+        <div class="price-new green-text">$0</div>
+        <div style="margin-top:16px;">
+          <span class="tag tag-green">Google Antigravity</span>
+          <span class="tag tag-green">Gemini</span>
+          <span class="tag tag-green">Stripe</span>
+        </div>
+        <p style="margin-top:16px; color:var(--text-muted);">100% gratuito, codigo proprio, customizacao total</p>
+      </div>
+    </div>
+  </div>
+  <span class="slide-number">03 / 10</span>
+</section>
+
+<!-- SLIDE 4: GOOGLE ANTIGRAVITY -->
+<section class="slide">
+  <div class="content">
+    <h2>O que e o <span class="gradient-text">Google Antigravity</span>?</h2>
+    <p class="subtitle" style="margin-bottom:30px;">IDE agentico lancado pelo Google em novembro de 2025 junto com o Gemini 3</p>
+    <div class="grid-2">
+      <div class="card">
+        <span class="card-icon">📝</span>
+        <h3>Editor View</h3>
+        <p>IDE classico com autocomplete de IA, comandos inline e sugestoes contextuais. Para quem quer mais controle.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <h3>Manager Surface</h3>
+        <p>Interface para orquestrar multiplos agentes de IA trabalhando em paralelo. Planejam, escrevem, testam e deployam codigo.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔗</span>
+        <h3>Firebase Integrado</h3>
+        <p>Backend completo via MCP Server — banco de dados, autenticacao e hospedagem direto no fluxo agentico.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🆓</span>
+        <h3>Gratuito</h3>
+        <p>Public preview gratis para individuos. Suporta Gemini 3.1 Pro, Gemini 3 Flash, Claude Sonnet 4.5 e GPT-OSS.</p>
+      </div>
+    </div>
+  </div>
+  <span class="slide-number">04 / 10</span>
+</section>
+
+<!-- SLIDE 5: STACK COMPLETO -->
+<section class="slide">
+  <div class="content">
+    <h2>O Stack Completo <span class="yellow-text">(Tudo Gratis)</span></h2>
+    <div style="margin-top:24px;">
+      <div class="tool-row">
+        <span class="tool-icon">📓</span>
+        <span class="tool-name">NotebookLM</span>
+        <span class="tool-desc">Pesquisa de mercado, analise de nicho e concorrencia</span>
+        <span class="tool-price">$0</span>
+      </div>
+      <div class="tool-row">
+        <span class="tool-icon">✨</span>
+        <span class="tool-name">Google Gemini</span>
+        <span class="tool-desc">Planejamento arquitetural, brainstorming, outline da loja</span>
+        <span class="tool-price">$0</span>
+      </div>
+      <div class="tool-row">
+        <span class="tool-icon">🎨</span>
+        <span class="tool-name">Google Stitch</span>
+        <span class="tool-desc">Design de UI, mockups de interface e layout</span>
+        <span class="tool-price">$0</span>
+      </div>
+      <div class="tool-row">
+        <span class="tool-icon">🚀</span>
+        <span class="tool-name">Google Antigravity</span>
+        <span class="tool-desc">Construcao da loja completa via vibe coding</span>
+        <span class="tool-price">$0</span>
+      </div>
+      <div class="tool-row">
+        <span class="tool-icon">🖼️</span>
+        <span class="tool-name">Google Whisk</span>
+        <span class="tool-desc">Geracao de imagens de produto e mockups visuais</span>
+        <span class="tool-price">$0</span>
+      </div>
+      <div class="tool-row">
+        <span class="tool-icon">💳</span>
+        <span class="tool-name">Stripe</span>
+        <span class="tool-desc">Processamento de pagamentos no checkout</span>
+        <span class="tool-price">$0*</span>
+      </div>
+      <div class="tool-row">
+        <span class="tool-icon">🌐</span>
+        <span class="tool-name">Netlify</span>
+        <span class="tool-desc">Deploy e hospedagem da loja</span>
+        <span class="tool-price">$0</span>
+      </div>
+    </div>
+    <p style="margin-top:12px; font-size:0.8rem; color:var(--text-muted);">* Stripe cobra apenas taxa por transacao realizada — sem mensalidade</p>
+  </div>
+  <span class="slide-number">05 / 10</span>
+</section>
+
+<!-- SLIDE 6: PASSO A PASSO -->
+<section class="slide">
+  <div class="content">
+    <h2>Passo a Passo: <span class="gradient-text">6 Etapas</span></h2>
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Pesquisa com NotebookLM</h3>
+          <p>Analise referencias, fontes e inspiracoes para o produto/nicho. O NotebookLM organiza e sintetiza as informacoes.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Planejamento com Gemini</h3>
+          <p>Defina secoes da loja, features, layout e estrutura tecnica. O Gemini ajuda a criar o outline detalhado.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Design com Stitch + Whisk</h3>
+          <p>Crie mockups de UI no Stitch e gere imagens de produto no Whisk. Use Pinterest como inspiracao visual.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Build com Antigravity</h3>
+          <p>Insira o outline + referencias visuais no Antigravity. Aprove o plano do agente e deixe ele construir. Use "atomic commits" — um prompt por vez.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3>Backend + Pagamentos</h3>
+          <p>Configure catalogo de produtos, inventario e checkout com Stripe. Adicione autenticacao de usuarios.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h3>Deploy no Netlify</h3>
+          <p>Faca o polimento final e publique a loja gratuitamente. Pronta para receber pedidos.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <span class="slide-number">06 / 10</span>
+</section>
+
+<!-- SLIDE 7: TIMELINE DO VIDEO -->
+<section class="slide">
+  <div class="content">
+    <h2>Timeline do Video <span class="blue-text">(13:47)</span></h2>
+    <div class="grid-2">
+      <div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">00:00 - 02:17</div>
+            <h3>Introducao</h3>
+            <p>Apresenta o conceito e o "novo stack de AI Commerce em 2026"</p>
+          </div>
+          <div class="timeline-item">
+            <div class="time">02:17 - 04:31</div>
+            <h3>Pesquisa (NotebookLM)</h3>
+            <p>Motor de pesquisa para analisar nicho e referencias</p>
+          </div>
+          <div class="timeline-item">
+            <div class="time">04:31 - 05:30</div>
+            <h3>Planejamento (Gemini)</h3>
+            <p>Outline da loja, secoes e features</p>
+          </div>
+          <div class="timeline-item">
+            <div class="time">05:30 - 06:29</div>
+            <h3>Design (Stitch)</h3>
+            <p>Mockups de UI com inspiracao do Pinterest</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">06:29 - 07:38</div>
+            <h3>Build (Antigravity)</h3>
+            <p>Construcao da landing page via vibe coding</p>
+          </div>
+          <div class="timeline-item">
+            <div class="time">07:38 - 09:59</div>
+            <h3>Imagens (Whisk)</h3>
+            <p>Geracao de fotos de produto e mockups</p>
+          </div>
+          <div class="timeline-item">
+            <div class="time">09:59 - 11:24</div>
+            <h3>Backend + Stripe</h3>
+            <p>Banco de dados, catalogo e checkout</p>
+          </div>
+          <div class="timeline-item">
+            <div class="time">11:24 - 13:47</div>
+            <h3>Deploy + Conclusao</h3>
+            <p>Polimento, Netlify e resultado final</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="slide-number">07 / 10</span>
+</section>
+
+<!-- SLIDE 8: NUMEROS -->
+<section class="slide">
+  <div class="content">
+    <h2>Impacto do <span class="gradient-text">Google Antigravity</span></h2>
+    <div class="grid-3" style="margin-top:40px;">
+      <div class="card" style="text-align:center;">
+        <div class="big-stat">
+          <div class="number green-text">-41%</div>
+          <div class="label">Reducao no tempo de desenvolvimento</div>
+        </div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="big-stat">
+          <div class="number blue-text">2-3 dias</div>
+          <div class="label">Para lancar uma loja (antes: 4-6 semanas)</div>
+        </div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="big-stat">
+          <div class="number yellow-text">200+</div>
+          <div class="label">Processadores de pagamento suportados</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:24px;">
+      <div class="card" style="text-align:center;">
+        <div class="big-stat">
+          <div class="number" style="color:var(--text);">13:47</div>
+          <div class="label">Minutos do video — do zero ao deploy</div>
+        </div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="big-stat">
+          <div class="number green-text">$0</div>
+          <div class="label">Custo total de ferramentas utilizadas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="slide-number">08 / 10</span>
+</section>
+
+<!-- SLIDE 9: DICA CRITICA -->
+<section class="slide">
+  <div class="content" style="text-align:center;">
+    <h2>Dica Critica: <span class="yellow-text">Atomic Commits</span></h2>
+    <p class="subtitle" style="margin-bottom:40px;">A tecnica mais importante para vibecoding funcionar bem</p>
+    <div class="grid-2">
+      <div class="card" style="border-color: rgba(234,67,53,0.3);">
+        <span class="card-icon">❌</span>
+        <h3 class="red-text">Nao faca isso</h3>
+        <p style="font-size:1.1rem; margin-top:12px;">"Construa uma loja e-commerce completa com catalogo, checkout, login, pagina about, blog, dashboard admin e sistema de reviews"</p>
+        <p style="margin-top:16px;">Prompt gigante = agente se perde, bugs, resultados inconsistentes</p>
+      </div>
+      <div class="card" style="border-color: rgba(52,168,83,0.3);">
+        <span class="card-icon">✅</span>
+        <h3 class="green-text">Faca isso</h3>
+        <p style="font-size:1.1rem; margin-top:12px;">"Crie a landing page com hero section, 3 produtos em destaque e um CTA de newsletter"</p>
+        <p style="margin-top:16px;">Um ou dois prompts por vez, com maximo de detalhe. Revise antes do proximo.</p>
+      </div>
+    </div>
+  </div>
+  <span class="slide-number">09 / 10</span>
+</section>
+
+<!-- SLIDE 10: FINAL -->
+<section class="slide">
+  <div class="content" style="text-align:center;">
+    <h1>O futuro do e-commerce e<br><span class="gradient-text">descrever o que voce quer</span></h1>
+    <p class="subtitle" style="margin-top:20px; margin-bottom:40px;">
+      Nao precisa saber programar. Nao precisa pagar plataformas.<br>
+      Basta ter uma ideia e saber descreve-la.
+    </p>
+    <div style="margin-top:20px;">
+      <span class="tag tag-blue">Google Antigravity</span>
+      <span class="tag tag-green">Gemini</span>
+      <span class="tag tag-yellow">NotebookLM</span>
+      <span class="tag tag-blue">Stitch</span>
+      <span class="tag tag-green">Whisk</span>
+      <span class="tag tag-red">Stripe</span>
+      <span class="tag tag-yellow">Netlify</span>
+    </div>
+    <div style="margin-top:50px; color:var(--text-muted); font-size:0.9rem;">
+      <p>Video original: <strong>Andy Lo</strong> — youtube.com/@andylokcl</p>
+      <p style="margin-top:8px;">Comunidade: skool.com/andynocode</p>
+    </div>
+  </div>
+  <span class="slide-number">10 / 10</span>
+  <span class="source">Fonte: youtube.com/watch?v=eXZcaUfpC7k</span>
+</section>
+
+</body>
+</html>

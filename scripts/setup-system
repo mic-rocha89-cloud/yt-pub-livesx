@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# setup-system — Parte 1: prepara maquina + sobe master-dashboard (porta 8090)
+#
+# Roda 1x por maquina. Detecta o template a partir do diretorio do proprio
+# script, entao funciona com qualquer nome de pasta (yt-pub-livesx, etc).
+set -euo pipefail
+
+TEMPLATE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+MASTER_PORT=8090
+MASTER_SERVICE="yt-master-dashboard"
+
+echo "==> yt-pub-lives — Setup do sistema"
+echo "    Template: $TEMPLATE_DIR"
+echo ""
+
+# 1. Dependencias do sistema
+echo "==> Verificando dependencias..."
+MISSING=()
+for tool in python3 ffmpeg curl yt-dlp deno; do
+  if command -v "$tool" >/dev/null; then
+    echo "    $tool: OK"
+  else
+    echo "    $tool: FALTA"
+    MISSING+=("$tool")
+  fi
+done
+if [ ${#MISSING[@]} -gt 0 ]; then
+  echo ""
+  echo "ERRO: instale antes:"
+  for t in "${MISSING[@]}"; do
+    case "$t" in
+      yt-dlp) echo "    pip3 install --user yt-dlp" ;;
+      deno)   echo "    curl -fsSL https://deno.land/install.sh | sh" ;;
+      *)      echo "    sudo apt-get install $t" ;;
+    esac
+  done
+  exit 1
+fi
+
+# 2. Pacotes Python
+echo "==> Pacotes Python..."
+pip3 install --user --quiet -r "$TEMPLATE_DIR/requirements.txt"
+python3 -c "import cryptography, anthropic" \
+  && echo "    cryptography + anthropic: OK"
+
+# 3. PATH
+BIN_DIR="$HOME/.local/bin"
+mkdir -p "$BIN_DIR"
+if ! echo "$PATH" | grep -q "$BIN_DIR"; then
+  echo ""
+  echo "==> Adicione ao seu ~/.bashrc:"
+  echo "    export PATH=\"\$HOME/.local/bin:\$PATH\""
+fi
+
+# 4. Master-dashboard — verifica conflitos antes de subir
+echo ""
+echo "==> Master-dashboard (porta $MASTER_PORT)..."
+if systemctl --user is-active --quiet "$MASTER_SERVICE" 2>/dev/null; then
+  echo "ERRO: service '$MASTER_SERVICE' ja esta ativo."
+  echo "      Pare com: systemctl --user stop $MASTER_SERVICE"
+  exit 1
+fi
+if ss -ltn 2>/dev/null | grep -q ":$MASTER_PORT "; then
+  echo "ERRO: porta $MASTER_PORT ja em uso por outro processo."
+  echo "      Verifique com: ss -ltnp | grep :$MASTER_PORT"
+  exit 1
+fi
+
+# 5. Gera service file com paths do TEMPLATE_DIR detectado
+SVC="$HOME/.config/systemd/user/$MASTER_SERVICE.service"
+mkdir -p "$(dirname "$SVC")"
+cat > "$SVC" <<EOF
+[Unit]
+Description=YT Pub Master Dashboard (all instances)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=$TEMPLATE_DIR/master-dashboard
+ExecStart=/usr/bin/python3 $TEMPLATE_DIR/master-dashboard/server.py
+Restart=always
+RestartSec=10
+Environment=PATH=/usr/bin:$HOME/.local/bin
+Environment=GWS_CONFIG_DIR=$TEMPLATE_DIR/config
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl --user daemon-reload
+systemctl --user enable --now "$MASTER_SERVICE"
+
+echo ""
+echo "==> Master-dashboard rodando: http://localhost:$MASTER_PORT"
+echo "==> Proximo passo: criar primeiro canal:"
+echo "    $TEMPLATE_DIR/scripts/setup-canal"

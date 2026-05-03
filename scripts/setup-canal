@@ -1,0 +1,182 @@
+#!/usr/bin/env bash
+# setup-canal — Parte 2: cria nova instancia (= novo canal) a partir do template
+#
+# Roda 1x por canal. Copia este template para ~/projetos/<nome>/, gera .env,
+# patcha service files, sobe dashboard, pausa pro OAuth, sobe scheduler.
+#
+# Em qualquer pergunta com [default] mostrado, ENTER aceita o default.
+set -euo pipefail
+
+TEMPLATE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+echo "==> setup-canal"
+echo "    Template: $TEMPLATE_DIR"
+echo ""
+
+# ============= A. Identidade =============
+read -rp "Nome da instancia (ex: yt-pub-lives7): " NOME
+[ -z "$NOME" ] && { echo "ERRO: nome obrigatorio"; exit 1; }
+DEST="$HOME/projetos/$NOME"
+[ -e "$DEST" ] && { echo "ERRO: $DEST ja existe"; exit 1; }
+
+# Numero da instancia (usado nos nomes dos services)
+if [[ "$NOME" =~ ([0-9]+)$ ]]; then
+  N="${BASH_REMATCH[1]}"
+else
+  MAX=0
+  for d in "$HOME"/projetos/yt-pub-lives*; do
+    [ -d "$d" ] || continue
+    n="${d##*lives}"
+    [[ "$n" =~ ^[0-9]+$ ]] && (( n > MAX )) && MAX=$n
+  done
+  SUG_N=$((MAX + 1))
+  read -rp "Numero da instancia (services) [$SUG_N]: " N
+  N=${N:-$SUG_N}
+fi
+
+# Porta — sugere proxima livre 8091..8099
+SUG=""
+for p in $(seq 8091 8099); do
+  ss -ltn 2>/dev/null | grep -q ":$p " || { SUG=$p; break; }
+done
+[ -z "$SUG" ] && SUG=8091
+read -rp "Porta do dashboard [$SUG]: " PORTA
+PORTA=${PORTA:-$SUG}
+ss -ltn 2>/dev/null | grep -q ":$PORTA " && {
+  echo "ERRO: porta $PORTA ja em uso"; exit 1; }
+
+# ============= B. YouTube =============
+read -rp "YOUTUBE_CHANNEL_ID origem [UC2QbQDyPKuHk93dwo5iq3Sw]: " ORIG
+ORIG=${ORIG:-UC2QbQDyPKuHk93dwo5iq3Sw}
+read -rp "Handle do canal de destino (opcional, ex: @InemaTIA): " DEST_HANDLE
+
+# ============= C. Google Cloud =============
+echo ""
+echo "    -- Credenciais Google Cloud (1 projeto por instancia) --"
+read -rp "CLIENT_ID: " CLIENT_ID
+[ -z "$CLIENT_ID" ] && { echo "ERRO: CLIENT_ID obrigatorio"; exit 1; }
+read -rp "CLIENT_SECRET: " CLIENT_SECRET
+[ -z "$CLIENT_SECRET" ] && { echo "ERRO: CLIENT_SECRET obrigatorio"; exit 1; }
+read -rp "API_KEY: " API_KEY
+[ -z "$API_KEY" ] && { echo "ERRO: API_KEY obrigatoria"; exit 1; }
+read -rp "GCP_PROJECT: " GCP_PROJECT
+[ -z "$GCP_PROJECT" ] && { echo "ERRO: GCP_PROJECT obrigatorio"; exit 1; }
+
+# ============= D. IA =============
+echo ""
+read -rp "PIRAMYD_API_KEY: " PIRAMYD_API_KEY
+[ -z "$PIRAMYD_API_KEY" ] && { echo "ERRO: PIRAMYD_API_KEY obrigatoria"; exit 1; }
+
+# ============= E. Operacao =============
+read -rp "Adicionar ao sync-instances do template? [s/N]: " SYNC
+
+# ============= Resumo + confirmacao =============
+echo ""
+cat <<INFO
+==> Resumo:
+    Instancia: $NOME (numero: $N)
+    Destino:   $DEST
+    Porta:     $PORTA
+    Origem:    $ORIG
+    Canal:     ${DEST_HANDLE:-<nao informado>}
+    GCP:       $GCP_PROJECT
+INFO
+read -rp "Confirma? [S/n]: " OK
+[[ "${OK:-s}" =~ ^[sSyY]$ ]] || { echo "Cancelado."; exit 0; }
+
+# ============= 1. Copia template =============
+echo ""
+echo "==> Copiando template..."
+cp -r "$TEMPLATE_DIR" "$DEST"
+
+# Limpa estado especifico/sensivel
+rm -rf "$DEST/data" "$DEST/lives" "$DEST/.git"
+rm -f  "$DEST/config/.env" \
+       "$DEST/config/credentials.enc" \
+       "$DEST/config/.encryption_key"
+
+# ============= 2. Gera config/.env =============
+# OBS: gerado via heredoc, nao via Write — segue regra do CLAUDE.md
+cat > "$DEST/config/.env" <<EOF
+# Canal de ORIGEM (de onde vem as lives)
+YOUTUBE_CHANNEL_ID=$ORIG
+
+# Canal de DESTINO — credenciais Google Cloud (1 projeto por instancia)
+CLIENT_ID=$CLIENT_ID
+CLIENT_SECRET=$CLIENT_SECRET
+API_KEY=$API_KEY
+GCP_PROJECT=$GCP_PROJECT
+
+# IA
+PIRAMYD_API_KEY=$PIRAMYD_API_KEY
+
+# Identificacao
+INSTANCE_NAME=$NOME
+EOF
+chmod 600 "$DEST/config/.env"
+echo "    config/.env criado (chmod 600)"
+
+# ============= 3. Patcha service files =============
+DASH_SVC="$DEST/systemd/yt-dashboard.service"
+SCHED_SVC="$DEST/systemd/yt-scheduler.service"
+
+# Substitui paths e porta do template (lives2/8092) pelos da nova instancia
+sed -i \
+  -e "s|/home/nmaldaner/projetos/yt-pub-lives2|$DEST|g" \
+  -e "s|8092|$PORTA|g" \
+  -e "s|yt-dashboard2.service|yt-dashboard${N}.service|g" \
+  "$DASH_SVC" "$SCHED_SVC"
+
+# Remove User= (user services nao precisam)
+sed -i '/^User=/d' "$DASH_SVC" "$SCHED_SVC"
+
+# ============= 4. Symlinks systemd user =============
+SDIR="$HOME/.config/systemd/user"
+mkdir -p "$SDIR"
+ln -sf "$DASH_SVC"  "$SDIR/yt-dashboard${N}.service"
+ln -sf "$SCHED_SVC" "$SDIR/yt-scheduler${N}.service"
+systemctl --user daemon-reload
+
+# Sobe dashboard primeiro (scheduler depende do OAuth)
+systemctl --user enable --now "yt-dashboard${N}"
+echo "    yt-dashboard${N}: ativo em http://localhost:$PORTA"
+
+# ============= 5. OAuth (interativo) =============
+echo ""
+echo "==> Autentique o canal de destino no Google."
+echo "    Em outro terminal, rode:"
+echo ""
+echo "    GWS_CONFIG_DIR=$DEST/config python3 $DEST/scripts/yt-auth"
+echo ""
+echo "    O script vai abrir um link — autorize com a conta dona do canal."
+read -rp "Pressione ENTER apos completar o OAuth (ou Ctrl+C para abortar)..."
+
+if [ ! -f "$DEST/config/credentials.enc" ]; then
+  echo ""
+  echo "AVISO: $DEST/config/credentials.enc nao foi criado."
+  echo "       O scheduler vai falhar ate o OAuth ser concluido."
+  echo "       Voce pode rodar yt-auth depois e iniciar com:"
+  echo "         systemctl --user start yt-scheduler${N}"
+fi
+
+# ============= 6. Sobe scheduler =============
+systemctl --user enable --now "yt-scheduler${N}" || \
+  echo "AVISO: scheduler falhou ao subir — verifique OAuth."
+
+# ============= 7. sync-instances (opcional) =============
+if [[ "$SYNC" =~ ^[sSyY]$ ]]; then
+  SI="$TEMPLATE_DIR/scripts/sync-instances"
+  if grep -q "\"$DEST\"" "$SI"; then
+    echo "    $DEST ja registrado em sync-instances"
+  else
+    sed -i "/^TARGETS=(/a\\    \"$DEST\"" "$SI"
+    echo "    Adicionado a $SI"
+  fi
+fi
+
+# ============= Fim =============
+echo ""
+echo "==> Pronto."
+echo "    Dashboard: http://localhost:$PORTA"
+echo "    Master:    http://localhost:8090"
+echo "    Logs:      journalctl --user -u yt-dashboard${N} -f"
+echo "               journalctl --user -u yt-scheduler${N} -f"
