@@ -1,4 +1,4 @@
-# yt-pub-lives2
+# yt-pub-livesx
 
 ![YouTube Live Clips — Fabrica de Videos](assets/banner.jpg)
 
@@ -23,7 +23,7 @@ YouTube (lives do canal origem) → Transcricao → Analise IA → Corte (FFmpeg
 ## Estrutura
 
 ```
-yt-pub-lives2/
+yt-pub-livesx/
 ├── config/                    # Configuracao isolada do projeto
 │   ├── .env                   # Variaveis de ambiente (nao vai pro git)
 │   ├── client_secret.json     # Credenciais OAuth (nao vai pro git)
@@ -83,7 +83,7 @@ O sistema e composto por **1 master-dashboard** + **N instancias** (1 por canal)
 │   ├── data/lives.db           ← SQLite isolado
 │   └── lives/                  ← videos baixados
 │
-├── yt-pub-lives2/              ← Canal 2 (idem)
+├── yt-pub-livesx/              ← Canal 2 (idem)
 └── yt-pub-lives7/              ← Canal N
 ```
 
@@ -416,23 +416,26 @@ systemctl --user enable --now yt-scheduler5 yt-dashboard5
 
 ### Multi-instancia
 
+**Convencao recomendada:** nome do projeto GCP = nome do canal de destino
+(facilita auditoria — voce vê na GCP Console qual canal cada projeto serve).
+
 | Instancia | Porta | Scheduler | Dashboard | Canal Destino | GCP Project |
 |-----------|-------|-----------|-----------|---------------|-------------|
-| lives1 | 8091 | yt-scheduler1 | yt-dashboard1 | INEMA TDS | gws |
-| lives2 | 8092 | yt-scheduler | yt-dashboard | INEMA TIA | webyt |
-| lives3 | 8093 | yt-scheduler3 | yt-dashboard3 | INEMA TDS | yt-pub-lives3 |
-| lives4 | 8094 | yt-scheduler4 | yt-dashboard4 | INEMA Tec | yt-pub4 |
-| lives5 | 8095 | yt-scheduler5 | yt-dashboard5 | INEMA PROMPTS | prompts-491620 |
+| lives1 | 8091 | yt-scheduler1 | yt-dashboard1 | INEMA TDS | inema-tds |
+| lives2 | 8092 | yt-scheduler2 | yt-dashboard2 | INEMA TIA | inema-tia |
+| lives3 | 8093 | yt-scheduler3 | yt-dashboard3 | INEMA TDS | inema-tds-2 |
+| lives4 | 8094 | yt-scheduler4 | yt-dashboard4 | INEMA Tec | inema-tec |
+| lives5 | 8095 | yt-scheduler5 | yt-dashboard5 | INEMA PROMPTS | inema-prompts |
 | lives6 | 8096 | yt-scheduler6 | yt-dashboard6 | INEMA Robot | inema-robot |
 
-**Sync codigo** (lives2 e a fonte):
+**Sync codigo** (`yt-pub-livesx` e o template fonte):
 ```bash
-./scripts/sync-instances    # Copia codigo para lives1,3,4,5,6
+./scripts/sync-instances    # Propaga codigo do template para as instancias listadas
 ```
 
 **Restart todos:**
 ```bash
-systemctl --user restart yt-scheduler1 yt-dashboard1 yt-scheduler yt-dashboard yt-scheduler3 yt-dashboard3 yt-scheduler4 yt-dashboard4 yt-scheduler5 yt-dashboard5 yt-scheduler6 yt-dashboard6
+systemctl --user restart yt-scheduler{1..6} yt-dashboard{1..6}
 ```
 
 ### Cortar uma Live
@@ -456,16 +459,6 @@ yt-thumbnail --title "Titulo do clip" --output thumb.jpg
 yt-publish video.mp4 --title "Titulo" --description "Descricao"
 yt-publish video.mp4 --title "Titulo" --description "Desc" --privacy unlisted --tags "ia,dev"
 ```
-
-## Diferenca do projeto original (yt-pub-lives)
-
-| | yt-pub-lives | yt-pub-lives2 |
-|---|---|---|
-| Config | Global (`~/.config/gws/`) | Local (`./config/`) |
-| Porta | 8090 | 8091 |
-| Canal destino | Mesmo da origem | Diferente (INEMA TIA) |
-| Auth | Via CLI `gws` | Script `yt-auth` standalone |
-| Repositorio | `inematds/yt-pub-lives` | `inematds/yt-pub-lives2` |
 
 ## Tecnologias
 

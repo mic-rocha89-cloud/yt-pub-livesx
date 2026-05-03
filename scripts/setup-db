@@ -168,21 +168,14 @@ def main():
     conn = db.get_db()
     print(f'    DB criado em {db.DB_PATH}')
 
-    # Ensure prompt files exist (copy from lives2 as default if missing)
+    # Verifica prompts default — vem do template, se faltar, configura pelo dashboard
     print('==> Verificando prompts...')
-    source_config = '/home/nmaldaner/projetos/yt-pub-lives2/config'
     for prompt_name in ('prompt_cortes.txt', 'prompt_pub.txt', 'prompt_thumb.txt'):
         dest = os.path.join(CONFIG_DIR, prompt_name)
-        if not os.path.exists(dest):
-            src = os.path.join(source_config, prompt_name)
-            if os.path.exists(src):
-                import shutil
-                shutil.copy2(src, dest)
-                print(f'    {prompt_name} copiado de lives2')
-            else:
-                print(f'    {prompt_name} nao encontrado (configure pelo dashboard)')
-        else:
+        if os.path.exists(dest):
             print(f'    {prompt_name} OK')
+        else:
+            print(f'    {prompt_name} nao encontrado (configure pelo dashboard)')
 
     # Check if DB already has data
     config = db.load_config()

@@ -116,17 +116,19 @@ chmod 600 "$DEST/config/.env"
 echo "    config/.env criado (chmod 600)"
 
 # ============= 3. Patcha service files =============
+# Os services do template tem placeholders __INSTANCE_DIR__, __INSTANCE_NAME__,
+# __INSTANCE_NUM__ e __PORT__ — substituidos pelos valores reais aqui.
 DASH_SVC="$DEST/systemd/yt-dashboard.service"
 SCHED_SVC="$DEST/systemd/yt-scheduler.service"
 
-# Substitui paths e porta do template (lives2/8092) pelos da nova instancia
 sed -i \
-  -e "s|/home/nmaldaner/projetos/yt-pub-lives2|$DEST|g" \
-  -e "s|8092|$PORTA|g" \
-  -e "s|yt-dashboard2.service|yt-dashboard${N}.service|g" \
+  -e "s|__INSTANCE_DIR__|$DEST|g" \
+  -e "s|__INSTANCE_NAME__|$NOME|g" \
+  -e "s|__INSTANCE_NUM__|$N|g" \
+  -e "s|__PORT__|$PORTA|g" \
   "$DASH_SVC" "$SCHED_SVC"
 
-# Remove User= (user services nao precisam)
+# Remove User= se existir (user services nao precisam)
 sed -i '/^User=/d' "$DASH_SVC" "$SCHED_SVC"
 
 # ============= 4. Symlinks systemd user =============
@@ -172,6 +174,35 @@ if [[ "$SYNC" =~ ^[sSyY]$ ]]; then
     echo "    Adicionado a $SI"
   fi
 fi
+
+# ============= 8. Registra no master-dashboard/instances.json =============
+INSTANCES_JSON="$TEMPLATE_DIR/master-dashboard/instances.json"
+python3 - "$INSTANCES_JSON" "$N" "$NOME" "$DEST" "$PORTA" <<'PY'
+import json, os, sys
+path, num, nome, dest, porta = sys.argv[1:]
+num, porta = int(num), int(porta)
+data = []
+if os.path.exists(path):
+    try:
+        data = json.load(open(path))
+    except Exception:
+        data = []
+data = [d for d in data if d.get('id') != num]
+data.append({
+    'id': num,
+    'name': nome,
+    'path': dest,
+    'port': porta,
+    'scheduler_svc': f'yt-scheduler{num}',
+    'dashboard_svc': f'yt-dashboard{num}',
+})
+data.sort(key=lambda d: d['id'])
+json.dump(data, open(path, 'w'), indent=2, ensure_ascii=False)
+print(f'    {path} atualizado ({len(data)} instancias)')
+PY
+# Recarrega master pra ler o JSON novo
+systemctl --user restart yt-master-dashboard 2>/dev/null \
+  && echo "    yt-master-dashboard reiniciado"
 
 # ============= Fim =============
 echo ""

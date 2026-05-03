@@ -1,4 +1,4 @@
-# Instrucoes para Claude Code — yt-pub-lives2
+# Instrucoes para Claude Code — yt-pub-livesx
 
 ## Regras de comportamento
 
@@ -14,8 +14,8 @@ Nunca usar Write para reescrever arquivos .env. Usar apenas Edit para alterar li
 Motivo: causou outage no lives4 anteriormente.
 
 ### Sincronizacao entre instancias
-- lives2 e a fonte de codigo
-- `scripts/sync-instances` sincroniza para lives1, lives3, lives4, lives5, lives6, lives7
+- `yt-pub-livesx` e o template fonte de codigo
+- `scripts/sync-instances` sincroniza para as instancias listadas em TARGETS
 - NUNCA sincronizar config/, data/, credentials.enc, .env entre instancias
 - Apos sync, reiniciar os servicos afetados
 

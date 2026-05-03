@@ -2,6 +2,9 @@ __pycache__/
 *.pyc
 .env
 .claude/
+dashboard/auth.html
+master-dashboard/instances.json
+master-dashboard/extra_validations.json
 config/.env
 config/credentials.enc
 config/.encryption_key

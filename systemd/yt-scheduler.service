@@ -1,18 +1,21 @@
 [Unit]
-Description=YT Pub Lives2 Scheduler
-After=network.target yt-dashboard2.service
+# TEMPLATE — placeholders sao substituidos pelo scripts/setup-canal:
+#   __INSTANCE_DIR__       ex: /home/user/projetos/yt-pub-lives7
+#   __INSTANCE_NAME__      ex: yt-pub-lives7
+#   __INSTANCE_NUM__       ex: 7
+Description=YT Pub Lives __INSTANCE_NAME__ Scheduler
+After=network.target yt-dashboard__INSTANCE_NUM__.service
 
 [Service]
 Type=simple
-User=nmaldaner
-WorkingDirectory=/home/nmaldaner/projetos/yt-pub-lives2
-ExecStart=/usr/bin/python3 /home/nmaldaner/projetos/yt-pub-lives2/scheduler.py
+WorkingDirectory=__INSTANCE_DIR__
+ExecStart=/usr/bin/python3 __INSTANCE_DIR__/scheduler.py
 Restart=always
 RestartSec=10
-Environment=PATH=/home/nmaldaner/.deno/bin:/usr/bin:/home/nmaldaner/.local/bin:/home/nmaldaner/.npm-global/bin:/home/nmaldaner/projetos/yt-pub-lives2/scripts
-Environment=GWS_CONFIG_DIR=/home/nmaldaner/projetos/yt-pub-lives2/config
-Environment=LIVES_DIR=/home/nmaldaner/projetos/yt-pub-lives2/lives
+Environment=PATH=%h/.deno/bin:/usr/bin:%h/.local/bin:%h/.npm-global/bin:__INSTANCE_DIR__/scripts
+Environment=GWS_CONFIG_DIR=__INSTANCE_DIR__/config
+Environment=LIVES_DIR=__INSTANCE_DIR__/lives
 Environment=PYTHONUNBUFFERED=1
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

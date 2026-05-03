@@ -1,15 +1,18 @@
 [Unit]
+# TEMPLATE — o scripts/setup-system gera este service inline com paths
+# do template detectado, entao este arquivo serve so de referencia/historico.
+#   __TEMPLATE_DIR__   substituido para o path real do template
 Description=YT Pub Master Dashboard (all instances)
 After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/nmaldaner/projetos/yt-pub-lives2/master-dashboard
-ExecStart=/usr/bin/python3 /home/nmaldaner/projetos/yt-pub-lives2/master-dashboard/server.py
+WorkingDirectory=__TEMPLATE_DIR__/master-dashboard
+ExecStart=/usr/bin/python3 __TEMPLATE_DIR__/master-dashboard/server.py
 Restart=always
 RestartSec=10
-Environment=PATH=/usr/bin:/home/nmaldaner/.local/bin
-Environment=GWS_CONFIG_DIR=/home/nmaldaner/projetos/yt-pub-lives2/config
+Environment=PATH=/usr/bin:%h/.local/bin
+Environment=GWS_CONFIG_DIR=__TEMPLATE_DIR__/config
 Environment=PYTHONUNBUFFERED=1
 
 [Install]

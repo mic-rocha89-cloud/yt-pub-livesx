@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "lives1",
+    "path": "/home/USER/projetos/yt-pub-lives1",
+    "port": 8091,
+    "scheduler_svc": "yt-scheduler1",
+    "dashboard_svc": "yt-dashboard1"
+  },
+  {
+    "id": 2,
+    "name": "lives2",
+    "path": "/home/USER/projetos/yt-pub-lives2",
+    "port": 8092,
+    "scheduler_svc": "yt-scheduler2",
+    "dashboard_svc": "yt-dashboard2"
+  }
+]

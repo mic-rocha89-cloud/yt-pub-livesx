@@ -51,21 +51,21 @@ def save_extra_validation(email):
 TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID', '')
 
-# Instâncias
-INSTANCES = [
-    {'id': 1, 'name': 'lives1', 'path': '/home/nmaldaner/projetos/yt-pub-lives1', 'port': 8091, 'scheduler_svc': 'yt-scheduler1', 'dashboard_svc': 'yt-dashboard1'},
-    {'id': 2, 'name': 'lives2', 'path': '/home/nmaldaner/projetos/yt-pub-lives2', 'port': 8092, 'scheduler_svc': 'yt-scheduler',  'dashboard_svc': 'yt-dashboard'},
-    {'id': 3, 'name': 'lives3', 'path': '/home/nmaldaner/projetos/yt-pub-lives3', 'port': 8093, 'scheduler_svc': 'yt-scheduler3', 'dashboard_svc': 'yt-dashboard3'},
-    {'id': 4, 'name': 'lives4', 'path': '/home/nmaldaner/projetos/yt-pub-lives4', 'port': 8094, 'scheduler_svc': 'yt-scheduler4', 'dashboard_svc': 'yt-dashboard4'},
-    {'id': 5, 'name': 'lives5', 'path': '/home/nmaldaner/projetos/yt-pub-lives5', 'port': 8095, 'scheduler_svc': 'yt-scheduler5', 'dashboard_svc': 'yt-dashboard5'},
-    {'id': 6, 'name': 'lives6', 'path': '/home/nmaldaner/projetos/yt-pub-lives6', 'port': 8096, 'scheduler_svc': 'yt-scheduler6', 'dashboard_svc': 'yt-dashboard6'},
-    {'id': 7, 'name': 'lives7', 'path': '/home/nmaldaner/projetos/yt-pub-lives7', 'port': 8097, 'scheduler_svc': 'yt-scheduler7', 'dashboard_svc': 'yt-dashboard7'},
-    {'id': 8, 'name': 'lives8', 'path': '/home/nmaldaner/projetos/yt-pub-lives8', 'port': 8098, 'scheduler_svc': 'yt-scheduler8', 'dashboard_svc': 'yt-dashboard8'},
-    {'id': 9, 'name': 'lives9', 'path': '/home/nmaldaner/projetos/yt-pub-lives9', 'port': 8099, 'scheduler_svc': 'yt-scheduler9', 'dashboard_svc': 'yt-dashboard9'},
-    {'id': 10, 'name': 'lives10', 'path': '/home/nmaldaner/projetos/yt-pub-lives10', 'port': 8400, 'scheduler_svc': 'yt-scheduler10', 'dashboard_svc': 'yt-dashboard10'},
-    {'id': 11, 'name': 'lives11', 'path': '/home/nmaldaner/projetos/yt-pub-lives11', 'port': 8401, 'scheduler_svc': 'yt-scheduler11', 'dashboard_svc': 'yt-dashboard11'},
-    {'id': 12, 'name': 'lives12', 'path': '/home/nmaldaner/projetos/yt-pub-lives12', 'port': 8402, 'scheduler_svc': 'yt-scheduler12', 'dashboard_svc': 'yt-dashboard12'},
-]
+# Instâncias — carregadas de master-dashboard/instances.json
+# (gerenciado pelo scripts/setup-canal; ver instances.json.example)
+INSTANCES_FILE = os.path.join(DASHBOARD_DIR, 'instances.json')
+
+def load_instances():
+    if not os.path.exists(INSTANCES_FILE):
+        return []
+    try:
+        with open(INSTANCES_FILE) as f:
+            return json.load(f)
+    except Exception as e:
+        print(f'[WARN] falha ao ler {INSTANCES_FILE}: {e}', file=sys.stderr)
+        return []
+
+INSTANCES = load_instances()
 
 # Estado global do heartbeat
 heartbeat_data = {'instances': [], 'updated_at': '', 'telegram_last_alert': ''}

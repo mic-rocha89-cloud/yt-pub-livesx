@@ -8,7 +8,7 @@ para publicação automática no YouTube simplesmente copiando arquivos para a p
 ## Estrutura de pastas
 
 ```
-yt-pub-lives2/
+yt-pub-lives<N>/
   imports/
     nome-do-lote/          ← uma pasta = um lote de publicação
       clip_01_Titulo.mp4
