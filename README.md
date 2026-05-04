@@ -189,6 +189,7 @@ Antes de rodar, tenha em maos:
 | `API_KEY` | GCP → API Key (YouTube Data API v3) | — |
 | `GCP_PROJECT` | id do projeto GCP | — |
 | `PIRAMYD_API_KEY` | painel Piramyd | — |
+| Senha do dashboard | livre | `Inema2026$$$` |
 | Adicionar ao `sync-instances`? | s/N | N |
 
 > **ENTER em qualquer pergunta com `[default]` aceita o default mostrado.**
@@ -270,8 +271,8 @@ Passo-a-passo do zero numa VPS limpa.
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y python3 python3-pip ffmpeg curl git
-pip3 install --user yt-dlp
+sudo apt-get install -y python3 python3-pip ffmpeg curl git unzip pipx
+pipx install yt-dlp
 
 # Deno (runtime JS usado pelo yt-dlp)
 curl -fsSL https://deno.land/install.sh | sh
@@ -385,7 +386,45 @@ Ou edite pelo dashboard na aba de configuracao.
 python3 dashboard/server.py [porta]    # padrao: 8091
 ```
 
-Acesse `http://localhost:8091` — painel com:
+Acesse `http://localhost:8091` — ao abrir o browser pela primeira vez sera pedida a senha.
+
+#### Autenticacao
+
+Todos os dashboards (master `:8090` e cada canal `:809N`) exigem senha para acesso.
+
+- **Senha default:** `Inema2026$$$`
+- **Configurada em:** `config/.env` → variavel `DASHBOARD_PASSWORD`
+- **Cookie de sessao** (`ds`) dura 30 dias; expira se o service reiniciar
+
+**Trocar a senha** (via curl ou pelo devtools do browser):
+```bash
+curl -X POST http://localhost:8091/api/config/password \
+  -b "ds=SEU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"current":"Inema2026$$$","new":"NovaSenha"}'
+```
+
+O token `ds` aparece nos cookies do browser apos o login. A troca invalida todas as sessoes ativas (force re-login).
+
+**Instancias existentes** (criadas antes desta versao): adicionar manualmente ao `config/.env`:
+```
+DASHBOARD_PASSWORD=Inema2026$$$
+```
+E reiniciar o service: `systemctl --user restart yt-dashboard<N>`.
+
+> **TODO (seguranca — revisar):**
+> A implementacao atual e adequada para uso interno em VPS com SSH tunnel,
+> mas tem limitacoes que devem ser avaliadas antes de expor em rede aberta:
+> - Sem rate limiting em `/api/login` — suscetivel a brute force
+> - Senha gravada em texto puro no `.env` (nao e hash)
+> - Sem TLS: cookie e senha trafegam em claro (risco em redes nao confiaveis)
+> - Sessions em memoria: restart do service = logout forcado de todos
+> - Sem expiracao por inatividade (so pelo Max-Age de 30 dias)
+> - Sem 2FA
+> Enquanto o acesso for via SSH tunnel local, o risco e baixo. Se expor
+> publicamente, o minimo e colocar um reverse proxy (nginx) com HTTPS.
+
+Painel com:
 - Stats clicaveis (total lives, cortadas, pendentes, clips aguardando, publicados)
 - Configuracao de horarios (picker visual 24h)
 - Tabela de lives com filtro por status
