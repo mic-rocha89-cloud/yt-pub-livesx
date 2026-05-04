@@ -13,7 +13,21 @@ echo "==> yt-pub-lives — Setup do sistema"
 echo "    Template: $TEMPLATE_DIR"
 echo ""
 
-# 1. Dependencias do sistema
+# 1. Pre-requisitos apt (silencioso se ja instalados)
+echo "==> Pre-requisitos apt..."
+APT_PREREQS=(python3-pip unzip)
+NEED_APT=()
+for pkg in "${APT_PREREQS[@]}"; do
+  dpkg -s "$pkg" &>/dev/null || NEED_APT+=("$pkg")
+done
+if [ ${#NEED_APT[@]} -gt 0 ]; then
+  echo "    Instalando: ${NEED_APT[*]}"
+  sudo apt-get install -y "${NEED_APT[@]}" -qq
+else
+  echo "    python3-pip + unzip: OK"
+fi
+
+# 2. Dependencias do sistema
 echo "==> Verificando dependencias..."
 MISSING=()
 for tool in python3 ffmpeg curl yt-dlp deno; do
@@ -29,21 +43,22 @@ if [ ${#MISSING[@]} -gt 0 ]; then
   echo "ERRO: instale antes:"
   for t in "${MISSING[@]}"; do
     case "$t" in
-      yt-dlp) echo "    pip3 install --user yt-dlp" ;;
-      deno)   echo "    curl -fsSL https://deno.land/install.sh | sh" ;;
+      yt-dlp) echo "    sudo apt-get install -y pipx && pipx install yt-dlp" ;;
+      deno)   echo "    apt install -y unzip && curl -fsSL https://deno.land/install.sh | sh" ;;
       *)      echo "    sudo apt-get install $t" ;;
     esac
   done
   exit 1
 fi
 
-# 2. Pacotes Python
+# 3. Pacotes Python
 echo "==> Pacotes Python..."
-pip3 install --user --quiet -r "$TEMPLATE_DIR/requirements.txt"
+# root + Ubuntu 22.04+: sem --user, com --break-system-packages (PEP 668)
+pip3 install --quiet --break-system-packages -r "$TEMPLATE_DIR/requirements.txt"
 python3 -c "import cryptography, anthropic" \
   && echo "    cryptography + anthropic: OK"
 
-# 3. PATH
+# 4. PATH
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 if ! echo "$PATH" | grep -q "$BIN_DIR"; then
@@ -52,7 +67,7 @@ if ! echo "$PATH" | grep -q "$BIN_DIR"; then
   echo "    export PATH=\"\$HOME/.local/bin:\$PATH\""
 fi
 
-# 4. Master-dashboard — verifica conflitos antes de subir
+# 5. Master-dashboard — verifica conflitos antes de subir
 echo ""
 echo "==> Master-dashboard (porta $MASTER_PORT)..."
 if systemctl --user is-active --quiet "$MASTER_SERVICE" 2>/dev/null; then
@@ -66,7 +81,7 @@ if ss -ltn 2>/dev/null | grep -q ":$MASTER_PORT "; then
   exit 1
 fi
 
-# 5. Gera service file com paths do TEMPLATE_DIR detectado
+# 6. Gera service file com paths do TEMPLATE_DIR detectado
 SVC="$HOME/.config/systemd/user/$MASTER_SERVICE.service"
 mkdir -p "$(dirname "$SVC")"
 cat > "$SVC" <<EOF
