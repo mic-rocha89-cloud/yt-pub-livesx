@@ -31,6 +31,50 @@ if os.path.exists(ENV_FILE):
 
 sys.path.insert(0, PROJECT_ROOT)
 import db
+import secrets as _sec
+
+_DASHBOARD_PASSWORD = os.environ.get('DASHBOARD_PASSWORD', 'Inema2026$$$')
+_VALID_SESSIONS = set()
+
+_LOGIN_HTML = '''<!doctype html>
+<html lang="pt-br">
+<head><meta charset="utf-8"><title>Login — YT Pub Lives</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e4e4e7;font-family:system-ui,sans-serif;
+     display:flex;align-items:center;justify-content:center;min-height:100vh}
+.card{background:#18181b;border:1px solid #3f3f46;border-radius:12px;padding:2rem;width:320px}
+h2{font-size:1.1rem;margin-bottom:1.5rem;color:#a1a1aa;font-weight:500}
+label{display:block;margin-bottom:.4rem;font-size:.85rem;color:#71717a}
+input{width:100%;padding:.6rem .8rem;border-radius:6px;border:1px solid #3f3f46;
+      background:#09090b;color:#e4e4e7;font-size:1rem;outline:none;margin-bottom:1rem}
+input:focus{border-color:#6366f1}
+button{width:100%;padding:.65rem;border-radius:6px;background:#6366f1;color:#fff;
+       border:none;font-size:1rem;cursor:pointer;font-weight:500}
+button:hover{background:#4f46e5}
+.err{color:#f87171;font-size:.85rem;margin-top:.8rem;text-align:center;min-height:1.2em}
+</style></head>
+<body>
+<div class="card">
+  <h2>YT Pub Lives</h2>
+  <label>Senha</label>
+  <input type="password" id="pw" placeholder="••••••••" autofocus>
+  <button onclick="login()">Entrar</button>
+  <div class="err" id="err"></div>
+</div>
+<script>
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+async function login(){
+  const r=await fetch('/api/login',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({password:document.getElementById('pw').value})});
+  const d=await r.json();
+  if(d.ok)location.href='/';
+  else document.getElementById('err').textContent='Senha incorreta';
+}
+</script>
+</body></html>'''
 
 
 def get_access_token():
@@ -113,9 +157,93 @@ class DashboardHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(Path(__file__).parent), **kwargs)
 
+    def _require_auth(self):
+        cookie = self.headers.get('Cookie', '')
+        for part in cookie.split(';'):
+            p = part.strip()
+            if p.startswith('ds=') and p[3:] in _VALID_SESSIONS:
+                return True
+        if 'text/html' in self.headers.get('Accept', ''):
+            self.send_response(302)
+            self.send_header('Location', '/login')
+            self.end_headers()
+        else:
+            self.send_response(401)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(b'{"error":"unauthorized"}')
+        return False
+
+    def _handle_login(self, data):
+        global _DASHBOARD_PASSWORD
+        if data.get('password') == _DASHBOARD_PASSWORD:
+            token = _sec.token_hex(32)
+            _VALID_SESSIONS.add(token)
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Set-Cookie', f'ds={token}; Path=/; Max-Age=2592000; HttpOnly; SameSite=Strict')
+            self.end_headers()
+            self.wfile.write(b'{"ok":true}')
+        else:
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(b'{"ok":false}')
+
+    def _handle_logout(self):
+        cookie = self.headers.get('Cookie', '')
+        for part in cookie.split(';'):
+            p = part.strip()
+            if p.startswith('ds='):
+                _VALID_SESSIONS.discard(p[3:])
+        self.send_response(302)
+        self.send_header('Set-Cookie', 'ds=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict')
+        self.send_header('Location', '/login')
+        self.end_headers()
+
+    def _handle_password_change(self, data):
+        global _DASHBOARD_PASSWORD
+        current = data.get('current', '')
+        new_pw = data.get('new', '').strip()
+        if current != _DASHBOARD_PASSWORD:
+            self.send_json(403, {'error': 'senha atual incorreta'})
+            return
+        if not new_pw:
+            self.send_json(400, {'error': 'nova senha nao pode ser vazia'})
+            return
+        if os.path.exists(ENV_FILE):
+            with open(ENV_FILE) as f:
+                lines = f.readlines()
+            new_lines = []
+            found = False
+            for line in lines:
+                if line.startswith('DASHBOARD_PASSWORD='):
+                    new_lines.append(f'DASHBOARD_PASSWORD={new_pw}\n')
+                    found = True
+                else:
+                    new_lines.append(line)
+            if not found:
+                new_lines.append(f'\nDASHBOARD_PASSWORD={new_pw}\n')
+            with open(ENV_FILE, 'w') as f:
+                f.writelines(new_lines)
+        _DASHBOARD_PASSWORD = new_pw
+        _VALID_SESSIONS.clear()
+        self.send_json(200, {'ok': True})
+
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
+
+        if path == '/login':
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(_LOGIN_HTML.encode())
+            return
+
+        if not self._require_auth():
+            return
+
         qs = urllib.parse.parse_qs(parsed.query)
 
         if path == '/api/lives':
@@ -163,7 +291,19 @@ class DashboardHandler(SimpleHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         post_path = parsed.path
 
-        if post_path == '/api/sync':
+        if post_path == '/api/login':
+            self._handle_login(data)
+            return
+        if post_path == '/api/logout':
+            self._handle_logout()
+            return
+
+        if not self._require_auth():
+            return
+
+        if post_path == '/api/config/password':
+            self._handle_password_change(data)
+        elif post_path == '/api/sync':
             self.handle_sync(data)
         elif post_path == '/api/sync/url':
             self.handle_sync_url(data)

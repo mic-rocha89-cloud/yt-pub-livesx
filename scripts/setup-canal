@@ -66,7 +66,12 @@ echo ""
 read -rp "PIRAMYD_API_KEY: " PIRAMYD_API_KEY
 [ -z "$PIRAMYD_API_KEY" ] && { echo "ERRO: PIRAMYD_API_KEY obrigatoria"; exit 1; }
 
-# ============= E. Operacao =============
+# ============= E. Senha do dashboard =============
+echo ""
+read -rp "Senha do dashboard [Inema2026\$\$\$]: " DASHBOARD_PASSWORD
+[ -z "$DASHBOARD_PASSWORD" ] && DASHBOARD_PASSWORD='Inema2026$$$'
+
+# ============= F. Operacao =============
 read -rp "Adicionar ao sync-instances do template? [s/N]: " SYNC
 
 # ============= Resumo + confirmacao =============
@@ -111,6 +116,9 @@ PIRAMYD_API_KEY=$PIRAMYD_API_KEY
 
 # Identificacao
 INSTANCE_NAME=$NOME
+
+# Senha de acesso ao dashboard web
+DASHBOARD_PASSWORD=$DASHBOARD_PASSWORD
 EOF
 chmod 600 "$DEST/config/.env"
 echo "    config/.env criado (chmod 600)"
