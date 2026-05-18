@@ -9,8 +9,12 @@ import os
 import sys
 import base64
 import shutil
+import subprocess
+import threading
+import time
 import urllib.request
 import urllib.parse
+from datetime import date
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from pathlib import Path
@@ -36,6 +40,8 @@ import secrets as _sec
 
 _DASHBOARD_PASSWORD = os.environ.get('DASHBOARD_PASSWORD', 'Inema2026$$$')
 _VALID_SESSIONS = set()
+_PIPELINE_JOBS = {}
+_PIPELINE_LOCK = threading.Lock()
 
 
 def yt_dlp_cmd():
@@ -44,6 +50,123 @@ def yt_dlp_cmd():
     if exe:
         return [exe]
     return [sys.executable, '-m', 'yt_dlp']
+
+
+def bash_cmd():
+    """Return a bash executable for local scripts."""
+    git_bash = r'C:\Program Files\Git\bin\bash.exe'
+    if os.name == 'nt' and os.path.exists(git_bash):
+        return git_bash
+    exe = shutil.which('bash')
+    if exe:
+        return exe
+    return 'bash'
+
+
+def _pipeline_env():
+    cfg = db.load_config()
+    env = os.environ.copy()
+    env['GWS_CONFIG_DIR'] = CONFIG_DIR
+    env['PYTHONUTF8'] = '1'
+    env['PYTHONIOENCODING'] = 'utf-8'
+    venv_scripts = os.path.join(PROJECT_ROOT, '.venv', 'Scripts')
+    env['PATH'] = venv_scripts + os.pathsep + env.get('PATH', '')
+    if cfg.get('openrouter_api_key'):
+        env['OPENROUTER_API_KEY'] = cfg.get('openrouter_api_key', '')
+    if cfg.get('anthropic_api_key'):
+        env['ANTHROPIC_API_KEY'] = cfg.get('anthropic_api_key', '')
+    env['AI_MODEL'] = cfg.get('ai_model') or 'anthropic/claude-sonnet-4'
+    return env, cfg
+
+
+def _pipeline_update_live(video_id, mode, ok, detail=''):
+    lives_dir = os.environ.get('LIVES_DIR', os.path.join(PROJECT_ROOT, 'lives'))
+    job_dir = os.path.join(lives_dir, video_id)
+    manifest_path = os.path.join(job_dir, 'clips_manifest.json')
+    topics_path = os.path.join(job_dir, 'topics.json')
+    extra = {'observacoes': detail[:500]}
+
+    if ok:
+        if os.path.exists(topics_path):
+            extra['status_transcricao'] = 'transcricao'
+        if mode == 'cut' and os.path.exists(manifest_path):
+            with open(manifest_path, encoding='utf-8') as f:
+                clips = json.load(f)
+            publicados = [
+                p for p in db.get_publicados(video_id)
+                if p.get('clip_video_id') not in ('', 'publicando', 'erro_upload')
+            ]
+            qtd = len(clips)
+            pub = len(publicados)
+            extra.update({
+                'status_cortes': 'concluido',
+                'qtd_clips': str(qtd),
+                'clips_publicados': str(pub),
+                'clips_pendentes': str(max(0, qtd - pub)),
+                'data_corte': date.today().isoformat(),
+            })
+        elif mode == 'dry_run':
+            live = db.get_live(video_id) or {}
+            if live.get('status_cortes') != 'concluido' and int(live.get('clips_publicados') or 0) == 0:
+                extra['status_cortes'] = 'pendente'
+    else:
+        extra['status_cortes'] = 'erro'
+
+    db.update_live(video_id, **extra)
+
+
+def _run_pipeline_job(job_id, video_id, mode):
+    with _PIPELINE_LOCK:
+        _PIPELINE_JOBS[job_id].update({'status': 'running', 'started_at': time.strftime('%Y-%m-%d %H:%M:%S')})
+
+    env, cfg = _pipeline_env()
+    ai_mode = cfg.get('ai_mode') or 'openrouter-api'
+    if ai_mode not in ('openrouter-api', 'anthropic-api', 'claude-api', 'piramyd-api', 'manual'):
+        ai_mode = 'openrouter-api'
+
+    args = [
+        bash_cmd(), './scripts/yt-clip', video_id,
+        '--ai', ai_mode,
+        '--work-dir', os.path.join(PROJECT_ROOT, 'lives'),
+    ]
+    if mode == 'dry_run':
+        args.append('--dry-run')
+
+    output_lines = []
+    returncode = -1
+    try:
+        proc = subprocess.Popen(
+            args, cwd=PROJECT_ROOT, env=env,
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            text=True, encoding='utf-8', errors='replace'
+        )
+        for line in proc.stdout:
+            line = line.rstrip()
+            output_lines.append(line)
+            output_lines = output_lines[-120:]
+            with _PIPELINE_LOCK:
+                _PIPELINE_JOBS[job_id]['log'] = output_lines
+        returncode = proc.wait()
+        ok = returncode == 0
+        detail = 'pipeline ok' if ok else '\n'.join(output_lines[-8:])
+        _pipeline_update_live(video_id, mode, ok, detail)
+        with _PIPELINE_LOCK:
+            _PIPELINE_JOBS[job_id].update({
+                'status': 'done' if ok else 'error',
+                'returncode': returncode,
+                'finished_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                'log': output_lines,
+            })
+    except Exception as e:
+        _pipeline_update_live(video_id, mode, False, str(e))
+        with _PIPELINE_LOCK:
+            _PIPELINE_JOBS[job_id].update({
+                'status': 'error',
+                'returncode': returncode,
+                'finished_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                'error': str(e),
+                'log': output_lines + [str(e)],
+            })
 
 _LOGIN_HTML = '''<!doctype html>
 <html lang="pt-br">
@@ -268,6 +391,8 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             self.handle_api_stats()
         elif path == '/api/scheduler/status':
             self.handle_scheduler_status()
+        elif path == '/api/pipeline/jobs':
+            self.handle_pipeline_jobs()
         elif path == '/api/transcript':
             video_id = qs.get('id', [None])[0]
             self.handle_api_transcript(video_id)
@@ -326,6 +451,8 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             self.handle_pipeline_toggle(data)
         elif post_path == '/api/live/reprocess':
             self.handle_live_reprocess(data)
+        elif post_path == '/api/live/process':
+            self.handle_live_process(data)
         elif post_path == '/api/clip/pause':
             self.handle_clip_pause(data)
         elif post_path == '/api/clip/delete-pending':
@@ -465,7 +592,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
     def send_json(self, code, data):
         self.send_response(code)
-        self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(json.dumps(data, ensure_ascii=False).encode())
@@ -595,6 +722,12 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             self.send_json(200, data)
         else:
             self.send_json(200, {'state': 'offline', 'detail': 'Scheduler nao iniciado', 'updated_at': ''})
+
+    def handle_pipeline_jobs(self):
+        """Return recent dashboard-started pipeline jobs."""
+        with _PIPELINE_LOCK:
+            jobs = sorted(_PIPELINE_JOBS.values(), key=lambda j: j.get('created_at', ''), reverse=True)
+        self.send_json(200, {'jobs': jobs[:20]})
 
     def handle_serve_clip(self, path):
         """Serve clip files from lives directory."""
@@ -1651,6 +1784,41 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             shutil.rmtree(job_dir)
 
         self.send_json(200, {'ok': True, 'video_id': video_id})
+
+    def handle_live_process(self, data):
+        """Start yt-clip in background for analysis or local cutting. Never publishes."""
+        video_id = data.get('video_id', '').strip()
+        mode = data.get('mode', 'dry_run').strip()
+        if not video_id:
+            self.send_json(400, {'error': 'video_id required'})
+            return
+        if mode not in ('dry_run', 'cut'):
+            self.send_json(400, {'error': 'mode must be dry_run or cut'})
+            return
+
+        live = db.get_live(video_id)
+        if not live:
+            self.send_json(404, {'error': f'video_id {video_id} not found'})
+            return
+
+        with _PIPELINE_LOCK:
+            for job in _PIPELINE_JOBS.values():
+                if job.get('video_id') == video_id and job.get('status') in ('queued', 'running'):
+                    self.send_json(409, {'error': 'job already running for this video', 'job': job})
+                    return
+            job_id = f'{video_id}-{mode}-{int(time.time())}'
+            _PIPELINE_JOBS[job_id] = {
+                'id': job_id,
+                'video_id': video_id,
+                'mode': mode,
+                'status': 'queued',
+                'created_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                'log': [],
+            }
+
+        thread = threading.Thread(target=_run_pipeline_job, args=(job_id, video_id, mode), daemon=True)
+        thread.start()
+        self.send_json(200, {'ok': True, 'job': _PIPELINE_JOBS[job_id]})
 
     def handle_clip_pause(self, data):
         """Toggle paused status of a clip in clips_manifest.json."""
