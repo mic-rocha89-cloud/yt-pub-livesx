@@ -83,6 +83,22 @@ journalctl --user -u yt-scheduler<N> -n 100 --no-pager
 
 Só teste scheduler/publicação em instância controlada, porque ele pode baixar vídeos, cortar arquivos e publicar no YouTube.
 
+Fluxo seguro para teste real de publicação:
+
+1. Importe o vídeo e rode análise/corte local sem `--publish`.
+2. Gere thumbnails e revise os arquivos em `lives/<VIDEO_ID>/`.
+3. Publique apenas o primeiro clipe como `unlisted`.
+4. Valide no YouTube Studio: título, descrição, thumbnail, áudio, vídeo, canal e privacidade.
+5. Publique os demais como `unlisted`.
+6. Só mude para `public` depois de aprovar o lote.
+7. Valide pela API ou pelo dashboard se todos ficaram com a privacidade esperada.
+
+Em Windows, cuidado extra com encoding e shell:
+
+- Rode processos Python com `PYTHONUTF8=1` e `PYTHONIOENCODING=utf-8`.
+- Prefira passar metadados via JSON/ambiente em vez de interpolar título/descrição em comandos shell.
+- Verifique títulos com acentos no YouTube após o upload.
+
 ## 7. Usar Codex com segurança
 
 Ao pedir mudanças ao Codex:

@@ -192,6 +192,46 @@ GWS_CONFIG_DIR="$(pwd)/config" LIVES_DIR="$(pwd)/lives" python3 scheduler.py
 
 Só rode o scheduler quando `.env`, OAuth e banco local estiverem prontos. Ele pode chamar APIs externas, baixar vídeos, cortar arquivos e publicar conforme configuração.
 
+### Windows: execução local validada
+
+No Windows, use Git Bash para os scripts Bash e garanta que o processo enxergue a venv, o diretório `config` e UTF-8:
+
+```powershell
+$env:GWS_CONFIG_DIR = "$PWD\config"
+$env:PYTHONUTF8 = "1"
+$env:PYTHONIOENCODING = "utf-8"
+$env:PATH = "$PWD\.venv\Scripts;$env:PATH"
+```
+
+Para iniciar o dashboard:
+
+```powershell
+.\.venv\Scripts\python.exe -u dashboard\server.py 8091
+```
+
+Para iniciar o master-dashboard:
+
+```powershell
+.\.venv\Scripts\python.exe -u master-dashboard\server.py
+```
+
+Para testar um vídeo sem publicar:
+
+```powershell
+.\.venv\Scripts\python.exe -B -c "import os, subprocess, sys; sys.path.insert(0, os.getcwd()); import db; cfg=db.load_config(); env=os.environ.copy(); env['GWS_CONFIG_DIR']=os.path.join(os.getcwd(),'config'); env['PYTHONUTF8']='1'; env['PYTHONIOENCODING']='utf-8'; env['PATH']=os.path.join(os.getcwd(),'.venv','Scripts') + os.pathsep + env.get('PATH',''); env['OPENROUTER_API_KEY']=cfg.get('openrouter_api_key',''); env['AI_MODEL']=cfg.get('ai_model') or 'anthropic/claude-sonnet-4'; raise SystemExit(subprocess.run([r'C:\Program Files\Git\bin\bash.exe','./scripts/yt-clip','VIDEO_ID','--ai','openrouter-api','--dry-run','--work-dir',os.path.join(os.getcwd(),'lives')], env=env).returncode)"
+```
+
+Substitua `VIDEO_ID` pelo ID do vídeo do YouTube. O `--dry-run` baixa/processa a transcrição e salva tópicos, mas não corta nem publica.
+
+Para gerar os cortes locais, remova `--dry-run`. Isso baixa o vídeo e cria arquivos em `lives/<VIDEO_ID>/clips/`, mas ainda não publica se `--publish` não for usado.
+
+Notas importantes do teste real:
+
+- Se a chave OpenRouter estiver salva no dashboard/banco e não no `.env`, carregue-a via `db.load_config()` ao rodar scripts pela linha de comando.
+- Use `PYTHONUTF8=1` e `PYTHONIOENCODING=utf-8` para evitar erro de acentos no Windows.
+- Sempre publique primeiro como `unlisted`, revise no YouTube Studio e só depois mude para `public`.
+- Artefatos gerados em `lives/` e `data/` são locais e não devem ir para o Git.
+
 ## 10. Rodar localmente com Docker
 
 Primeiro confirme que existe `config/.env` real. Depois:
@@ -322,6 +362,10 @@ journalctl --user -u yt-scheduler<N> -f
 - `OAuth bloqueado`: adicionar usuário de teste no OAuth Consent Screen.
 - `redirect_uri_mismatch`: cadastrar exatamente o redirect usado.
 - `Docker não lê config.json`: verificar permissões de `~/.docker/config.json`.
+- `OPENROUTER_API_KEY não definida` ao rodar `yt-clip`: a chave pode estar salva no banco pelo dashboard, não no `.env`. Para execução manual, carregue a chave via `db.load_config()` ou adicione a variável no ambiente local sem commitar.
+- `HTTP 400` no OpenRouter com `AI_MODEL` vazio: configure um modelo válido, por exemplo `anthropic/claude-sonnet-4`, ou deixe o launcher aplicar fallback.
+- `UnicodeEncodeError` no Windows: rode com `PYTHONUTF8=1` e `PYTHONIOENCODING=utf-8`.
+- Títulos com apóstrofo ou acentos quebrando upload: use a versão corrigida de `scripts/yt-publish`, que monta metadados via JSON seguro.
 
 ## 17. Checklist antes de produção
 
