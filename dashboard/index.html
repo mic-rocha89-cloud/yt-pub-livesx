@@ -3160,13 +3160,17 @@ function filterLives() {
       ? ' <span class="badge" style="background:#a78bfa;color:#fff;font-size:0.7em">enrich</span>'
       : ` <span class="badge clickable" style="cursor:pointer;background:var(--card);color:var(--accent);border:1px solid var(--accent);font-size:0.7em" onclick="markEnrich('${l.video_id}')" title="Refazer titulo e descricao com IA">✎</span>`;
 
+    const pipelineBtns = l.video_id.startsWith('import_') ? '' :
+      ` <button class="small secondary" style="padding:2px 6px;font-size:0.7em" onclick="startLiveProcess('${l.video_id}', 'dry_run', this)" title="Analisa topicos sem cortar nem publicar">analisar</button>` +
+      ` <button class="small" style="padding:2px 6px;font-size:0.7em;background:var(--accent)" onclick="startLiveProcess('${l.video_id}', 'cut', this)" title="Gera cortes locais sem publicar">cortar</button>`;
+
     return `
     <tr>
       <td><a href="${l.url}" target="_blank">${l.video_id}</a></td>
       <td>${l.data_live || '-'}</td>
       <td title="${escapeHtml(l.titulo)}">${l.video_id.startsWith('import_') ? '<span class="badge import">import</span> ' : ''}${escapeHtml(l.titulo)}</td>
       <td>${l.duracao_min ? l.duracao_min + ' min' : '-'}</td>
-      <td>${cortesBadge}${reprocessBtn}${enrichBtn}</td>
+      <td>${cortesBadge}${reprocessBtn}${enrichBtn}${pipelineBtns}</td>
       <td>${l.data_corte || l.data_publicacao || '-'}</td>
       <td style="cursor:pointer" onclick="goToClips('${l.video_id}')">${l.qtd_clips || '0'}</td>
       <td style="cursor:pointer" onclick="goToClips('${l.video_id}')"><span style="color:${parseInt(l.clips_publicados||0) > 0 ? (parseInt(l.clips_publicados||0) >= parseInt(l.qtd_clips||0) ? '#10b981' : '#f59e0b') : 'var(--muted)'}">${l.clips_publicados || '0'}</span></td>
@@ -3211,6 +3215,72 @@ async function reprocessLive(videoId) {
     }
   } catch (e) {
     showToast('Erro ao reprocessar: ' + e.message);
+  }
+}
+
+async function startLiveProcess(videoId, mode, btn) {
+  const label = mode === 'dry_run' ? 'analisar' : 'cortar';
+  const msg = mode === 'dry_run'
+    ? `Analisar topicos de ${videoId}? Nao corta nem publica.`
+    : `Gerar cortes locais de ${videoId}? Nao publica no YouTube.`;
+  if (!confirm(msg)) return;
+
+  const original = btn ? btn.textContent : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>' + label;
+  }
+
+  try {
+    const resp = await fetchJson('/api/live/process', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({video_id: videoId, mode})
+    });
+    if (!resp.ok) {
+      showToast('Erro: ' + (resp.error || 'nao foi possivel iniciar'), 'error');
+      if (btn) { btn.disabled = false; btn.textContent = original; }
+      return;
+    }
+    showToast(`Pipeline iniciado: ${label} ${videoId}`);
+    pollPipelineJob(resp.job.id, btn, original);
+  } catch (e) {
+    showToast('Erro: ' + e.message, 'error');
+    if (btn) { btn.disabled = false; btn.textContent = original; }
+  }
+}
+
+async function pollPipelineJob(jobId, btn, originalLabel) {
+  try {
+    const data = await fetchJson('/api/pipeline/jobs');
+    const job = (data.jobs || []).find(j => j.id === jobId);
+    if (!job) {
+      if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+      return;
+    }
+    if (btn && job.status === 'running') {
+      const last = (job.log || []).slice(-1)[0] || 'rodando';
+      btn.title = last;
+    }
+    if (job.status === 'queued' || job.status === 'running') {
+      setTimeout(() => pollPipelineJob(jobId, btn, originalLabel), 3000);
+      return;
+    }
+    if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+    if (job.status === 'done') {
+      showToast('Pipeline concluido');
+      loadLives();
+      loadStats();
+      if (currentPubFilter) loadPublicados(currentPubFilter);
+    } else {
+      const last = (job.log || []).slice(-3).join(' ');
+      showToast('Pipeline falhou: ' + (job.error || last || 'erro desconhecido'), 'error');
+      loadLives();
+      loadStats();
+    }
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+    showToast('Erro ao consultar pipeline: ' + e.message, 'error');
   }
 }
 
