@@ -15,6 +15,8 @@
 set -euo pipefail
 
 export PATH="$HOME/.deno/bin:/usr/bin:$HOME/.npm-global/bin:$HOME/google-cloud-sdk/bin:$HOME/.local/bin:$PATH"
+export PYTHONUTF8="${PYTHONUTF8:-1}"
+export PYTHONIOENCODING="${PYTHONIOENCODING:-utf-8}"
 
 # --- Config ---
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -74,6 +76,48 @@ fi
 JOB_DIR="$WORK_DIR/$VIDEO_ID"
 mkdir -p "$JOB_DIR"
 
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="python3"
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN="python"
+else
+  echo "Erro: python3/python nao encontrado no PATH" >&2
+  exit 1
+fi
+
+resolve_cmd_path() {
+  local cmd_path
+  cmd_path="$(command -v "$1" 2>/dev/null || true)"
+  if [[ -z "$cmd_path" ]]; then
+    echo "Erro: $1 nao encontrado no PATH" >&2
+    exit 1
+  fi
+  if command -v cygpath >/dev/null 2>&1; then
+    cygpath -w "$cmd_path"
+  else
+    printf '%s\n' "$cmd_path"
+  fi
+}
+
+FFMPEG_BIN="$(resolve_cmd_path ffmpeg)"
+FFPROBE_BIN="$(resolve_cmd_path ffprobe)"
+
+validate_media_file() {
+  "$PYTHON_BIN" - "$FFPROBE_BIN" "$1" << 'PYEOF'
+import subprocess, sys
+
+ffprobe_bin = sys.argv[1]
+path = sys.argv[2]
+result = subprocess.run([
+    ffprobe_bin, '-v', 'error',
+    '-show_entries', 'format=duration',
+    '-of', 'default=nw=1:nk=1',
+    path,
+], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+sys.exit(result.returncode)
+PYEOF
+}
+
 # ============================================================
 # ETAPA 1: Baixar transcrição do YouTube
 # ============================================================
@@ -106,7 +150,7 @@ fi
 # ============================================================
 echo "==> [2/5] Processando transcrição..."
 
-python3 << PYEOF
+"$PYTHON_BIN" << PYEOF
 import json
 
 with open('$JOB_DIR/transcript_raw.json3', encoding='utf-8') as f:
@@ -213,7 +257,7 @@ PROMPTEOF
   env -u CLAUDECODE claude -p "$(cat "$JOB_DIR/prompt.txt")" --output-format text > "$JOB_DIR/claude_response.txt" 2>/dev/null
 
   # Extrai JSON da resposta
-  python3 << PYEOF
+  "$PYTHON_BIN" << PYEOF
 import json, re
 
 with open('$JOB_DIR/claude_response.txt', encoding='utf-8') as f:
@@ -248,7 +292,7 @@ $(cat "$JOB_DIR/condensed.txt")
 PROMPTEOF
 
   # Chama Anthropic API via curl
-  python3 << PYEOF
+  "$PYTHON_BIN" << PYEOF
 import json, urllib.request, os, re
 
 api_key = os.environ['ANTHROPIC_API_KEY']
@@ -299,7 +343,7 @@ $PROMPT_TEMPLATE
 $(cat "$JOB_DIR/condensed.txt")
 PROMPTEOF
 
-  python3 << PYEOF
+  "$PYTHON_BIN" << PYEOF
 import json, urllib.request, os, re
 
 api_key = os.environ['OPENROUTER_API_KEY']
@@ -350,7 +394,7 @@ $PROMPT_TEMPLATE
 $(cat "$JOB_DIR/condensed.txt")
 PROMPTEOF
 
-  python3 << PYEOF
+  "$PYTHON_BIN" << PYEOF
 import json, urllib.request, os, re
 
 api_key = os.environ['PIRAMYD_API_KEY']
@@ -410,7 +454,7 @@ fi
 
 # Show topics
 echo ""
-python3 << PYEOF
+"$PYTHON_BIN" << PYEOF
 import json
 with open('$JOB_DIR/topics.json', encoding='utf-8') as f:
     data = json.load(f)
@@ -437,7 +481,7 @@ echo "==> [4/5] Baixando vídeo e cortando clips..."
 
 # Valida source.mp4 existente (remove se corrompido/incompleto)
 if [[ -f "$JOB_DIR/source.mp4" ]]; then
-  if ! ffmpeg -v error -i "$JOB_DIR/source.mp4" -f null - >/dev/null 2>&1; then
+  if ! validate_media_file "$JOB_DIR/source.mp4"; then
     echo "    source.mp4 existente corrompido, removendo para re-download..."
     rm -f "$JOB_DIR/source.mp4"
   fi
@@ -460,8 +504,8 @@ if [[ ! -f "$JOB_DIR/source.mp4" ]]; then
   fi
   echo "    Download completo"
 
-  # Valida download recem-feito
-  if ! ffmpeg -v error -i "$JOB_DIR/source.mp4" -f null - >/dev/null 2>&1; then
+  # Valida download recem-feito sem decodificar o video inteiro.
+  if ! validate_media_file "$JOB_DIR/source.mp4"; then
     echo "Erro: source.mp4 baixado esta corrompido" >&2
     rm -f "$JOB_DIR/source.mp4"
     exit 1
@@ -469,12 +513,13 @@ if [[ ! -f "$JOB_DIR/source.mp4" ]]; then
 fi
 
 # Cut clips
-python3 << PYEOF
+"$PYTHON_BIN" << PYEOF
 import json, subprocess, os
 
 with open('$JOB_DIR/topics.json', encoding='utf-8') as f:
     data = json.load(f)
 
+ffmpeg_bin = r'''$FFMPEG_BIN'''
 clips_dir = '$JOB_DIR/clips'
 os.makedirs(clips_dir, exist_ok=True)
 
@@ -501,7 +546,7 @@ for i, t in enumerate(data.get('topics', []), 1):
     else:
         print(f"    Cortando clip {i}: {start} → {end} ({duration}s) - {t['title'][:50]}")
         cmd = [
-            'ffmpeg', '-y',
+            ffmpeg_bin, '-y',
             '-ss', str(start_sec),
             '-i', '$JOB_DIR/source.mp4',
             '-t', str(duration),
@@ -544,7 +589,7 @@ PYEOF
 if [[ "$PUBLISH" == "true" ]]; then
   echo "==> [5/5] Publicando clips no YouTube..."
 
-  python3 << PYEOF
+  "$PYTHON_BIN" << PYEOF
 import json, subprocess
 
 with open('$JOB_DIR/clips_manifest.json', encoding='utf-8') as f:
