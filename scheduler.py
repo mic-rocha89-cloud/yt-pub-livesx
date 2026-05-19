@@ -1391,15 +1391,13 @@ def acquire_lock():
     So trunca+escreve o PID DEPOIS de adquirir a flock. Remove o fluxo de "stale
     detectado" anterior, que tinha race condition causando multiplas instancias.
     """
-    import fcntl
     lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.scheduler.lock')
     # Abre (ou cria) sem truncar
     fd = os.open(lock_path, os.O_RDWR | os.O_CREAT, 0o644)
     lock_file = os.fdopen(fd, 'r+')
-    try:
-        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except OSError:
-        # Outro processo detem a flock. Le PID (sem modificar arquivo) e reporta.
+
+    def report_locked():
+        # Outro processo detem o lock. Le PID (sem modificar arquivo) e reporta.
         lock_file.seek(0)
         raw = lock_file.read().strip()
         try:
@@ -1407,11 +1405,23 @@ def acquire_lock():
             os.kill(old_pid, 0)
             print(f'[ERRO] Outro scheduler ja esta rodando (PID {old_pid}, lock: {lock_path}). Saindo.', file=sys.stderr)
         except (ValueError, ProcessLookupError, OSError):
-            print(f'[ERRO] flock travada mas PID vazio/morto (lock inconsistente). '
+            print(f'[ERRO] lock travado mas PID vazio/morto (lock inconsistente). '
                   f'Remova manualmente {lock_path} e reinicie.', file=sys.stderr)
         lock_file.close()
         sys.exit(1)
-    # flock OK: agora pode truncar e escrever o PID
+
+    try:
+        if os.name == 'nt':
+            import msvcrt
+            lock_file.seek(0)
+            msvcrt.locking(lock_file.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        report_locked()
+
+    # lock OK: agora pode truncar e escrever o PID
     lock_file.seek(0)
     lock_file.truncate()
     lock_file.write(str(os.getpid()))

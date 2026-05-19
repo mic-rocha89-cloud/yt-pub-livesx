@@ -42,6 +42,31 @@ _DASHBOARD_PASSWORD = os.environ.get('DASHBOARD_PASSWORD', 'Inema2026$$$')
 _VALID_SESSIONS = set()
 _PIPELINE_JOBS = {}
 _PIPELINE_LOCK = threading.Lock()
+SECRET_CONFIG_KEYS = {
+    'anthropic_api_key',
+    'thumb_api_key',
+    'openrouter_api_key',
+    'kie_api_key',
+    'minimax_api_key',
+}
+SECRET_CONFIG_PLACEHOLDER = '__SECRET_CONFIGURED__'
+
+
+def redact_config_secrets(config):
+    safe = dict(config)
+    for key in SECRET_CONFIG_KEYS:
+        if safe.get(key):
+            safe[key] = SECRET_CONFIG_PLACEHOLDER
+    return safe
+
+
+def normalize_config_update(data):
+    safe = {}
+    for key, value in data.items():
+        if key in SECRET_CONFIG_KEYS and value in ('', None, SECRET_CONFIG_PLACEHOLDER):
+            continue
+        safe[key] = value
+    return safe
 
 
 def yt_dlp_cmd():
@@ -1324,7 +1349,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
         if to_save:
             db.update_config(to_save)
 
-        self.send_json(200, {'config': config})
+        self.send_json(200, {'config': redact_config_secrets(config)})
 
     def handle_api_prompts_get(self):
         config_dir = os.environ.get('GWS_CONFIG_DIR', os.path.join(PROJECT_ROOT, 'config'))
@@ -1684,8 +1709,10 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
     def handle_update_config(self, data):
         """Update config values."""
-        db.update_config(data)
-        self.send_json(200, {'ok': True, 'updated': list(data.keys())})
+        safe_data = normalize_config_update(data)
+        if safe_data:
+            db.update_config(safe_data)
+        self.send_json(200, {'ok': True, 'updated': list(safe_data.keys())})
 
     def handle_clip_privacy(self, data):
         """Update privacy of a published clip on YouTube."""
