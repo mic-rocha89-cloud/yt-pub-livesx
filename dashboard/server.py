@@ -70,7 +70,10 @@ def _pipeline_env():
     env['PYTHONUTF8'] = '1'
     env['PYTHONIOENCODING'] = 'utf-8'
     venv_scripts = os.path.join(PROJECT_ROOT, '.venv', 'Scripts')
-    env['PATH'] = venv_scripts + os.pathsep + env.get('PATH', '')
+    current_path = env.get('PATH') or env.get('Path', '')
+    merged_path = venv_scripts + os.pathsep + current_path
+    env['PATH'] = merged_path
+    env['Path'] = merged_path
     if cfg.get('openrouter_api_key'):
         env['OPENROUTER_API_KEY'] = cfg.get('openrouter_api_key', '')
     if cfg.get('anthropic_api_key'):
