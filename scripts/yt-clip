@@ -127,21 +127,42 @@ if [[ -f "$JOB_DIR/transcript_raw.json3" ]]; then
   echo "    Transcrição já existe, pulando download"
 else
   # Tenta com cookies primeiro, fallback sem cookies
-  if ! yt-dlp --cookies-from-browser firefox --remote-components ejs:github \
+  if transcript_output="$(yt-dlp --cookies-from-browser firefox --remote-components ejs:github \
     --write-auto-sub --sub-lang pt --skip-download --sub-format json3 \
-    -o "$JOB_DIR/%(id)s" "https://www.youtube.com/watch?v=$VIDEO_ID" 2>/dev/null; then
+    -o "$JOB_DIR/%(id)s" "https://www.youtube.com/watch?v=$VIDEO_ID" 2>&1)"; then
+    printf '%s\n' "$transcript_output"
+  else
+    transcript_rc=$?
+    printf '%s\n' "$transcript_output" >&2
+    if [[ "$transcript_output" == *"HTTP Error 429"* ]]; then
+      echo "Erro: YouTube limitou o download de legendas (HTTP 429). Aguarde antes de tentar novamente." >&2
+      exit "$transcript_rc"
+    fi
     echo "    Falha com cookies, tentando sem cookies..."
-    yt-dlp --remote-components ejs:github \
+    if transcript_output="$(yt-dlp --remote-components ejs:github \
       --write-auto-sub --sub-lang pt --skip-download --sub-format json3 \
-      -o "$JOB_DIR/%(id)s" "https://www.youtube.com/watch?v=$VIDEO_ID" 2>/dev/null || true
+      -o "$JOB_DIR/%(id)s" "https://www.youtube.com/watch?v=$VIDEO_ID" 2>&1)"; then
+      printf '%s\n' "$transcript_output"
+    else
+      transcript_rc=$?
+      printf '%s\n' "$transcript_output" >&2
+      if [[ "$transcript_output" == *"HTTP Error 429"* ]]; then
+        echo "Erro: YouTube limitou o download de legendas (HTTP 429). Aguarde antes de tentar novamente." >&2
+      else
+        echo "Erro: download da transcricao falhou (yt-dlp: $transcript_rc)." >&2
+      fi
+      exit "$transcript_rc"
+    fi
   fi
 
   # Rename to standard name
-  mv "$JOB_DIR/${VIDEO_ID}.pt.json3" "$JOB_DIR/transcript_raw.json3" 2>/dev/null || true
+  if [[ -f "$JOB_DIR/${VIDEO_ID}.pt.json3" ]]; then
+    mv "$JOB_DIR/${VIDEO_ID}.pt.json3" "$JOB_DIR/transcript_raw.json3"
+  fi
 fi
 
 if [[ ! -f "$JOB_DIR/transcript_raw.json3" ]]; then
-  echo "Erro: não foi possível baixar a transcrição" >&2
+  echo "Erro: yt-dlp terminou sem gerar a legenda pt. Confira se o video possui legendas em portugues." >&2
   exit 1
 fi
 
