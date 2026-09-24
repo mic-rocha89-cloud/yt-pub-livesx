@@ -14,13 +14,14 @@ BASH = str(GIT_BASH) if GIT_BASH.is_file() else shutil.which('bash')
 
 @unittest.skipUnless(BASH, 'Bash is required to test the clip script')
 class TranscriptFailureTests(unittest.TestCase):
-    def run_stage(self, fake_downloader):
+    def run_stage(self, fake_downloader, with_node=False):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             # Execute the actual transcript stage, with local stand-ins for its tools.
             script = (ROOT / 'scripts' / 'yt-clip').read_text(encoding='utf-8')
             stage = script.split('echo "==> [1/5]', 1)[1].split('# ETAPA 2:', 1)[0]
             prelude = 'set -euo pipefail\nJOB_DIR="$1"\nVIDEO_ID=test_video\n'
+            prelude += 'YT_DLP_JS_ARGS=(--js-runtimes node)\n' if with_node else 'YT_DLP_JS_ARGS=()\n'
             prelude += 'yt-dlp() {\n' + fake_downloader + '\n}\n'
             prelude += 'mv() { printf "mv called\\n" >> "$JOB_DIR/moves"; command mv "$@"; }\n'
             test_script = root / 'stage.sh'
@@ -90,6 +91,48 @@ return 0
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(len(attempts), 1)
         self.assertTrue(moved)
+
+    def test_node_argument_reaches_authenticated_and_anonymous_downloads(self):
+        result, attempts, moved = self.run_stage('''
+printf 'attempt\n' >> "$JOB_DIR/attempts"
+if [[ " $* " != *" --js-runtimes node "* ]]; then
+  echo 'missing Node runtime' >&2
+  return 9
+fi
+if [[ "$1" == '--cookies-from-browser' ]]; then return 1; fi
+printf '{"events":[]}' > "$JOB_DIR/$VIDEO_ID.pt.json3"
+return 0
+''', with_node=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(len(attempts), 2)
+        self.assertTrue(moved)
+
+
+@unittest.skipUnless(BASH, 'Bash is required to test runtime selection')
+class JavaScriptRuntimeTests(unittest.TestCase):
+    def test_node_is_used_only_if_supported_and_deno_is_absent(self):
+        script = (ROOT / 'scripts' / 'yt-clip').read_text(encoding='utf-8')
+        selection = 'YT_DLP_JS_ARGS=()' + script.split('YT_DLP_JS_ARGS=()', 1)[1].split('validate_media_file()', 1)[0]
+        stubs = '''
+set -euo pipefail
+command() {
+  case "$2" in
+    deno) [[ "$HAS_DENO" == 1 ]] ;;
+    node) [[ "$HAS_NODE" == 1 ]] ;;
+    *) builtin command "$@" ;;
+  esac
+}
+node() { return "$NODE_RESULT"; }
+'''
+        for has_deno, has_node, node_result, expected in [
+                ('1', '1', '0', False), ('1', '0', '0', False),
+                ('0', '1', '0', True), ('0', '1', '1', False), ('0', '0', '0', False)]:
+            with self.subTest(deno=has_deno, node=has_node, compatible=node_result):
+                env = dict(os.environ, HAS_DENO=has_deno, HAS_NODE=has_node, NODE_RESULT=node_result)
+                result = subprocess.run([BASH, '-c', stubs + selection + '\ndeclare -p YT_DLP_JS_ARGS'],
+                                        capture_output=True, text=True, timeout=10, env=env)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual('node' in result.stdout, expected)
 
 
 if __name__ == '__main__':

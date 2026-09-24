@@ -102,6 +102,14 @@ resolve_cmd_path() {
 FFMPEG_BIN="$(resolve_cmd_path ffmpeg)"
 FFPROBE_BIN="$(resolve_cmd_path ffprobe)"
 
+# yt-dlp only enables Deno by default; reuse a supported Node when Deno is absent.
+YT_DLP_JS_ARGS=()
+if ! command -v deno >/dev/null 2>&1 && command -v node >/dev/null 2>&1; then
+  if node -e 'process.exit(Number(process.versions.node.split(".")[0]) >= 22 ? 0 : 1)' >/dev/null 2>&1; then
+    YT_DLP_JS_ARGS=(--js-runtimes node)
+  fi
+fi
+
 validate_media_file() {
   "$PYTHON_BIN" - "$FFPROBE_BIN" "$1" << 'PYEOF'
 import subprocess, sys
@@ -127,7 +135,7 @@ if [[ -f "$JOB_DIR/transcript_raw.json3" ]]; then
   echo "    Transcrição já existe, pulando download"
 else
   # Tenta com cookies primeiro, fallback sem cookies
-  if transcript_output="$(yt-dlp --cookies-from-browser firefox --remote-components ejs:github \
+  if transcript_output="$(yt-dlp --cookies-from-browser firefox "${YT_DLP_JS_ARGS[@]}" --remote-components ejs:github \
     --write-auto-sub --sub-lang pt --skip-download --sub-format json3 \
     -o "$JOB_DIR/%(id)s" "https://www.youtube.com/watch?v=$VIDEO_ID" 2>&1)"; then
     printf '%s\n' "$transcript_output"
@@ -139,7 +147,7 @@ else
       exit "$transcript_rc"
     fi
     echo "    Falha com cookies, tentando sem cookies..."
-    if transcript_output="$(yt-dlp --remote-components ejs:github \
+    if transcript_output="$(yt-dlp "${YT_DLP_JS_ARGS[@]}" --remote-components ejs:github \
       --write-auto-sub --sub-lang pt --skip-download --sub-format json3 \
       -o "$JOB_DIR/%(id)s" "https://www.youtube.com/watch?v=$VIDEO_ID" 2>&1)"; then
       printf '%s\n' "$transcript_output"
@@ -511,13 +519,13 @@ fi
 # Download video if not exists
 if [[ ! -f "$JOB_DIR/source.mp4" ]]; then
   echo "    Baixando vídeo..."
-  if ! yt-dlp --cookies-from-browser firefox --remote-components ejs:github \
+  if ! yt-dlp --cookies-from-browser firefox "${YT_DLP_JS_ARGS[@]}" --remote-components ejs:github \
     -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" \
     --merge-output-format mp4 \
     -o "$JOB_DIR/source.mp4" \
     "https://www.youtube.com/watch?v=$VIDEO_ID" 2>/dev/null; then
     echo "    Falha com cookies, tentando sem cookies..."
-    yt-dlp --remote-components ejs:github \
+    yt-dlp "${YT_DLP_JS_ARGS[@]}" --remote-components ejs:github \
       -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" \
       --merge-output-format mp4 \
       -o "$JOB_DIR/source.mp4" \
