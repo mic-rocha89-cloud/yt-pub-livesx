@@ -16,6 +16,8 @@ data/
 node_modules/
 *.log
 dashboard/scheduler_status.json
+dashboard/scheduler_heartbeat.json
+dashboard/scheduler_heartbeat.json.tmp
 imports/*/videos/
 imports/*/*.mp4
 imports/**/*.mp4

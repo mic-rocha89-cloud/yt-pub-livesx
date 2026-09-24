@@ -36,6 +36,7 @@ if os.path.exists(ENV_FILE):
 
 sys.path.insert(0, PROJECT_ROOT)
 import db
+from runtime_status import read_scheduler_status
 import secrets as _sec
 
 _DASHBOARD_PASSWORD = os.environ.get('DASHBOARD_PASSWORD', 'Inema2026$$$')
@@ -729,27 +730,13 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             checks['youtube'] = {'ok': False, 'detail': str(e)[:80]}
 
         # Scheduler process
-        try:
-            status_file = os.path.join(os.path.dirname(__file__), 'scheduler_status.json')
-            if os.path.exists(status_file):
-                with open(status_file) as f:
-                    st = json.load(f)
-                checks['scheduler'] = {'ok': st.get('state') != 'offline', 'detail': st.get('state', 'offline')}
-            else:
-                checks['scheduler'] = {'ok': False, 'detail': 'offline'}
-        except Exception as e:
-            checks['scheduler'] = {'ok': False, 'detail': str(e)}
+        st = read_scheduler_status(PROJECT_ROOT)
+        checks['scheduler'] = {'ok': st['running'], 'detail': st.get('detail', st['state'])}
 
         self.send_json(200, checks)
 
     def handle_scheduler_status(self):
-        status_file = os.path.join(os.path.dirname(__file__), 'scheduler_status.json')
-        if os.path.exists(status_file):
-            with open(status_file) as f:
-                data = json.load(f)
-            self.send_json(200, data)
-        else:
-            self.send_json(200, {'state': 'offline', 'detail': 'Scheduler nao iniciado', 'updated_at': ''})
+        self.send_json(200, read_scheduler_status(PROJECT_ROOT))
 
     def handle_pipeline_jobs(self):
         """Return recent dashboard-started pipeline jobs."""
