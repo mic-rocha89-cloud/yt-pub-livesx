@@ -16,6 +16,7 @@ import urllib.request
 import urllib.parse
 import threading
 from datetime import datetime
+from runtime_status import scheduler_heartbeat
 
 # Config
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -1397,16 +1398,10 @@ def acquire_lock():
     lock_file = os.fdopen(fd, 'r+')
 
     def report_locked():
-        # Outro processo detem o lock. Le PID (sem modificar arquivo) e reporta.
-        lock_file.seek(0)
-        raw = lock_file.read().strip()
-        try:
-            old_pid = int(raw)
-            os.kill(old_pid, 0)
-            print(f'[ERRO] Outro scheduler ja esta rodando (PID {old_pid}, lock: {lock_path}). Saindo.', file=sys.stderr)
-        except (ValueError, ProcessLookupError, OSError):
-            print(f'[ERRO] lock travado mas PID vazio/morto (lock inconsistente). '
-                  f'Remova manualmente {lock_path} e reinicie.', file=sys.stderr)
+        # Windows denies reads of locked bytes; os.kill(pid, 0) is not a safe probe there.
+        print(f'[ERRO] Nao foi possivel adquirir o lock do scheduler ({lock_path}). '
+              f'Verifique outra instancia ou permissoes; nao remova o lock de um processo ativo.',
+              file=sys.stderr)
         lock_file.close()
         sys.exit(1)
 
@@ -1431,4 +1426,5 @@ def acquire_lock():
 
 if __name__ == '__main__':
     _lock = acquire_lock()
-    main()
+    with scheduler_heartbeat(PROJECT_ROOT):
+        main()

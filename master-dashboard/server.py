@@ -21,6 +21,8 @@ from pathlib import Path
 PORT = 8090
 DASHBOARD_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.join(DASHBOARD_DIR, '..')
+sys.path.insert(0, PROJECT_ROOT)
+from runtime_status import read_scheduler_status
 CONFIG_DIR = os.environ.get('GWS_CONFIG_DIR', os.path.join(PROJECT_ROOT, 'config'))
 ENV_FILE = os.path.join(CONFIG_DIR, '.env')
 
@@ -125,6 +127,8 @@ def log(msg):
 
 def get_service_info(svc_name):
     """Retorna status de um serviço systemd user."""
+    if sys.platform == 'win32':
+        return {}
     try:
         result = subprocess.run(
             ['systemctl', '--user', 'show', svc_name,
@@ -142,13 +146,18 @@ def get_service_info(svc_name):
 
 
 def get_scheduler_status(instance_path):
-    """Lê scheduler_status.json da instância."""
-    status_file = os.path.join(instance_path, 'dashboard', 'scheduler_status.json')
+    return read_scheduler_status(instance_path)
+
+
+def get_local_dashboard_info(port):
+    """Check the local login page without credentials or a systemd dependency."""
     try:
-        with open(status_file) as f:
-            return json.load(f)
-    except Exception:
-        return None
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        with opener.open(f'http://127.0.0.1:{int(port)}/login', timeout=2) as response:
+            running = response.status == 200 and b'YT Pub Lives' in response.read(16384)
+        return {'SubState': 'running' if running else 'stopped'}
+    except (OSError, ValueError):
+        return {'SubState': 'stopped'}
 
 
 def get_db_stats(instance_path):
@@ -546,6 +555,10 @@ def check_instance(inst):
     sched_info = get_service_info(inst['scheduler_svc'])
     dash_info = get_service_info(inst['dashboard_svc'])
     sched_status = get_scheduler_status(inst['path'])
+    if sys.platform == 'win32':
+        sched_info = {'SubState': 'running' if sched_status['running'] else 'stopped',
+                      'MainPID': sched_status['pid']}
+        dash_info = get_local_dashboard_info(inst['port'])
     db_stats = get_db_stats(inst['path'])
     oauth = check_oauth_quick(inst['path'])
 

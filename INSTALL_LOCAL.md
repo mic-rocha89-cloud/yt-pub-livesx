@@ -22,7 +22,7 @@ Para rodar sem Docker:
 - `pip`.
 - `ffmpeg` e `ffprobe`.
 - `yt-dlp`.
-- `deno`, usado pelo `yt-dlp` com componentes remotos.
+- Deno 2.3+ ou Node.js 22+, usado pelo `yt-dlp` para executar os componentes JavaScript. O pipeline prefere Deno; se ele estiver ausente, habilita Node compativel automaticamente.
 - `curl`.
 - Dependências Python de `requirements.txt`: `cryptography` e `anthropic`.
 
@@ -157,6 +157,38 @@ docker compose build
 ```
 
 O `Dockerfile` instala Python 3.12, FFmpeg, Deno, `yt-dlp`, Pillow e os pacotes de `requirements.txt`.
+
+### Downloader no Windows com uv
+
+Se a `.venv` existente foi criada com `uv`, ela pode nao conter `pip`. Nao e
+necessario recriar o ambiente nem instalar pacotes no Python global.
+
+Antes de instalar, confira o runtime e simule a atualizacao. Estes comandos nao
+acessam o YouTube; o `dry-run` consulta o PyPI sem instalar pacotes:
+
+```powershell
+node --version
+uv --no-config pip install --dry-run --python '.venv\Scripts\python.exe' --index-url https://pypi.org/simple 'yt-dlp==2026.8.19' 'yt-dlp-ejs==0.8.0'
+```
+
+Par de versoes instalado e verificado localmente em 2026-09-24. Para aplicar
+somente esses dois pacotes na `.venv`:
+
+```powershell
+uv --no-config pip install --python '.venv\Scripts\python.exe' --index-url https://pypi.org/simple 'yt-dlp==2026.8.19' 'yt-dlp-ejs==0.8.0'
+.\.venv\Scripts\python.exe -m yt_dlp --version
+```
+
+O EJS deve ser compativel com a versao do `yt-dlp`; nao atualize um deles
+isoladamente sem conferir a [documentacao oficial](https://github.com/yt-dlp/yt-dlp/wiki/EJS).
+Os pacotes e o runtime foram verificados sem download real; isso nao valida
+sozinho o fluxo completo de analise, corte ou publicacao.
+
+HTTP 429 no download de legendas e uma limitacao externa. Atualizar o downloader
+ou habilitar Node nao garante remove-la. O pipeline interrompe essa etapa sem
+repetir a chamada ao receber 429. Nao fique clicando em analisar/cortar; aguarde
+antes de uma nova tentativa. Nao use proxies ou rotacao de contas para contornar
+o limite. Mantenha o scheduler desligado durante testes locais sem publicacao.
 
 ## 9. Rodar localmente sem Docker
 
